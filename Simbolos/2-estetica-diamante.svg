@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<defs>
+<filter id="paint" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="16" result="n2"/>
+  <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.2 0 0 0 -0.55" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+</filter>
+</defs>
+<g filter="url(#paint)" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="160,435 330,285 340,435" fill="#9068CC" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="330,285 512,285 340,435" fill="#C2A8EA" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="512,285 340,435 512,435" fill="#9068CC" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="512,285 512,435 684,435" fill="#C2A8EA" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="512,285 694,285 684,435" fill="#9068CC" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="694,285 864,435 684,435" fill="#C2A8EA" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="160,435 340,435 512,800" fill="#C2A8EA" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="340,435 512,435 512,800" fill="#9068CC" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="512,435 684,435 512,800" fill="#C2A8EA" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="684,435 864,435 512,800" fill="#9068CC" stroke="#6B44A6" stroke-width="12"/>
+<polygon points="330,285 694,285 864,435 512,800 160,435" fill="none" stroke="#6B44A6" stroke-width="18"/>
+<line x1="160" y1="435" x2="864" y2="435" stroke="#6B44A6" stroke-width="12"/>
+</g>
+</svg>

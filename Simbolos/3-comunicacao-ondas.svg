@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<defs>
+<filter id="paint" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="17" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="22" result="n2"/>
+  <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.2 0 0 0 -0.55" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+</filter>
+</defs>
+<g filter="url(#paint)" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="512" cy="512" r="30" fill="#DE8C26"/>
+<circle cx="512" cy="512" r="68" fill="none" stroke="#DE8C26" stroke-width="14"/>
+<circle cx="512" cy="512" r="108" fill="none" stroke="#DE8C26" stroke-width="9" stroke-dasharray="1 0"/>
+<path d="M 638.3 398.2 A 170 170 0 0 1 638.3 625.8" fill="none" stroke="#DE8C26" stroke-width="18"/>
+<path d="M 385.7 625.8 A 170 170 0 0 1 385.7 398.2" fill="none" stroke="#DE8C26" stroke-width="18"/>
+<path d="M 688.9 352.7 A 238 238 0 0 1 688.9 671.3" fill="none" stroke="#DE8C26" stroke-width="18"/>
+<path d="M 335.1 671.3 A 238 238 0 0 1 335.1 352.7" fill="none" stroke="#DE8C26" stroke-width="18"/>
+<path d="M 739.4 307.2 A 306 306 0 0 1 739.4 716.8" fill="none" stroke="#DE8C26" stroke-width="18"/>
+<path d="M 284.6 716.8 A 306 306 0 0 1 284.6 307.2" fill="none" stroke="#DE8C26" stroke-width="18"/>
+<line x1="468" y1="362" x2="468" y2="292" stroke="#DE8C26" stroke-width="16"/>
+<line x1="512" y1="362" x2="512" y2="222" stroke="#DE8C26" stroke-width="16"/>
+<line x1="556" y1="362" x2="556" y2="292" stroke="#DE8C26" stroke-width="16"/>
+<line x1="468" y1="662" x2="468" y2="732" stroke="#DE8C26" stroke-width="16"/>
+<line x1="512" y1="662" x2="512" y2="802" stroke="#DE8C26" stroke-width="16"/>
+<line x1="556" y1="662" x2="556" y2="732" stroke="#DE8C26" stroke-width="16"/>
+</g>
+</svg>

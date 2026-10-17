@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<defs>
+<filter id="paint" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="23" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="28" result="n2"/>
+  <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.2 0 0 0 -0.55" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+</filter>
+</defs>
+<g filter="url(#paint)" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 806.5 569.2 A 300 300 0 0 1 569.2 806.5" fill="none" stroke="#CDA93C" stroke-width="16"/>
+<path d="M 454.8 806.5 A 300 300 0 0 1 217.5 569.2" fill="none" stroke="#CDA93C" stroke-width="16"/>
+<path d="M 217.5 454.8 A 300 300 0 0 1 454.8 217.5" fill="none" stroke="#CDA93C" stroke-width="16"/>
+<path d="M 569.2 217.5 A 300 300 0 0 1 806.5 454.8" fill="none" stroke="#CDA93C" stroke-width="16"/>
+<circle cx="512" cy="512" r="262" fill="none" stroke="#CDA93C" stroke-width="5"/>
+<line x1="857.0" y1="512.0" x2="744.0" y2="512.0" stroke="#CDA93C" stroke-width="16"/>
+<line x1="512.0" y1="857.0" x2="512.0" y2="744.0" stroke="#CDA93C" stroke-width="16"/>
+<line x1="167.0" y1="512.0" x2="280.0" y2="512.0" stroke="#CDA93C" stroke-width="16"/>
+<line x1="512.0" y1="167.0" x2="512.0" y2="280.0" stroke="#CDA93C" stroke-width="16"/>
+<path d="M 272 512 C 350 372, 674 372, 752 512 C 674 652, 350 652, 272 512 Z" fill="none" stroke="#CDA93C" stroke-width="16"/>
+<circle cx="512" cy="512" r="82" fill="none" stroke="#CDA93C" stroke-width="14"/>
+<circle cx="512" cy="512" r="40" fill="#CDA93C"/>
+</g>
+</svg>

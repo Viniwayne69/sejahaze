@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+<defs>
+<filter id="paint" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="n1"/>
+  <feDisplacementMap in="SourceGraphic" in2="n1" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8" result="n2"/>
+  <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  3.2 0 0 0 -0.55" result="mask"/>
+  <feComposite in="d" in2="mask" operator="in"/>
+</filter>
+</defs>
+<g filter="url(#paint)" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="512" cy="512" r="292" fill="none" stroke="#2F86B0" stroke-width="13"/><circle cx="512" cy="512" r="316" fill="none" stroke="#2F86B0" stroke-width="5"/><line x1="718.5" y1="718.5" x2="756.0" y2="756.0" stroke="#2F86B0" stroke-width="10"/><line x1="305.5" y1="718.5" x2="268.0" y2="756.0" stroke="#2F86B0" stroke-width="10"/><line x1="305.5" y1="305.5" x2="268.0" y2="268.0" stroke="#2F86B0" stroke-width="10"/><line x1="718.5" y1="305.5" x2="756.0" y2="268.0" stroke="#2F86B0" stroke-width="10"/><g transform="rotate(45 512 512)"><polygon points="512,337 472,472 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="8"/><polygon points="512,337 552,472 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="8"/></g>
+<g transform="rotate(135 512 512)"><polygon points="512,337 472,472 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="8"/><polygon points="512,337 552,472 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="8"/></g>
+<g transform="rotate(225 512 512)"><polygon points="512,337 472,472 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="8"/><polygon points="512,337 552,472 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="8"/></g>
+<g transform="rotate(315 512 512)"><polygon points="512,337 472,472 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="8"/><polygon points="512,337 552,472 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="8"/></g>
+<g transform="rotate(0 512 512)"><polygon points="512,140 450,450 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="9"/><polygon points="512,140 574,450 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="9"/></g>
+<g transform="rotate(90 512 512)"><polygon points="512,212 450,450 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="9"/><polygon points="512,212 574,450 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="9"/></g>
+<g transform="rotate(180 512 512)"><polygon points="512,212 450,450 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="9"/><polygon points="512,212 574,450 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="9"/></g>
+<g transform="rotate(270 512 512)"><polygon points="512,212 450,450 512,512" fill="#2F86B0" stroke="#2F86B0" stroke-width="9"/><polygon points="512,212 574,450 512,512" fill="#7DBAD6" stroke="#2F86B0" stroke-width="9"/></g>
+<circle cx="512" cy="512" r="26" fill="#2F86B0"/>
+<circle cx="512" cy="512" r="9" fill="#7DBAD6"/>
+</g>
+</svg>
