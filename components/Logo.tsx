@@ -1,17 +1,18 @@
+import Image from 'next/image';
 import { cn } from './ui';
 
 /**
- * Wordmark HAZE: Archivo 900 expandida, letras levemente sobrepostas
- * e barra ciano grossa sob o H.
- * `tone="dark"` para fundos claros, `tone="light"` (off-white) para fundos escuros.
+ * Logo HAZE a partir dos arquivos oficiais (Identidade-HAZE/logos), nunca recriada em texto.
+ * `tone="light"`: logo-principal (off-white + barra ciano) para fundos escuros.
+ * `tone="dark"`: logo-claro (preta + barra ciano) para fundos claros.
  */
 const sizes = {
-  sm: 'text-[24px] sm:text-[26px]',
-  md: 'text-[34px] sm:text-[42px]',
+  sm: 'h-[26px] w-auto',
+  md: 'h-[34px] w-auto md:h-[40px]',
 };
 
 export default function Logo({
-  tone = 'dark',
+  tone = 'light',
   size = 'md',
   className,
 }: {
@@ -20,17 +21,12 @@ export default function Logo({
   className?: string;
 }) {
   return (
-    <span
-      className={cn(
-        'relative inline-block select-none pb-[0.1em] font-display font-black leading-[0.8] tracking-[-0.085em]',
-        sizes[size],
-        tone === 'dark' ? 'text-black' : 'text-paper',
-        className,
-      )}
-      style={{ fontVariationSettings: "'wdth' 125" }}
-    >
-      HAZE
-      <span aria-hidden="true" className="absolute bottom-[-0.09em] left-0 h-[0.13em] w-[0.72em] bg-cyan" />
-    </span>
+    <Image
+      src={tone === 'light' ? '/logos/logo-principal.png' : '/logos/logo-claro.png'}
+      alt="HAZE"
+      width={1338}
+      height={406}
+      className={cn(sizes[size], className)}
+    />
   );
 }

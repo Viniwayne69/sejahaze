@@ -2,8 +2,17 @@
 
 import { useId, useState } from 'react';
 import { copy } from '@/content/copy';
-import { ChevronIcon, QuestionIcon } from './icons';
 import { Heading, Section, cn } from './ui';
+
+/** Indicador de abrir/fechar feito com as barras ciano da marca (+ fechado, − aberto). */
+function Toggle({ open }: { open: boolean }) {
+  return (
+    <span aria-hidden="true" className="relative size-4 shrink-0">
+      <span className="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 bg-cyan" />
+      <span className={cn('absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 bg-cyan transition-transform duration-300', open && 'scale-y-0')} />
+    </span>
+  );
+}
 
 export default function Perguntas() {
   const { title, items } = copy.perguntas;
@@ -11,7 +20,7 @@ export default function Perguntas() {
   const baseId = useId();
 
   return (
-    <Section id="perguntas" tone="paper" labelledBy="perguntas-titulo" className="paper-grain">
+    <Section id="perguntas" texture="topografica-v3" labelledBy="perguntas-titulo">
       <div data-reveal className="md:text-center">
         <Heading id="perguntas-titulo" before={title} />
       </div>
@@ -23,7 +32,7 @@ export default function Perguntas() {
           const panelId = `${baseId}-a${i}`;
 
           return (
-            <div key={item.question} className={cn('rounded-[14px] bg-white transition-shadow', isOpen && 'shadow-lift')}>
+            <div key={item.question} className="rounded-[24px] border-2 border-black bg-paper">
               <h3>
                 <button
                   id={buttonId}
@@ -31,11 +40,10 @@ export default function Perguntas() {
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-[15px] font-semibold leading-snug md:px-6 md:py-5 md:text-[17px]"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-semibold leading-snug md:px-7 md:py-5 md:text-[17px]"
                 >
-                  <QuestionIcon className="shrink-0 text-cyan" />
-                  <span className="flex-1">{item.question}</span>
-                  <ChevronIcon className={cn('shrink-0 text-black/60 transition-transform duration-300', isOpen && 'rotate-180')} />
+                  {item.question}
+                  <Toggle open={isOpen} />
                 </button>
               </h3>
               <div
@@ -49,7 +57,7 @@ export default function Perguntas() {
                 )}
               >
                 <div className="overflow-hidden">
-                  <p className="px-4 pb-4 pl-12 text-[14.5px] leading-relaxed text-black/75 md:px-6 md:pb-6 md:pl-14 md:text-[16px]">{item.answer}</p>
+                  <p className="px-5 pb-5 text-[14.5px] leading-relaxed md:px-7 md:pb-6 md:text-[16px]">{item.answer}</p>
                 </div>
               </div>
             </div>

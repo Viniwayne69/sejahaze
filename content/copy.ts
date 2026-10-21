@@ -18,7 +18,7 @@ export const copy = {
     accent: 'desejadas',
     after: 'DA SUA GERAÇÃO',
     subtitle:
-      'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais.',
+      'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais',
     steps: [
       { number: '01', title: 'Porto', label: 'Diagnóstico' },
       { number: '02', title: 'Rota', label: 'Posicionamento' },
@@ -29,7 +29,7 @@ export const copy = {
   promessa: {
     before: 'MAIS QUE UMA MARCA BONITA, UMA MARCA QUE',
     accent: 'vende',
-    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo, sem brigar por preço.',
+    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo, sem brigar por preço',
   },
 
   dores: {
@@ -136,7 +136,7 @@ export const copy = {
   aplicacao: {
     before: 'COMECE PELA SUA',
     accent: 'aplicação',
-    body: 'Conte um pouco sobre o seu negócio, se fizer sentido, damos o próximo passo juntos.',
+    body: 'Conte um pouco sobre o seu negócio, se fizer sentido, damos o próximo passo juntos',
     cta: 'Quero aplicar minha marca',
   },
 
@@ -146,27 +146,27 @@ export const copy = {
       {
         question: 'Como funciona a aplicação?',
         answer:
-          'Você preenche um formulário curto, que leva menos de 2 minutos, e com as suas respostas avaliamos se a HAZE é o caminho certo para a sua marca e retornamos com o próximo passo.',
+          'Você preenche um formulário curto, que leva menos de 2 minutos, e com as suas respostas avaliamos se a HAZE é o caminho certo para a sua marca e retornamos com o próximo passo',
       },
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Porto: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Rota: Posicionamento de Marca, Proposta de Valor e Foco Estratégico, Travessia: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana.',
+          'Porto: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Rota: Posicionamento de Marca, Proposta de Valor e Foco Estratégico, Travessia: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana',
       },
       {
         question: 'Preciso já ter uma marca para começar?',
         answer:
-          'Você precisa ter um negócio, produto ou serviço em funcionamento, a marca pode estar confusa ou pouco clara, esse é justamente o ponto de partida do Porto.',
+          'Você precisa ter um negócio, produto ou serviço em funcionamento, a marca pode estar confusa ou pouco clara, esse é justamente o ponto de partida do Porto',
       },
       {
         question: 'A HAZE serve para o meu tipo de negócio?',
         answer:
-          'O Método HAZE foi pensado para negócios que querem aumentar o valor percebido e atrair clientes mais alinhados, na aplicação você conta o seu contexto e analisamos o encaixe.',
+          'O Método HAZE foi pensado para negócios que querem aumentar o valor percebido e atrair clientes mais alinhados, na aplicação você conta o seu contexto e analisamos o encaixe',
       },
       {
         question: 'Posso contratar só uma parte?',
         answer:
-          'A HAZE é um único serviço, feito em ordem: Porto, Rota e Travessia, cada parte se apoia na anterior, por isso não são vendidas separadamente, conte na aplicação o seu momento e vemos juntos como começar.',
+          'A HAZE é um único serviço, feito em ordem: Porto, Rota e Travessia, cada parte se apoia na anterior, por isso não são vendidas separadamente, conte na aplicação o seu momento e vemos juntos como começar',
       },
     ],
   },
@@ -174,7 +174,7 @@ export const copy = {
   ultimoAviso: {
     before: 'ÚLTIMO',
     accent: 'aviso',
-    body: 'Se a sua marca continuar sendo comparada por preço, você vai continuar tendo os mesmos resultados.',
+    body: 'Se a sua marca continuar sendo comparada por preço, você vai continuar tendo os mesmos resultados',
     cta: 'Quero sair da comparação por preço',
   },
 
@@ -184,7 +184,7 @@ export const copy = {
   },
 
   footer: {
-    tagline: 'Marcas que atraem os clientes certos.',
-    copyright: '© 2026 HAZE, todos os direitos reservados.',
+    tagline: 'Marcas que atraem os clientes certos',
+    copyright: '© 2026 HAZE, todos os direitos reservados',
   },
 } as const;

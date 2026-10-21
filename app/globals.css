@@ -5,7 +5,6 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 88px;
   }
 
   body {
@@ -25,30 +24,27 @@
 }
 
 @layer components {
-  /* Grotesca larga e extra pesada dos títulos */
+  /* Títulos: Archivo expandida 900, caixa alta */
   .display {
     font-family: var(--font-archivo), system-ui, sans-serif;
     font-weight: 900;
     font-variation-settings: 'wdth' 125;
     text-transform: uppercase;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
     text-wrap: balance;
   }
 
-  /* Palavra em serifa itálica com barra embaixo */
+  /* Palavra-chave: mesma fonte e tamanho da frase, com a barra reta embaixo */
   .accent {
     position: relative;
     display: inline-block;
     z-index: 0;
-    font-family: var(--font-instrument), Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: -0.02em;
-    line-height: 0.85;
-    font-size: 1.32em;
-    padding: 0 0.04em 0.06em 0;
+    font: inherit;
+    font-variation-settings: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    padding-bottom: 0.1em;
   }
 
   .accent::after {
@@ -57,39 +53,18 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: max(4px, 0.085em);
+    height: 0.13em;
     z-index: -1;
     background: var(--accent-bar, theme('colors.cyan'));
     transform-origin: left;
     transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s;
   }
 
-  .accent-sans {
-    font-family: inherit;
-    font-style: normal;
-    font-weight: inherit;
-    text-transform: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    font-size: 1em;
-    padding: 0;
-  }
-
-  /* Papel off-white com grão */
-  .paper-grain::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.22;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' fill='%238D8B86' opacity='.3' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  .topo-lines {
-    background-image: url('/textures/topo.svg');
+  /* Textura de fundo de seção (Identidade-HAZE/texturas) */
+  .texture {
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
@@ -135,4 +110,9 @@
   .js [data-reveal] .accent::after {
     transform: none;
   }
+}
+
+/* Toda Archivo da marca é a expandida */
+.font-display {
+  font-variation-settings: 'wdth' 125;
 }
