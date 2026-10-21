@@ -83,6 +83,8 @@ export const textosAplicacao = {
   enviando: 'Enviando',
   pular: 'Pular e enviar',
   de: 'de',
+  /** Incentivos curtos no contador, perto do fim: Diversão e Preguiça (está acabando) */
+  incentivos: { quaseLa: 'Quase lá', ultima: 'Última pergunta' },
   erros: {
     obrigatoria: 'Esta pergunta é obrigatória',
     nome: 'Informe nome e sobrenome',
@@ -91,10 +93,11 @@ export const textosAplicacao = {
     envio: 'Não foi possível enviar agora, tente novamente em instantes',
   },
   fim: {
-    titulo: 'OBRIGADO,',
+    titulo: 'PRONTO,',
     comReuniao: (data: string, hora: string) =>
-      `Recebemos sua aplicação, sua reunião ficou pré-agendada para ${data}, às ${hora}, e enviaremos o link da reunião pelo WhatsApp e por e-mail`,
-    semReuniao: 'Recebemos sua aplicação, em breve nossa equipe entrará em contato pelo WhatsApp',
+      `Recebemos a sua aplicação e já vamos olhar a sua marca, a sua reunião ficou pré-agendada para ${data}, às ${hora}, e enviaremos o link pelo WhatsApp e por e-mail`,
+    semReuniao:
+      'Recebemos a sua aplicação e já vamos olhar a sua marca, em breve nossa equipe entra em contato pelo WhatsApp',
     voltarSite: 'Voltar ao site',
   },
 } as const;

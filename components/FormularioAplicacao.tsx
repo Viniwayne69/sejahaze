@@ -54,6 +54,7 @@ export default function FormularioAplicacao() {
   const tituloRef = useRef<HTMLHeadingElement>(null);
 
   const pergunta = etapa >= 0 && etapa < total ? perguntas[etapa] : null;
+  const incentivo = etapa === total - 1 ? t.incentivos.ultima : etapa === total - 3 ? t.incentivos.quaseLa : '';
   const progresso = etapa < 0 ? 0 : Math.min(100, Math.round((etapa / total) * 100));
 
   // Leva o foco para o campo (ou para o título) a cada nova etapa
@@ -184,6 +185,7 @@ export default function FormularioAplicacao() {
             <div>
               <p className="font-display text-[15px] font-black md:text-[17px]">
                 {doisDigitos(etapa + 1)} <span className="text-gray">{t.de} {doisDigitos(total)}</span>
+                {incentivo && <span className="ml-3 font-sans text-[13px] font-semibold uppercase tracking-[0.08em]">{incentivo}</span>}
               </p>
               <h1
                 ref={tituloRef}

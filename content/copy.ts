@@ -17,8 +17,7 @@ export const copy = {
     before: 'FAZEMOS DA SUA MARCA UMA DAS MAIS',
     accent: 'desejadas',
     after: 'DA GERAÇÃO',
-    subtitle:
-      'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais',
+    subtitle: 'Clientes certos, preço cheio e vendas que se repetem',
     steps: [
       { number: '01', title: 'Porto', label: 'Diagnóstico' },
       { number: '02', title: 'Rota', label: 'Posicionamento' },
@@ -27,17 +26,17 @@ export const copy = {
   },
 
   promessa: {
-    before: 'DOBRE O SEU FATURAMENTO E',
-    accent: 'VENDA MAIS',
-    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo',
+    before: 'VENDA MAIS CARO PARA OS CLIENTES CERTOS,',
+    accent: 'SEM DESCONTO',
+    body: 'A gente cuida da marca, do atendimento e das vendas para o seu cliente comprar, pagar mais e voltar',
   },
 
   dores: {
     title: 'SE A SUA MARCA ESTÁ ASSIM...',
     items: [
-      'Vende, mas não está conseguindo escalar',
-      'Está vendendo muito barato',
-      'Atrai o cliente errado e perde o certo no caminho',
+      'Vende, mas não consegue crescer',
+      'Vende barato e o concorrente leva a fama',
+      'Atrai quem só pergunta o preço e perde o cliente certo',
     ],
     closing: 'Chegou a hora de mudar isso com a HAZE',
     cta: 'Quero uma marca desejada',
@@ -50,17 +49,17 @@ export const copy = {
       {
         number: '01',
         title: 'Porto',
-        body: 'Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada',
+        body: 'Descobrimos onde a sua marca perde dinheiro',
       },
       {
         number: '02',
         title: 'Rota',
-        body: 'Posicionamento de Marca, Identidade visual, Mentoria com os colaboradores e Criação de sistema comercial completo (Site, CRM, página de vendas, Gestão de anúncios)',
+        body: 'A marca que todo mundo quer e o sistema que vende por ela',
       },
       {
         number: '03',
         title: 'Travessia',
-        body: 'Marca Aplicada, Time Treinado e Acompanhamento Semanal',
+        body: 'Tudo rodando, a equipe treinada e a gente do seu lado toda semana',
       },
     ],
     result: 'Resultado: Marca forte no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
@@ -68,7 +67,7 @@ export const copy = {
 
   paraQuem: {
     sim: {
-      title: 'Para quem é',
+      title: 'Para quem é, e só para quem é',
       items: [
         'Para quem quer uma comunicação clara, que atraia o cliente certo',
         'Quem sente que não está conseguindo escalar o negócio',
@@ -126,9 +125,9 @@ export const copy = {
   },
 
   aplicacao: {
-    before: 'COMECE PELA SUA',
-    accent: 'aplicação',
-    body: 'Conte um pouco sobre o seu negócio, se fizer sentido, damos o próximo passo juntos',
+    before: 'A SUA MARCA DESEJADA',
+    accent: 'COMEÇA AQUI',
+    body: 'Conte sobre o seu negócio, avaliamos o encaixe e voltamos com o próximo passo',
     cta: 'Quero aplicar minha marca',
   },
 
@@ -138,7 +137,7 @@ export const copy = {
       {
         question: 'Como funciona a aplicação?',
         answer:
-          'Você preenche um formulário curto, que leva menos de 2 minutos, e com as suas respostas avaliamos se a HAZE é o caminho certo para a sua marca e retornamos com o próximo passo',
+          'Você responde 8 perguntas em menos de 2 minutos, a gente avalia se a HAZE é o caminho certo para a sua marca e volta com o próximo passo',
       },
       {
         question: 'O que eu recebo em cada parte?',
@@ -159,9 +158,9 @@ export const copy = {
   },
 
   ultimoAviso: {
-    before: 'ÚLTIMO',
-    accent: 'aviso',
-    body: 'Se a sua marca continuar sendo comparada por preço, você vai continuar tendo os mesmos resultados',
+    before: 'O PREÇO DE CONTINUAR',
+    accent: 'IGUAL',
+    body: 'Quando a sua marca é igual a todas, o cliente só olha o preço, e você continua tendo os mesmos resultados',
     cta: 'Quero sair da comparação por preço',
   },
 
