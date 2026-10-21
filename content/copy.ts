@@ -39,7 +39,7 @@ export const copy = {
       'Está vendendo muito barato',
       'Atrai o cliente errado e perde o certo no caminho',
     ],
-    closing: 'Então a HAZE foi feita exatamente pra você',
+    closing: 'Chegou a hora de mudar isso com a HAZE',
     cta: 'Quero uma marca desejada',
   },
 
