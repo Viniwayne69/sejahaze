@@ -5,11 +5,25 @@ import { cn } from './ui';
  * e barra ciano grossa sob o H.
  * `tone="dark"` para fundos claros, `tone="light"` (off-white) para fundos escuros.
  */
-export default function Logo({ tone = 'dark', className }: { tone?: 'dark' | 'light'; className?: string }) {
+const sizes = {
+  sm: 'text-[24px] sm:text-[26px]',
+  md: 'text-[34px] sm:text-[42px]',
+};
+
+export default function Logo({
+  tone = 'dark',
+  size = 'md',
+  className,
+}: {
+  tone?: 'dark' | 'light';
+  size?: keyof typeof sizes;
+  className?: string;
+}) {
   return (
     <span
       className={cn(
-        'relative inline-block select-none pb-[0.1em] font-display text-[34px] font-black leading-[0.8] tracking-[-0.085em] sm:text-[42px]',
+        'relative inline-block select-none pb-[0.1em] font-display font-black leading-[0.8] tracking-[-0.085em]',
+        sizes[size],
         tone === 'dark' ? 'text-black' : 'text-paper',
         className,
       )}

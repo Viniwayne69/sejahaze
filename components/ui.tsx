@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { APPLY_URL } from '@/config';
 import { copy } from '@/content/copy';
 
@@ -6,8 +5,48 @@ export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ');
 }
 
+/** Coluna central: 22px de margem no celular, como na página de referência. */
 export function Container({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={cn('relative mx-auto w-full max-w-site px-5 sm:px-8 xl:px-0', className)}>{children}</div>;
+  return <div className={cn('relative mx-auto w-full max-w-[1080px] px-[22px] md:px-10', className)}>{children}</div>;
+}
+
+type Tone = 'dark' | 'paper' | 'white';
+
+const toneStyles: Record<Tone, string> = {
+  dark: 'bg-black text-paper',
+  paper: 'bg-paper text-black',
+  white: 'bg-white text-black',
+};
+
+/** Seção com o ritmo da página: 24px de respiro no celular, mais no desktop. */
+export function Section({
+  id,
+  tone,
+  className,
+  children,
+  labelledBy,
+}: {
+  id?: string;
+  tone: Tone;
+  className?: string;
+  children: React.ReactNode;
+  labelledBy?: string;
+}) {
+  return (
+    <section
+      id={id}
+      aria-labelledby={labelledBy}
+      className={cn('relative isolate overflow-hidden py-6 md:py-20', toneStyles[tone], className)}
+    >
+      {tone === 'dark' && <DarkTexture />}
+      <Container>{children}</Container>
+    </section>
+  );
+}
+
+/** Linhas topográficas bem discretas sobre o preto. */
+export function DarkTexture() {
+  return <div aria-hidden="true" className="topo-lines absolute inset-0 -z-10 opacity-[0.07] invert" />;
 }
 
 type ButtonVariant = 'cyan' | 'dark';
@@ -17,16 +56,15 @@ const buttonVariants: Record<ButtonVariant, string> = {
   dark: 'bg-black text-paper hover:bg-graphite',
 };
 
+/** Botão de ação: largura total no celular, como na referência. */
 export function Button({
   href = APPLY_URL,
   variant = 'cyan',
-  size = 'lg',
   className,
   children = copy.apply,
 }: {
   href?: string;
   variant?: ButtonVariant;
-  size?: 'sm' | 'lg';
   className?: string;
   children?: React.ReactNode;
 }) {
@@ -34,9 +72,8 @@ export function Button({
     <a
       href={href}
       className={cn(
-        'inline-flex items-center justify-center rounded-full text-center font-semibold leading-tight',
-        'transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0',
-        size === 'lg' ? 'min-h-[50px] min-w-[240px] px-8 py-3 text-[15px] sm:min-w-[274px]' : 'min-h-[42px] px-6 py-2.5 text-[13.5px]',
+        'inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 py-3 text-center text-[16px] font-bold leading-tight',
+        'transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0 md:w-auto md:min-w-[340px]',
         buttonVariants[variant],
         className,
       )}
@@ -46,121 +83,55 @@ export function Button({
   );
 }
 
-/** Etiqueta pílula com contorno ("PARTE 1 · PORTO", "PARA QUEM É"...). */
-export function Eyebrow({ className, children }: { className?: string; children: React.ReactNode }) {
+const headingSizes = {
+  md: 'text-[26px] md:text-[44px]',
+  lg: 'text-[30px] md:text-[52px]',
+};
+
+/** Título de seção em caixa alta larga, com palavra de destaque opcional. */
+export function Heading({
+  id,
+  before,
+  accent,
+  after,
+  bar = 'cyan',
+  size = 'md',
+  className,
+  as: Tag = 'h2',
+}: {
+  id?: string;
+  before: string;
+  accent?: string;
+  after?: string;
+  bar?: 'cyan' | 'black';
+  size?: keyof typeof headingSizes;
+  className?: string;
+  as?: 'h1' | 'h2';
+}) {
   return (
-    <p
-      className={cn(
-        'inline-flex rounded-full border border-black/45 px-3 py-[5px] text-[11px] font-semibold uppercase leading-none tracking-[0.12em] sm:text-xs',
-        className,
+    <Tag id={id} className={cn('display leading-[1.04]', headingSizes[size], className)}>
+      {before}
+      {accent && (
+        <>
+          {' '}
+          <Accent bar={bar}>{accent}</Accent>
+        </>
       )}
-    >
-      {children}
-    </p>
+      {after && <> {after}</>}
+    </Tag>
   );
 }
 
-/**
- * Palavra de destaque com a barra que se desenha ao entrar na tela.
- * Por padrão em serifa itálica; `sans` mantém a fonte do título (ex.: "DEPOIS").
- */
-export function Accent({
-  children,
-  bar = 'cyan',
-  sans = false,
-}: {
-  children: React.ReactNode;
-  bar?: 'cyan' | 'black';
-  sans?: boolean;
-}) {
+/** Palavra em serifa itálica com a barra que se desenha ao entrar na tela. */
+export function Accent({ children, bar = 'cyan' }: { children: React.ReactNode; bar?: 'cyan' | 'black' }) {
   return (
-    <em
-      className={cn('accent', sans && 'accent-sans')}
-      style={bar === 'black' ? ({ '--accent-bar': '#000' } as React.CSSProperties) : undefined}
-    >
+    <em className="accent" style={bar === 'black' ? ({ '--accent-bar': '#000' } as React.CSSProperties) : undefined}>
       {children}
     </em>
   );
 }
 
-/** Foto de fundo decorativa ocupando toda a seção. */
-export function Backdrop({
-  name,
-  priority = false,
-  className,
-  imgClassName,
-}: {
-  name: string;
-  priority?: boolean;
-  className?: string;
-  imgClassName?: string;
-}) {
-  return (
-    <div aria-hidden="true" className={cn('absolute inset-0 -z-20 overflow-hidden', className)}>
-      <Image
-        src={`/images/${name}.webp`}
-        alt=""
-        fill
-        sizes="100vw"
-        priority={priority}
-        className={cn('object-cover', imgClassName)}
-      />
-    </div>
-  );
-}
-
-export function CheckIcon({ className }: { className?: string }) {
-  return (
-    <span aria-hidden="true" className={cn('grid size-6 shrink-0 place-items-center rounded-full bg-cyan text-black', className)}>
-      <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3.5 8.5l3 3 6-7" />
-      </svg>
-    </span>
-  );
-}
-
-export function CrossIcon({ className }: { className?: string }) {
-  return (
-    <span aria-hidden="true" className={cn('grid size-6 shrink-0 place-items-center text-gray', className)}>
-      <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-        <path d="M4 4l8 8M12 4l-8 8" />
-      </svg>
-    </span>
-  );
-}
-
-export function CheckList({
-  items,
-  negative = false,
-  className,
-}: {
-  items: readonly string[];
-  negative?: boolean;
-  className?: string;
-}) {
-  return (
-    <ul className={cn('grid gap-4 sm:gap-[18px]', className)}>
-      {items.map((item) => (
-        <li key={item} className="flex items-start gap-3.5 text-[15px] leading-normal sm:text-base">
-          {negative ? <CrossIcon /> : <CheckIcon />}
-          <span className="pt-px">{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/** Pílula "Resultado: ..." no fim de cada parte do método. */
-export function ResultPill({ label, text, className }: { label: string; text: string; className?: string }) {
-  return (
-    <p
-      className={cn(
-        'rounded-2xl border border-black/50 px-5 py-2.5 text-center text-[13.5px] leading-snug backdrop-blur-sm sm:rounded-full sm:px-7 sm:text-[15px]',
-        className,
-      )}
-    >
-      <strong className="mr-2 font-bold sm:mr-3">{label}</strong>
-      {text}
-    </p>
-  );
+/** Pequena nota abaixo dos botões ("Leva menos de 2 minutos"). */
+export function ApplyNote({ className }: { className?: string }) {
+  return <p className={cn('mt-2.5 text-center text-[12px] font-medium opacity-75', className)}>{copy.applyNote}</p>;
 }

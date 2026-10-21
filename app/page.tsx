@@ -1,32 +1,41 @@
-import AntesDepois from '@/components/AntesDepois';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Aplicacao from '@/components/Aplicacao';
+import Depoimentos from '@/components/Depoimentos';
+import Dores from '@/components/Dores';
 import Hero from '@/components/Hero';
 import Metodo from '@/components/Metodo';
 import ParaQuem from '@/components/ParaQuem';
 import Perguntas from '@/components/Perguntas';
-import Porto from '@/components/Porto';
-import ProximoPasso from '@/components/ProximoPasso';
+import Promessa from '@/components/Promessa';
 import RevealObserver from '@/components/RevealObserver';
-import Rota from '@/components/Rota';
-import Travessia from '@/components/Travessia';
+import ScrollProgress from '@/components/ScrollProgress';
+import StickyBar from '@/components/StickyBar';
+import TopBar from '@/components/TopBar';
+import UltimoAviso from '@/components/UltimoAviso';
+import { copy } from '@/content/copy';
 
 export default function Home() {
   return (
     <>
-      <Header />
+      <a
+        href="#conteudo"
+        className="fixed left-3 top-3 z-[100] -translate-y-[200%] rounded-full bg-black px-5 py-3 text-sm font-semibold text-paper transition focus:translate-y-0"
+      >
+        {copy.skipLink}
+      </a>
+      <ScrollProgress />
+      <TopBar />
       <main id="conteudo" tabIndex={-1} className="outline-none">
         <Hero />
+        <Promessa />
+        <Dores />
         <Metodo />
-        <Porto />
-        <Rota />
-        <Travessia />
-        <AntesDepois />
         <ParaQuem />
+        <Depoimentos />
+        <Aplicacao />
         <Perguntas />
-        <ProximoPasso />
       </main>
-      <Footer />
+      <UltimoAviso />
+      <StickyBar />
       <RevealObserver />
     </>
   );

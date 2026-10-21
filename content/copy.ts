@@ -1,34 +1,17 @@
 /**
  * Todo o texto do site. Edite aqui — os componentes apenas leem deste arquivo.
- * Os títulos com destaque são divididos em `before` (caixa alta), `accent`
- * (serifa itálica com barra) e `after`.
+ * Títulos com destaque: `before` (caixa alta), `accent` (serifa itálica com barra) e `after`.
  */
-
-export type NavItem = { label: string; href: string };
-export type Card = { title: string; body: string };
-export type Stage = {
-  id: 'porto' | 'rota' | 'travessia';
-  label: string;
-  title: string;
-  subtitle: string;
-  cards: readonly Card[];
-  result: { label: string; text: string };
-  cta: string;
-};
 
 export const copy = {
   brand: 'HAZE',
   apply: 'Iniciar aplicação',
   applyNote: 'Leva menos de 2 minutos',
   skipLink: 'Pular para o conteúdo',
-  openMenu: 'Abrir menu',
-  closeMenu: 'Fechar menu',
 
-  nav: [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Serviço', href: '#solucoes' },
-    { label: 'Perguntas', href: '#perguntas' },
-  ] satisfies readonly NavItem[],
+  topBar: {
+    status: 'Aplicações abertas',
+  },
 
   hero: {
     before: 'FAZEMOS DA SUA MARCA UMA DAS MAIS',
@@ -36,147 +19,129 @@ export const copy = {
     after: 'DA SUA GERAÇÃO',
     subtitle:
       'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais.',
+    steps: [
+      { number: '01', title: 'Porto', label: 'Diagnóstico' },
+      { number: '02', title: 'Rota', label: 'Posicionamento' },
+      { number: '03', title: 'Travessia', label: 'Execução' },
+    ],
+  },
+
+  promessa: {
+    before: 'MAIS QUE UMA MARCA BONITA, UMA MARCA QUE',
+    accent: 'vende',
+    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo, sem brigar por preço.',
+  },
+
+  dores: {
+    title: 'SE A SUA MARCA ESTÁ ASSIM...',
+    items: [
+      'Vende, mas não mostra o valor do que entrega',
+      'Precisa dar desconto para fechar a venda',
+      'Atrai o cliente errado e perde o certo no caminho',
+    ],
+    closing: 'Então a HAZE foi feita exatamente pra você',
+    cta: 'Quero uma marca desejada',
   },
 
   metodo: {
-    before: 'COMO TRANSFORMAMOS A SUA MARCA EM UMA DAS mais',
-    accent: 'desejadas?',
-    name: { lead: 'Método', strong: 'HAZE' },
-    cards: [
+    before: 'COMO A HAZE FAZ ISSO',
+    accent: 'na prática',
+    steps: [
       {
         number: '01',
         title: 'Porto',
-        question: 'Para onde a marca quer ir?',
-        body: 'Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada: o retrato completo de onde a empresa está perdendo dinheiro',
-        href: '#porto',
+        body: 'Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada',
       },
       {
         number: '02',
         title: 'Rota',
-        question: 'Como chegar lá sendo diferente?',
-        body: 'Posicionamento de Marca, Proposta de Valor e Foco Estratégico: a marca definida e o argumento que sustenta o seu preço',
-        href: '#rota',
+        body: 'Posicionamento de Marca, Proposta de Valor e Foco Estratégico',
       },
       {
         number: '03',
         title: 'Travessia',
-        question: 'Como isso vira realidade?',
-        body: 'Marca Aplicada, Time Treinado e Acompanhamento Semanal: a marca rodando na empresa inteira, com ajuste toda semana',
-        href: '#travessia',
+        body: 'Marca Aplicada, Time Treinado e Acompanhamento Semanal',
       },
     ],
-    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo, sem brigar por preço',
-  },
-
-  porto: {
-    id: 'porto',
-    label: 'PARTE 1 · PORTO',
-    title: 'DESCUBRA O QUE ESTÁ TRAVANDO A SUA EMPRESA E PARA ONDE ELA PRECISA IR',
-    subtitle: 'Para enxergar onde a empresa está perdendo cliente hoje e para onde ela precisa ir',
-    cards: [
-      {
-        title: 'Diagnóstico Profundo',
-        body: 'Abrimos o seu negócio e a sua marca, com os gargalos e as oportunidades apontados um a um, para você crescer sem gastar dinheiro no lugar errado.',
-      },
-      {
-        title: 'Raio-X do Faturamento',
-        body: 'Olhamos quanto cada cliente gasta, quantos voltam a comprar, quantos dos que chegam realmente compram e quanto custa trazer um cliente novo, para mostrar em dinheiro o que a sua marca está deixando escapar.',
-      },
-      {
-        title: 'Mapa da Jornada',
-        body: 'Desenhamos o caminho do seu cliente, do primeiro contato ao pós-venda, com o ponto exato onde ele desiste marcado, para você parar de perder venda no meio do percurso.',
-      },
-    ],
-    result: { label: 'Resultado:', text: 'mais gente certa chegando e menos cliente perdido no caminho' },
-    cta: 'Quero definir meu destino',
-  } satisfies Stage,
-
-  rota: {
-    id: 'rota',
-    label: 'PARTE 2 · ROTA',
-    title: 'OCUPE O LUGAR QUE SÓ A SUA MARCA PODE OCUPAR E SAIA DA COMPARAÇÃO POR PREÇO',
-    subtitle: 'Para a sua marca ser escolhida pelo que é, e não pelo preço',
-    cards: [
-      {
-        title: 'Posicionamento de Marca',
-        body: 'Com os gargalos na mesa, definimos o lugar que só a sua marca ocupa e o cliente que ela quer atrair, para a empresa inteira saber o que vende e para quem.',
-      },
-      {
-        title: 'Proposta de Valor',
-        body: 'Estruturamos a proposta de valor da sua marca e os argumentos de venda que sustentam o seu preço, entregando o repertório comercial completo para objeções e comparações, para o seu time vender com margem e sem depender de desconto.',
-      },
-      {
-        title: 'Foco Estratégico',
-        body: 'Definimos o que sai da operação, das promoções que corroem margem aos processos que geram atrito na jornada, para concentrar o investimento apenas no que gera receita eficiente.',
-      },
-    ],
-    result: { label: 'Resultado:', text: 'menos desconto para fechar e ticket maior em cada pedido' },
-    cta: 'Quero traçar minha rota',
-  } satisfies Stage,
-
-  travessia: {
-    id: 'travessia',
-    label: 'PARTE 3 · TRAVESSIA',
-    title: 'COLOQUE A MARCA PARA FUNCIONAR NA JORNADA INTEIRA, DO ANÚNCIO AO PÓS-VENDA',
-    subtitle: 'Para o cliente viver exatamente o que a comunicação promete, e a marca virar rotina da empresa',
-    cards: [
-      {
-        title: 'Marca Aplicada',
-        body: 'Com o caminho livre, colocamos a marca na identidade, no site e nos conteúdos, para o cliente reconhecer a sua empresa em tudo o que ela mostra.',
-      },
-      {
-        title: 'Time Treinado',
-        body: 'Treinamos o seu time e ajustamos cada ponto da jornada, do anúncio ao pós-venda, para o cliente viver exatamente o que a sua comunicação promete.',
-      },
-      {
-        title: 'Acompanhamento Semanal',
-        body: 'Acompanhamos a execução toda semana, com dados na mesa, correções e registro do que funcionou, para a marca virar rotina da empresa e não documento na gaveta.',
-      },
-    ],
-    result: { label: 'Resultado:', text: 'cliente que compra de novo e indica a sua marca' },
-    cta: 'Quero minha marca em prática',
-  } satisfies Stage,
-
-  antesDepois: {
-    label: 'MÉTODO HAZE',
-    before: 'ANTES E',
-    accent: 'DEPOIS',
-    antes: {
-      title: 'Antes',
-      items: ['Marca genérica', 'Comunicação confusa', 'Baixo valor percebido', 'Dependência de preço', 'Pouca diferenciação'],
-    },
-    depois: {
-      title: 'Depois',
-      items: ['Marca reconhecível', 'Posicionamento claro', 'Maior valor percebido', 'Mais autoridade', 'Mais preferência'],
-    },
+    result: 'Resultado: mais valor percebido, menos desconto e cliente que compra de novo',
   },
 
   paraQuem: {
-    label: 'PARA QUEM É',
-    before: 'FEITO PARA MARCAS QUE QUEREM SER',
-    accent: 'escolhidas',
     sim: {
-      title: 'É para você se',
+      title: 'Para quem é',
       items: [
-        'Já vende, mas sente que a marca não mostra o valor do que entrega.',
-        'Quer ser escolhido pelo que é, e não só pelo preço.',
-        'Quer uma comunicação clara, que atraia o cliente certo.',
-        'Está pronto para colocar um plano em prática.',
+        'Já vende, mas sente que a marca não mostra o valor do que entrega',
+        'Quer ser escolhido pelo que é, e não só pelo preço',
+        'Quer uma comunicação clara, que atraia o cliente certo',
+        'Está pronto para colocar um plano em prática',
       ],
     },
     nao: {
-      title: 'Ainda não é para você se',
+      title: 'Para quem não é',
       items: [
-        'Procura apenas um logo ou um design pronto, sem estratégia.',
-        'Quer resultado imediato sem mudar a forma de se posicionar.',
-        'Ainda não tem um produto ou serviço definido para vender.',
+        'Procura apenas um logo ou um design pronto, sem estratégia',
+        'Quer resultado imediato sem mudar a forma de se posicionar',
+        'Ainda não tem um produto ou serviço definido para vender',
       ],
     },
   },
 
+  depoimentos: {
+    before: 'QUEM JÁ PASSOU PELA',
+    accent: 'HAZE',
+    subtitle: 'Mensagens de clientes',
+    hint: 'Deslize para ver mais',
+    /**
+     * ATENÇÃO: depoimentos FICTÍCIOS, só para montar o layout.
+     * Troque pelos reais e mude `illustrative` para false antes de divulgar o site.
+     */
+    illustrative: true,
+    illustrativeNote: 'Exemplos ilustrativos',
+    items: [
+      {
+        name: 'Marina Lopes',
+        business: 'Studio de estética',
+        message:
+          'Depois do posicionamento a gente parou de competir com a clínica do lado, subimos o preço e a agenda continuou cheia',
+        time: '09:14',
+      },
+      {
+        name: 'Rafael Costa',
+        business: 'Móveis planejados',
+        message:
+          'O Raio-X do faturamento abriu meus olhos, eu achava que o problema era tráfego e era o pós-venda',
+        time: '18:42',
+      },
+      {
+        name: 'Juliana Prado',
+        business: 'Consultoria financeira',
+        message: 'Meu time finalmente fala a mesma língua, o cliente já chega sabendo por que somos diferentes',
+        time: '11:03',
+      },
+      {
+        name: 'André Melo',
+        business: 'Restaurante',
+        message: 'Paramos de fazer promoção toda semana e o ticket médio subiu, melhor decisão do ano',
+        time: '21:27',
+      },
+      {
+        name: 'Carla Nunes',
+        business: 'Moda feminina',
+        message: 'A marca ficou com a nossa cara, as clientes começaram a marcar a loja sem a gente pedir',
+        time: '15:55',
+      },
+    ],
+  },
+
+  aplicacao: {
+    before: 'COMECE PELA SUA',
+    accent: 'aplicação',
+    body: 'Conte um pouco sobre o seu negócio, se fizer sentido, damos o próximo passo juntos.',
+    cta: 'Quero aplicar minha marca',
+  },
+
   perguntas: {
-    label: 'PERGUNTAS FREQUENTES',
-    title: 'O QUE VOCÊ PRECISA SABER ANTES DE APLICAR',
+    title: 'PERGUNTAS FREQUENTES',
     items: [
       {
         question: 'Como funciona a aplicação?',
@@ -206,21 +171,20 @@ export const copy = {
     ],
   },
 
-  proximoPasso: {
-    label: 'PRÓXIMO PASSO',
-    before: 'VAMOS VER O QUE A SUA MARCA PODE',
-    accent: 'se tornar?',
-    body: 'Conte um pouco sobre o seu negócio, se fizer sentido, damos o próximo passo juntos.',
+  ultimoAviso: {
+    before: 'ÚLTIMO',
+    accent: 'aviso',
+    body: 'Se a sua marca continuar sendo comparada por preço, você vai continuar tendo os mesmos resultados.',
+    cta: 'Quero sair da comparação por preço',
+  },
+
+  stickyBar: {
+    lead: 'Aplicação',
+    note: 'Leva menos de 2 min',
   },
 
   footer: {
     tagline: 'Marcas que atraem os clientes certos.',
-    nav: [
-      { label: 'Início', href: '#inicio' },
-      { label: 'Serviço', href: '#solucoes' },
-      { label: 'Para quem é', href: '#para-quem' },
-      { label: 'Perguntas', href: '#perguntas' },
-    ] satisfies readonly NavItem[],
     copyright: '© 2026 HAZE, todos os direitos reservados.',
   },
 } as const;
