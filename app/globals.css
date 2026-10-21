@@ -116,3 +116,19 @@
 .font-display {
   font-variation-settings: 'wdth' 125;
 }
+
+/* Troca de etapa do formulário de aplicação */
+@keyframes etapa-entra {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-etapa {
+  animation: etapa-entra 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
