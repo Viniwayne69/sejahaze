@@ -10,6 +10,6 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sejahaze.ve
  * dos dados é feita pelas políticas do banco. NUNCA coloque aqui a chave secreta
  * (sb_secret_...) nem a service_role. As variáveis de ambiente têm prioridade.
  */
-export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://nkcxqysjhfqpffvmurle.supabase.co';
+export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://mzyortoigexatzbmbqci.supabase.co';
 export const SUPABASE_KEY =
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_kqjxwPSaDkwPV6-YY5zRfw_9jWW4KsY';
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_-4w_VFF_Gl1YlHdj8hVoFQ_G2mVxRwa';
