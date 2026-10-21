@@ -70,12 +70,17 @@ export async function enviarAplicacao(aplicacao: Aplicacao): Promise<void> {
   if (process.env.NODE_ENV === 'development') console.info('[aplicacao] lead gravado no CRM:', id);
 }
 
-/** Datas e horários já ocupados no CRM, no formato "AAAA-MM-DD|HH:MM". Se falhar, não bloqueia o formulário. */
+/**
+ * Datas e horários já ocupados no CRM, no formato "AAAA-MM-DD|HH:MM".
+ * Vem da função `horarios_ocupados` do banco (supabase/auth.sql do CRM), que devolve só dia e hora,
+ * porque o público não pode ler a tabela de negócios. Se falhar, não bloqueia o formulário.
+ */
 export async function buscarHorariosOcupados(): Promise<Set<string>> {
   try {
-    const hoje = paraISO(new Date());
-    const resposta = await fetch(`${TABELA}?select=data_reuniao,hora_reuniao&data_reuniao=gte.${hoje}`, {
+    const resposta = await fetch(`${SUPABASE_URL}/rest/v1/rpc/horarios_ocupados`, {
+      method: 'POST',
       headers: cabecalhos,
+      body: '{}',
       signal: AbortSignal.timeout(8000),
     });
     if (!resposta.ok) return new Set();
