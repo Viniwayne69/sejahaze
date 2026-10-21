@@ -19,13 +19,18 @@ export default function Carrossel({
 }) {
   const trilho = useRef<HTMLOListElement>(null);
   const [ativo, setAtivo] = useState(0);
+  // A seta vira ao chegar no último cartão e só desvira quando volta ao primeiro
+  const [voltando, setVoltando] = useState(false);
 
   useEffect(() => {
     const el = trilho.current;
     if (!el) return;
     const aoRolar = () => {
       const largura = (el.firstElementChild as HTMLElement | null)?.offsetWidth ?? 1;
-      setAtivo(Math.min(items.length - 1, Math.max(0, Math.round(el.scrollLeft / (largura + 12)))));
+      const i = Math.min(items.length - 1, Math.max(0, Math.round(el.scrollLeft / (largura + 12))));
+      setAtivo(i);
+      if (i === items.length - 1) setVoltando(true);
+      else if (i === 0) setVoltando(false);
     };
     el.addEventListener('scroll', aoRolar, { passive: true });
     return () => el.removeEventListener('scroll', aoRolar);
@@ -36,8 +41,6 @@ export default function Carrossel({
     const alvo = el?.children[i] as HTMLElement | undefined;
     if (el && alvo) el.scrollTo({ left: alvo.offsetLeft - el.offsetLeft, behavior: 'smooth' });
   };
-
-  const noFim = ativo === items.length - 1;
 
   return (
     <div data-reveal className="mt-5 md:mt-10">
@@ -54,15 +57,15 @@ export default function Carrossel({
           ))}
         </ol>
 
-        {/* Uma seta só, na direita: no último cartão ela vira e volta um cartão */}
+        {/* Uma seta só, na direita: ao chegar no último cartão ela vira e continua virada (voltando) até o primeiro */}
         <button
           type="button"
-          onClick={() => irPara(noFim ? ativo - 1 : ativo + 1)}
-          aria-label={noFim ? 'Cartão anterior' : 'Próximo cartão'}
+          onClick={() => irPara(voltando ? Math.max(0, ativo - 1) : ativo + 1)}
+          aria-label={voltando ? 'Cartão anterior' : 'Próximo cartão'}
           className={cn(
             'absolute right-1.5 z-10 grid size-8 -translate-y-1/2 place-items-center rounded-full border-2 border-black bg-cyan text-black transition-transform duration-300 active:scale-95 md:hidden',
             setaTop,
-            noFim && 'rotate-180',
+            voltando && 'rotate-180',
           )}
         >
           <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
