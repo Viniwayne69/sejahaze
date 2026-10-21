@@ -1,5 +1,4 @@
 import Aplicacao from '@/components/Aplicacao';
-import Depoimentos from '@/components/Depoimentos';
 import Dores from '@/components/Dores';
 import Hero from '@/components/Hero';
 import Metodo from '@/components/Metodo';
@@ -30,7 +29,6 @@ export default function Home() {
         <Dores />
         <Metodo />
         <ParaQuem />
-        <Depoimentos />
         <Aplicacao />
         <Perguntas />
       </main>

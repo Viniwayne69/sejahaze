@@ -23,7 +23,8 @@ export const copy = {
   promessa: {
     before: 'VENDA MAIS CARO PARA OS CLIENTES CERTOS,',
     accent: 'SEM DESCONTO',
-    body: 'A gente cuida da marca, do atendimento e das vendas para o seu cliente comprar, pagar mais e voltar',
+    antes: 'Antes',
+    depois: 'Depois',
   },
 
   dores: {
@@ -132,22 +133,22 @@ export const copy = {
       {
         question: 'Como funciona a aplicação?',
         answer:
-          'Você responde 8 perguntas em menos de 2 minutos, a gente avalia se a HAZE é o caminho certo para a sua marca e volta com o próximo passo',
+          'Você responde 8 perguntas em menos de 2 minutos, avaliamos o encaixe e voltamos com o próximo passo',
       },
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Dissipar: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Acender: Posicionamento de Marca, Identidade visual, Mentoria com os colaboradores e Criação de sistema comercial completo (Site, CRM, página de vendas, Gestão de anúncios), Brilhar: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana',
+          'Dissipar: diagnóstico, raio-X do faturamento e mapa da jornada. Acender: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios). Brilhar: marca aplicada, time treinado e acompanhamento semanal',
       },
       {
         question: 'Preciso já ter uma marca para começar?',
         answer:
-          'Você precisa ter um negócio, produto ou serviço em funcionamento, a marca pode estar confusa ou pouco clara, esse é justamente o ponto de partida, a etapa Dissipar',
+          'Basta ter um negócio funcionando, a marca pode estar confusa, é aí que começamos, na etapa Dissipar',
       },
       {
         question: 'A HAZE serve para o meu tipo de negócio?',
         answer:
-          'O Método HAZE foi pensado para negócios que querem aumentar o valor percebido e atrair clientes mais alinhados, na aplicação você conta o seu contexto e analisamos o encaixe',
+          'Serve para negócios que querem atrair clientes mais alinhados, na aplicação você conta o seu contexto e avaliamos o encaixe',
       },
     ],
   },
@@ -155,13 +156,13 @@ export const copy = {
   ultimoAviso: {
     before: 'O PREÇO DE CONTINUAR',
     accent: 'IGUAL',
-    body: 'Quando a sua marca é igual a todas, o cliente só olha o preço, e você continua tendo os mesmos resultados',
+    body: 'Quando a sua marca é igual a todas, o cliente só olha o preço',
     cta: 'Quero sair da comparação por preço',
   },
 
   stickyBar: {
     lead: 'Aplicação',
-    note: 'Leva menos de 2 min',
+    note: 'Menos de 2 min',
   },
 
   footer: {

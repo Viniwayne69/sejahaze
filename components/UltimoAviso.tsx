@@ -23,7 +23,7 @@ export default function UltimoAviso() {
         </Container>
       </section>
 
-      <Container className="mt-10 flex flex-col items-center gap-3 border-t border-line pt-8 text-center md:mt-20 md:flex-row md:justify-between md:text-left">
+      <Container className="mt-8 flex flex-col items-center gap-2 border-t border-line pt-6 text-center md:mt-20 md:flex-row md:justify-between md:text-left">
         <div className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
           <Logo tone="light" />
           <p className="text-[13px]">{tagline}</p>
