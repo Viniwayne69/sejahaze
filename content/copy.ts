@@ -63,7 +63,7 @@ export const copy = {
         body: 'Marca Aplicada, Time Treinado e Acompanhamento Semanal',
       },
     ],
-    result: 'Resultado: mais valor percebido, menos desconto e cliente que compra de novo',
+    result: 'Resultado: Marca forte no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
   },
 
   paraQuem: {
