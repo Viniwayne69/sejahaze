@@ -43,17 +43,17 @@ export const copy = {
     steps: [
       {
         number: '01',
-        title: 'Porto',
-        body: 'Descobrimos onde a sua marca perde dinheiro',
+        title: 'Dissipar',
+        body: 'Dissipamos a névoa e achamos onde a sua marca perde dinheiro',
       },
       {
         number: '02',
-        title: 'Rota',
+        title: 'Acender',
         body: 'A marca que todo mundo quer e o sistema que vende por ela',
       },
       {
         number: '03',
-        title: 'Travessia',
+        title: 'Brilhar',
         body: 'Tudo rodando, a equipe treinada e a gente do seu lado toda semana',
       },
     ],
@@ -137,12 +137,12 @@ export const copy = {
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Porto: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Rota: Posicionamento de Marca, Identidade visual, Mentoria com os colaboradores e Criação de sistema comercial completo (Site, CRM, página de vendas, Gestão de anúncios), Travessia: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana',
+          'Dissipar: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Acender: Posicionamento de Marca, Identidade visual, Mentoria com os colaboradores e Criação de sistema comercial completo (Site, CRM, página de vendas, Gestão de anúncios), Brilhar: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana',
       },
       {
         question: 'Preciso já ter uma marca para começar?',
         answer:
-          'Você precisa ter um negócio, produto ou serviço em funcionamento, a marca pode estar confusa ou pouco clara, esse é justamente o ponto de partida do Porto',
+          'Você precisa ter um negócio, produto ou serviço em funcionamento, a marca pode estar confusa ou pouco clara, esse é justamente o ponto de partida, a etapa Dissipar',
       },
       {
         question: 'A HAZE serve para o meu tipo de negócio?',
