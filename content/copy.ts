@@ -35,8 +35,8 @@ export const copy = {
   dores: {
     title: 'SE A SUA MARCA ESTÁ ASSIM...',
     items: [
-      'Vende, mas não mostra o valor do que entrega',
-      'Precisa dar desconto para fechar a venda',
+      'Vende, mas não está conseguindo escalar',
+      'Está vendendo muito barato',
       'Atrai o cliente errado e perde o certo no caminho',
     ],
     closing: 'Então a HAZE foi feita exatamente pra você',
