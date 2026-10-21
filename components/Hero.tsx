@@ -17,8 +17,8 @@ export default function Hero() {
         {/* Foto: fundo de tela cheia no celular, cartão vertical no desktop */}
         <div className="absolute inset-0 -z-10 md:relative md:inset-auto md:z-0 md:order-2 md:aspect-[9/16] md:max-h-[76vh] md:w-full md:justify-self-end md:overflow-hidden md:rounded-[24px]">
           <Image
-            src="/images/hero.webp"
-            alt="Dona de um negócio moderno na porta da loja, de braços cruzados, com clientes saindo felizes com sacolas pretas"
+            src="/images/capa.webp"
+            alt="Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar"
             fill
             priority
             sizes="(min-width: 768px) 400px, 100vw"
