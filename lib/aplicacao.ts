@@ -1,12 +1,12 @@
 /**
- * Envio das aplicações do formulário /aplicar.
+ * Envio das aplicações do formulário /aplicar para o CRM da HAZE.
  *
- * AINDA NÃO ESTÁ LIGADO A NENHUM CRM: `enviarAplicacao` só confirma o envio para a tela
- * de agradecimento, as respostas não são salvas. Não divulgue a página antes de ligar o CRM.
- *
- * Para ligar: implemente `enviarAplicacao` (gravar o lead) e `buscarHorariosOcupados`
- * (para não agendar dois leads no mesmo dia e horário). O resto do formulário não muda.
+ * Cada aplicação vira um negócio na tabela `negocios` do Supabase do CRM (estágio "Lead novo",
+ * ou "Agendado" se a pessoa escolheu dia e horário), no mesmo formato que o próprio CRM grava.
+ * A comunicação é feita direto pela API REST do Supabase, sem biblioteca extra.
  */
+
+import { SUPABASE_KEY, SUPABASE_URL } from '@/config';
 
 export type RespostasAplicacao = {
   nome: string;
@@ -29,16 +29,65 @@ export type Aplicacao = RespostasAplicacao & {
   enviadoEm: string;
 };
 
-/** Grava a aplicação no CRM. TODO: ligar ao CRM. */
-export async function enviarAplicacao(aplicacao: Aplicacao): Promise<void> {
-  if (process.env.NODE_ENV === 'development') {
-    console.info('[aplicacao] CRM ainda não ligado, aplicação não foi salva:', aplicacao);
-  }
+const TABELA = `${SUPABASE_URL}/rest/v1/negocios`;
+const cabecalhos = { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' };
+
+const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+/** Data curta no formato do CRM ("21 out"). */
+function dataCurta(data = new Date()) {
+  return `${String(data.getDate()).padStart(2, '0')} ${MESES[data.getMonth()]}`;
 }
 
-/** Datas e horários já ocupados, no formato "AAAA-MM-DD|HH:MM". TODO: buscar no CRM. */
+/** Grava a aplicação no CRM. Lança erro se o CRM não aceitar, para o formulário avisar a pessoa. */
+export async function enviarAplicacao(aplicacao: Aplicacao): Promise<void> {
+  const id = `n${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+  const agendada = Boolean(aplicacao.dataReuniao && aplicacao.horario);
+
+  const resposta = await fetch(TABELA, {
+    method: 'POST',
+    headers: { ...cabecalhos, Prefer: 'return=minimal' },
+    signal: AbortSignal.timeout(15000),
+    body: JSON.stringify({
+      id,
+      nome: aplicacao.empresa,
+      faturamento: aplicacao.faturamento,
+      estagio: agendada ? 'agendado' : 'lead',
+      contato_nome: aplicacao.nome,
+      contato_cargo: aplicacao.cargo,
+      contato_email: aplicacao.email,
+      contato_telefone: aplicacao.telefone,
+      setor: aplicacao.setor,
+      funcionarios: '',
+      data_reuniao: agendada ? aplicacao.dataReuniao : null,
+      hora_reuniao: agendada ? aplicacao.horario : null,
+      nota: 'Lead via formulário HAZE /aplicar',
+      data_label: dataCurta(),
+    }),
+  });
+
+  if (!resposta.ok) throw new Error(`CRM recusou a aplicação (${resposta.status})`);
+  if (process.env.NODE_ENV === 'development') console.info('[aplicacao] lead gravado no CRM:', id);
+}
+
+/** Datas e horários já ocupados no CRM, no formato "AAAA-MM-DD|HH:MM". Se falhar, não bloqueia o formulário. */
 export async function buscarHorariosOcupados(): Promise<Set<string>> {
-  return new Set();
+  try {
+    const hoje = paraISO(new Date());
+    const resposta = await fetch(`${TABELA}?select=data_reuniao,hora_reuniao&data_reuniao=gte.${hoje}`, {
+      headers: cabecalhos,
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!resposta.ok) return new Set();
+    const linhas: Array<{ data_reuniao: string | null; hora_reuniao: string | null }> = await resposta.json();
+    return new Set(
+      linhas
+        .filter((l) => l.data_reuniao && l.hora_reuniao)
+        .map((l) => `${l.data_reuniao}|${String(l.hora_reuniao).slice(0, 5)}`),
+    );
+  } catch {
+    return new Set();
+  }
 }
 
 export function apenasDigitos(valor: string) {
