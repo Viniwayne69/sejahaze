@@ -55,7 +55,7 @@ export const copy = {
       {
         number: '02',
         title: 'Rota',
-        body: 'Posicionamento de Marca, Proposta de Valor e Foco Estratégico',
+        body: 'Posicionamento de Marca, Identidade visual, Mentoria com os colaboradores e Criação de sistema comercial completo (Site, CRM, página de vendas, Gestão de anúncios)',
       },
       {
         number: '03',
@@ -143,7 +143,7 @@ export const copy = {
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Porto: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Rota: Posicionamento de Marca, Proposta de Valor e Foco Estratégico, Travessia: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana',
+          'Porto: Diagnóstico Profundo, Raio-X do Faturamento e Mapa da Jornada, Rota: Posicionamento de Marca, Identidade visual, Mentoria com os colaboradores e Criação de sistema comercial completo (Site, CRM, página de vendas, Gestão de anúncios), Travessia: Marca Aplicada, Time Treinado e Acompanhamento Semanal, com ajustes toda semana',
       },
       {
         question: 'Preciso já ter uma marca para começar?',
