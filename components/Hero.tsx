@@ -1,47 +1,46 @@
 import Image from 'next/image';
 import { copy } from '@/content/copy';
-import { Accent, Container, cn, textureProps } from './ui';
+import { Accent, ApplyNote, Button, Container, cn, textureProps } from './ui';
 
+/**
+ * Celular: a foto (9:16) ocupa a tela inteira, o título fica no céu limpo em cima (preto sobre o azul)
+ * e o subtítulo e o botão ficam embaixo, sobre um degradê preto.
+ * Desktop: texto à esquerda e a foto como cartão vertical à direita.
+ */
 export default function Hero() {
-  const { before, accent, after, subtitle, steps } = copy.hero;
+  const { before, accent, after, subtitle } = copy.hero;
   const bg = textureProps('nevoa');
 
   return (
-    <section id="inicio" className={cn('relative isolate overflow-hidden pb-8 pt-[30px] md:pb-24 md:pt-16', bg.className)} style={bg.style}>
-      <Container className="text-center">
-        <div data-reveal>
-          <h1 className="display mx-auto max-w-[760px] text-[27px] min-[400px]:text-[29px] md:text-[52px]">
+    <section id="inicio" className={cn('relative isolate overflow-hidden', bg.className)} style={bg.style}>
+      <Container className="flex min-h-[max(560px,calc(100svh-53px))] flex-col md:grid md:min-h-0 md:grid-cols-[1fr_minmax(0,400px)] md:items-center md:gap-14 md:py-20">
+        {/* Foto: fundo de tela cheia no celular, cartão vertical no desktop */}
+        <div className="absolute inset-0 -z-10 md:relative md:inset-auto md:z-0 md:order-2 md:aspect-[9/16] md:max-h-[76vh] md:w-full md:justify-self-end md:overflow-hidden md:rounded-[24px]">
+          <Image
+            src="/images/hero.webp"
+            alt="Dona de um negócio moderno na porta da loja, de braços cruzados, com clientes saindo felizes com sacolas pretas"
+            fill
+            priority
+            sizes="(min-width: 768px) 400px, 100vw"
+            className="object-cover object-[50%_42%]"
+          />
+          {/* Degradê para o subtítulo e o botão lerem bem sobre a foto (só no celular) */}
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/75 to-transparent md:hidden" />
+        </div>
+
+        <div data-reveal className="flex flex-1 flex-col pb-8 pt-7 md:order-1 md:flex-none md:py-0">
+          <h1 className="display text-[30px] text-black [--accent-bar:#000] min-[400px]:text-[33px] md:text-[56px] md:text-paper md:[--accent-bar:theme(colors.cyan)]">
             {before} <Accent>{accent}</Accent> {after}
           </h1>
-          <p className="mx-auto mt-4 max-w-[560px] text-[17px] leading-[1.35] md:mt-6 md:text-[20px]">{subtitle}</p>
-        </div>
 
-        {/* Mockup inteiro, na proporção original, sem recorte */}
-        <div data-reveal className="mx-auto mt-6 max-w-[860px] md:mt-10">
-          <Image
-            src="/images/letreiro.webp"
-            alt="Letreiro da HAZE em letras pretas com a barra ciano, iluminado numa parede clara"
-            width={1600}
-            height={926}
-            priority
-            sizes="(min-width: 900px) 860px, 100vw"
-            className="h-auto w-full rounded-[24px] object-contain"
-          />
+          <div className="mt-auto md:mt-7">
+            <p className="max-w-[420px] text-[19px] font-semibold leading-snug text-paper md:text-[21px]">{subtitle}</p>
+            <div className="mt-5 md:mt-8 md:max-w-[340px]">
+              <Button>{copy.apply}</Button>
+              <ApplyNote className="text-paper/90" />
+            </div>
+          </div>
         </div>
-
-        <ul data-reveal className="mx-auto mt-6 grid max-w-[620px] grid-cols-3 gap-2 md:mt-10 md:gap-8">
-          {steps.map((step) => (
-            <li key={step.title} className="flex flex-col items-center gap-1 text-center md:flex-row md:justify-center md:gap-3 md:text-left">
-              <span className="font-display text-[22px] font-black leading-none text-cyan md:text-[30px]">
-                {step.number}
-              </span>
-              <span className="leading-[1.15]">
-                <span className="block font-display text-[13px] font-black uppercase md:text-[17px]">{step.title}</span>
-                <span className="block text-[12px] text-gray md:text-[14px]">{step.label}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );

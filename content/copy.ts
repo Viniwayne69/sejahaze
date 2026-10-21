@@ -18,11 +18,6 @@ export const copy = {
     accent: 'desejadas',
     after: 'DA GERAÇÃO',
     subtitle: 'Clientes certos, preço cheio e vendas que se repetem',
-    steps: [
-      { number: '01', title: 'Porto', label: 'Diagnóstico' },
-      { number: '02', title: 'Rota', label: 'Posicionamento' },
-      { number: '03', title: 'Travessia', label: 'Execução' },
-    ],
   },
 
   promessa: {
