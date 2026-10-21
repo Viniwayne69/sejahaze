@@ -1,6 +1,14 @@
+import Image from 'next/image';
 import { copy } from '@/content/copy';
 import Carrossel from './Carrossel';
 import { Button, Heading, Section } from './ui';
+
+/** Uma foto por dor, na mesma ordem de copy.dores.items. */
+const fotos = [
+  { src: '/images/dor-1.webp', alt: 'Mãos paradas sobre um notebook escuro cujo gráfico de vendas sobe e trava em uma linha reta', posicao: 'object-[50%_40%]' },
+  { src: '/images/dor-2.webp', alt: 'Etiqueta de preço riscada em uma vitrine apagada, com a loja ao lado cheia de gente e luz ciano', posicao: 'object-[50%_50%]' },
+  { src: '/images/dor-3.webp', alt: 'Pessoa comparando preços de tênis no celular enquanto um cliente sai da loja sem comprar', posicao: 'object-[50%_58%]' },
+] as const;
 
 /** Cartões inteiros que deslizam no celular (com bolinhas), grade de 3 no desktop. */
 export default function Dores() {
@@ -21,10 +29,20 @@ export default function Dores() {
 
       <Carrossel
         label="Sinais de que a marca precisa mudar"
-        items={items.map((item) => (
-          <div key={item} className="flex h-full min-h-[120px] items-center rounded-[24px] border border-cyan/40 bg-graphite shadow-[0_0_26px_rgba(1,187,251,.16)] px-5 py-6 pr-12 md:min-h-[160px] md:px-7 md:py-7 md:pr-7">
-            <p className="text-[20px] font-semibold leading-snug md:text-[22px]">{item}</p>
-          </div>
+        items={items.map((item, i) => (
+          <figure key={item} className="relative aspect-[5/4] overflow-hidden rounded-[24px] border border-cyan/40 bg-black shadow-[0_0_26px_rgba(1,187,251,.16)] md:aspect-[4/5]">
+            <Image
+              src={fotos[i].src}
+              alt={fotos[i].alt}
+              fill
+              sizes="(min-width: 768px) 340px, 100vw"
+              className={`object-cover ${fotos[i].posicao}`}
+            />
+            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black via-black/70 to-transparent" />
+            <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-4 pr-14 text-[20px] font-semibold leading-snug md:px-6 md:pb-6 md:pr-6 md:text-[22px]">
+              {item}
+            </figcaption>
+          </figure>
         ))}
       />
 
