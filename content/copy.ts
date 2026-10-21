@@ -70,18 +70,10 @@ export const copy = {
     sim: {
       title: 'Para quem é',
       items: [
-        'Já vende, mas sente que a marca não mostra o valor do que entrega',
-        'Quer ser escolhido pelo que é, e não só pelo preço',
-        'Quer uma comunicação clara, que atraia o cliente certo',
-        'Está pronto para colocar um plano em prática',
-      ],
-    },
-    nao: {
-      title: 'Para quem não é',
-      items: [
-        'Procura apenas um logo ou um design pronto, sem estratégia',
-        'Quer resultado imediato sem mudar a forma de se posicionar',
-        'Ainda não tem um produto ou serviço definido para vender',
+        'Para quem quer uma comunicação clara, que atraia o cliente certo',
+        'Quem sente que não está conseguindo escalar o negócio',
+        'Sente que está deixando dinheiro na mesa e não sabe o que fazer',
+        'Vende, mas não tem um processo comercial definido',
       ],
     },
   },
