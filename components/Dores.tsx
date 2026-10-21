@@ -14,12 +14,9 @@ export default function Dores() {
 
       <Carrossel
         label="Sinais de que a marca precisa mudar"
-        items={items.map((item, i) => (
-          <div key={item} className="flex h-full min-h-[190px] flex-col justify-between gap-6 rounded-[24px] border border-line bg-graphite px-5 py-5 md:px-7 md:py-7">
-            <span className="font-display text-[56px] font-black leading-none text-cyan md:text-[68px]">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <p className="text-[19px] font-semibold leading-snug md:text-[21px]">{item}</p>
+        items={items.map((item) => (
+          <div key={item} className="flex h-full min-h-[120px] items-center rounded-[24px] border border-line bg-graphite px-5 py-6 pr-12 md:min-h-[160px] md:px-7 md:py-7 md:pr-7">
+            <p className="text-[20px] font-semibold leading-snug md:text-[22px]">{item}</p>
           </div>
         ))}
       />
