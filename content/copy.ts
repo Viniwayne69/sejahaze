@@ -155,11 +155,6 @@ export const copy = {
         answer:
           'O Método HAZE foi pensado para negócios que querem aumentar o valor percebido e atrair clientes mais alinhados, na aplicação você conta o seu contexto e analisamos o encaixe',
       },
-      {
-        question: 'Posso contratar só uma parte?',
-        answer:
-          'A HAZE é um ecossistema de soluções onde entendemos onde exatamente o seu negócio está travando, quais têm sido seus desafios e lhe entregamos a solução e os serviços certos para você mudar isso',
-      },
     ],
   },
 
