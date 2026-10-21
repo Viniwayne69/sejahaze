@@ -29,7 +29,7 @@ export const copy = {
   promessa: {
     before: 'DOBRE O SEU FATURAMENTO E',
     accent: 'VENDA MAIS',
-    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo, sem brigar por preço',
+    body: 'Unimos marca, experiência do cliente e processo para transformar empresas comuns em marcas desejadas, que vendem mais, vendem mais caro e vendem de novo',
   },
 
   dores: {
