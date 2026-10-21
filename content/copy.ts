@@ -16,7 +16,7 @@ export const copy = {
   hero: {
     before: 'FAZEMOS DA SUA MARCA UMA DAS MAIS',
     accent: 'desejadas',
-    after: 'DA SUA GERAÇÃO',
+    after: 'DA GERAÇÃO',
     subtitle:
       'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais',
     steps: [
