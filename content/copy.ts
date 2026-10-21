@@ -158,7 +158,7 @@ export const copy = {
       {
         question: 'Posso contratar só uma parte?',
         answer:
-          'A HAZE é um único serviço, feito em ordem: Porto, Rota e Travessia, cada parte se apoia na anterior, por isso não são vendidas separadamente, conte na aplicação o seu momento e vemos juntos como começar',
+          'A HAZE é um ecossistema de soluções onde entendemos onde exatamente o seu negócio está travando, quais têm sido seus desafios e lhe entregamos a solução e os serviços certos para você mudar isso',
       },
     ],
   },
