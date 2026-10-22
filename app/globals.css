@@ -45,6 +45,7 @@
     text-transform: inherit;
     letter-spacing: inherit;
     padding-bottom: 0.1em;
+    white-space: nowrap;
   }
 
   .accent::after {

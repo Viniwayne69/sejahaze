@@ -9,7 +9,7 @@ export default function Promessa() {
   return (
     <Section texture="papel-azul" fade="black" labelledBy="promessa-titulo">
       <div data-reveal className="md:mx-auto md:max-w-[820px] md:text-center">
-        <Heading id="promessa-titulo" before={before} accent={accent} after={after} size="lg" />
+        <Heading id="promessa-titulo" before={before} accent={accent} after={after} className="[text-wrap:wrap]" />
       </div>
 
       <div data-reveal className="mt-5 md:mt-10">
