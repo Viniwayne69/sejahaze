@@ -6,7 +6,7 @@ export default function Aplicacao() {
   const { before, accent, body, cta, passos } = copy.aplicacao;
 
   return (
-    <Section id="aplicar" texture="ciano" fade="black" labelledBy="aplicar-titulo">
+    <Section id="aplicar" texture="ciano" fade="black" luz labelledBy="aplicar-titulo">
       <div data-reveal className="mx-auto max-w-[680px] text-center">
         <Heading id="aplicar-titulo" before={before} accent={accent} bar="black" />
         <p className="mt-3 text-[15.5px] font-medium leading-[1.45] md:mt-5 md:text-[18px]">{body}</p>

@@ -36,16 +36,17 @@ export function textureProps(texture: Texture) {
   };
 }
 
-const fadeFrom = { paper: 'from-paper', black: 'from-black', cyan: 'from-cyan' } as const;
+/** Toda emenda é azul: a névoa ciano da marca, qualquer que seja a cor da seção de cima. */
+const fadeFrom = { paper: 'from-cyan/60', black: 'from-cyan/60', cyan: 'from-cyan/60' } as const;
 
 /**
- * Emenda entre seções: `fade` esfuma a cor da seção de cima para dentro desta (a névoa da marca) e
+ * Emenda entre seções: `fade` esfuma uma névoa ciano no topo da seção e
  * `luz` acende uma linha ciano fina na junção. Fica atrás do conteúdo.
  */
 export function Emenda({ fade, luz }: { fade?: keyof typeof fadeFrom; luz?: boolean }) {
   return (
     <>
-      {fade && <div aria-hidden="true" className={cn('pointer-events-none absolute inset-x-0 top-0 h-5 bg-gradient-to-b to-transparent md:h-10', fadeFrom[fade])} />}
+      {fade && <div aria-hidden="true" className={cn('pointer-events-none absolute inset-x-0 top-0 h-7 bg-gradient-to-b via-cyan/15 to-transparent md:h-14', fadeFrom[fade])} />}
       {luz && <div aria-hidden="true" className="pointer-events-none absolute inset-x-[8%] top-0 h-[2px] bg-cyan shadow-[0_0_14px_3px_rgba(1,187,251,.7)]" />}
     </>
   );

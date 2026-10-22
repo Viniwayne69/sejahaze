@@ -7,7 +7,7 @@ export default function Promessa() {
   const { before, accent, antes, depois, antesFrase, depoisFrase } = copy.promessa;
 
   return (
-    <Section texture="papel-azul" fade="black" labelledBy="promessa-titulo">
+    <Section texture="papel-azul" fade="black" luz labelledBy="promessa-titulo">
       <div data-reveal className="md:mx-auto md:max-w-[820px] md:text-center">
         <Heading id="promessa-titulo" before={before} accent={accent} size="lg" />
       </div>

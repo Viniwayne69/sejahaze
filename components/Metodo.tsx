@@ -40,7 +40,7 @@ export default function Metodo() {
   const [resultLabel, ...resultText] = result.split(':');
 
   return (
-    <Section id="metodo" texture="topografica-v3" fade="black" labelledBy="metodo-titulo">
+    <Section id="metodo" texture="topografica-v3" fade="black" luz labelledBy="metodo-titulo">
       <div data-reveal>
         <Heading id="metodo-titulo" before={before} accent={accent} />
       </div>
