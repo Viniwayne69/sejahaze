@@ -21,23 +21,24 @@ export const copy = {
   },
 
   promessa: {
-    before: 'VENDA MAIS CARO PARA OS CLIENTES CERTOS,',
-    accent: 'SEM DESCONTO',
+    before: 'CHEGA DE DESCONTO:',
+    accent: 'VENDA MAIS CARO',
+    after: 'PARA OS CLIENTES CERTOS',
     antes: 'Antes',
     depois: 'Depois',
-    antesFrase: 'Sobrevivendo...',
-    depoisFrase: 'Crescendo cada vez mais!',
+    antesFrase: 'Brigando por preço...',
+    depoisFrase: 'Escolhida pelo valor!',
   },
 
   dores: {
     title: 'SE A SUA MARCA ESTÁ ASSIM...',
     items: [
-      'Vende, mas não consegue crescer',
-      'Vende barato e o concorrente leva a fama',
-      'Atrai quem só pergunta o preço e perde o cliente certo',
+      'Vende, mas não cresce',
+      'Vende barato enquanto o concorrente leva a fama e o cliente',
+      'Só atrai quem pergunta o preço e perde quem paga',
     ],
-    closing: 'Chegou a hora de mudar isso com a HAZE',
-    cta: 'Quero uma marca desejada',
+    closing: 'Chega. Hora de virar o jogo com a HAZE',
+    cta: 'Quero ser a marca mais desejada',
   },
 
   metodo: {
@@ -47,17 +48,17 @@ export const copy = {
       {
         number: '01',
         title: 'Raio-X',
-        body: 'Diagnóstico profundo para achar o que está travando a sua empresa',
+        body: 'Diagnóstico profundo: achamos onde a sua empresa trava e perde dinheiro',
       },
       {
         number: '02',
         title: 'Arquitetura',
-        body: 'Estruturamos o comercial, posicionamos a marca e montamos o sistema de vendas',
+        body: 'Estruturamos o comercial, posicionamos a marca e montamos a máquina de vendas',
       },
       {
         number: '03',
         title: 'Implementação',
-        body: 'Colocamos tudo para funcionar na prática, com a equipe treinada',
+        body: 'Colocamos tudo para rodar, com a sua equipe treinada para vender',
       },
     ],
     result: 'Resultado: Marca forte no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
@@ -69,10 +70,10 @@ export const copy = {
       dica: 'Toque no que faz sentido para você',
       resposta: 'Então a HAZE é para você',
       items: [
-        'Para quem quer uma comunicação clara, que atraia o cliente certo',
-        'Quem sente que não está conseguindo escalar o negócio',
-        'Sente que está deixando dinheiro na mesa e não sabe o que fazer',
-        'Vende, mas não tem um processo comercial definido',
+        'Quer atrair o cliente certo, não o que só pergunta o preço',
+        'Vende, mas o negócio não escala',
+        'Sabe que está deixando dinheiro na mesa, mas não sabe onde',
+        'Vende no improviso, sem processo comercial definido',
       ],
     },
   },
@@ -127,7 +128,7 @@ export const copy = {
   aplicacao: {
     before: 'A SUA MARCA DESEJADA',
     accent: 'COMEÇA AQUI',
-    body: 'Conte sobre o seu negócio, avaliamos o encaixe e voltamos com o próximo passo',
+    body: 'Mostre o seu negócio. Avaliamos o encaixe e voltamos com o próximo passo',
     cta: 'Quero aplicar minha marca',
     passos: ['Você responde', 'Avaliamos o encaixe', 'Voltamos com o próximo passo'],
   },
@@ -161,7 +162,7 @@ export const copy = {
   ultimoAviso: {
     before: 'O PREÇO DE CONTINUAR',
     accent: 'IGUAL',
-    body: 'Quando a sua marca é igual a todas, o cliente só olha o preço',
+    body: 'Marca igual a todas vira comparação de preço, e quem compara escolhe o mais barato',
     cta: 'Quero sair da comparação por preço',
   },
 
