@@ -5,12 +5,12 @@
 
 export const copy = {
   brand: 'HAZE',
-  apply: 'Iniciar aplicação',
+  apply: 'Iniciar diagnóstico',
   applyNote: 'Leva menos de 2 minutos',
   skipLink: 'Pular para o conteúdo',
 
   topBar: {
-    status: 'Aplicações abertas',
+    status: 'Diagnóstico aberto',
   },
 
   hero: {
@@ -129,19 +129,19 @@ export const copy = {
   aplicacao: {
     before: 'A SUA MARCA DESEJADA',
     accent: 'COMEÇA AQUI',
-    body: 'Mostre o seu negócio, avaliamos o encaixe e desenhamos o caminho para a sua marca ser irresistível',
-    cta: 'Quero aplicar minha marca',
+    body: 'Responda a 7 perguntas rápidas e veja a leitura da sua marca, o primeiro passo para ela ser irresistível',
+    cta: 'Quero o meu diagnóstico',
     whatsapp: { texto: 'Prefere falar direto?', botao: 'Chamar no WhatsApp', mensagem: 'Oi, vim pelo site da HAZE e quero saber mais' },
-    passos: ['Você responde', 'Avaliamos o encaixe', 'Voltamos com o próximo passo'],
+    passos: ['Você responde', 'Vê o seu resultado', 'Conversa com a gente'],
   },
 
   perguntas: {
     title: 'PERGUNTAS FREQUENTES',
     items: [
       {
-        question: 'Como funciona a aplicação?',
+        question: 'Como funciona o diagnóstico?',
         answer:
-          'Você responde 8 perguntas em menos de 2 minutos, avaliamos o encaixe e voltamos com o próximo passo',
+          'Você responde 7 perguntas em menos de 2 minutos, vê a leitura da sua marca na hora e a nossa equipe continua a conversa pelo WhatsApp',
       },
       {
         question: 'O que eu recebo em cada parte?',
@@ -156,7 +156,7 @@ export const copy = {
       {
         question: 'A HAZE serve para o meu tipo de negócio?',
         answer:
-          'Serve para negócios que querem atrair clientes mais alinhados, na aplicação você conta o seu contexto e avaliamos o encaixe',
+          'Serve para negócios que querem atrair clientes mais alinhados, no diagnóstico você conta o seu contexto e vemos o encaixe',
       },
     ],
   },
@@ -169,7 +169,7 @@ export const copy = {
   },
 
   stickyBar: {
-    lead: 'Aplicação',
+    lead: 'Diagnóstico',
     note: 'Menos de 2 min',
   },
 
