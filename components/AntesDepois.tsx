@@ -9,7 +9,7 @@ const suavizar = 'clip-path 0.8s ease, left 0.8s ease';
  * Antes e depois arrastável: a mesma loja apagada e depois desejada, com uma linha que o visitante
  * arrasta. No celular só o botão do meio responde ao dedo (o resto da foto deixa a página rolar sem
  * mexer na linha); com mouse dá para arrastar em qualquer ponto, e as setas do teclado também funcionam.
- * Ao aparecer na tela, a linha balança uma vez de convite.
+ * Ao aparecer na tela, a linha varre a foto de ponta a ponta duas vezes de convite.
  */
 export default function AntesDepois({
   antes,
@@ -45,10 +45,11 @@ export default function AntesDepois({
         observer.disconnect();
         if (mexeu.current) return;
         setSuave(true);
-        for (const [atraso, valor] of [[0, 28], [800, 72], [1600, 50]]) {
+        // Varre de ponta a ponta duas vezes (esquerda, direita, esquerda, direita) e volta ao meio
+        for (const [atraso, valor] of [[0, 0], [900, 100], [1800, 0], [2700, 100], [3600, 50]]) {
           timers.push(window.setTimeout(() => !mexeu.current && setPos(valor), atraso));
         }
-        timers.push(window.setTimeout(() => setSuave(false), 2500));
+        timers.push(window.setTimeout(() => setSuave(false), 4500));
       },
       { threshold: 0.6 },
     );
