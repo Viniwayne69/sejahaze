@@ -10,7 +10,17 @@ const suavizar = 'clip-path 0.8s ease, left 0.8s ease';
  * arrasta (mouse, dedo ou setas do teclado). Ao aparecer na tela, a linha balança uma vez de convite.
  * `touch-action: pan-y` deixa a página rolar na vertical enquanto o arrasto horizontal é da linha.
  */
-export default function AntesDepois({ antes, depois }: { antes: string; depois: string }) {
+export default function AntesDepois({
+  antes,
+  depois,
+  antesFrase,
+  depoisFrase,
+}: {
+  antes: string;
+  depois: string;
+  antesFrase: string;
+  depoisFrase: string;
+}) {
   const caixa = useRef<HTMLDivElement>(null);
   const arrastando = useRef(false);
   const mexeu = useRef(false);
@@ -91,6 +101,9 @@ export default function AntesDepois({ antes, depois }: { antes: string; depois: 
         draggable={false}
         className="pointer-events-none object-cover object-[50%_62%]"
       />
+      <p className="pointer-events-none absolute left-3 top-3 max-w-[47%] rounded-[14px] border-2 border-black bg-paper px-2.5 py-1.5 font-display text-[11.5px] font-black uppercase leading-tight text-black md:text-[15px]">
+        {antesFrase}
+      </p>
       <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)`, ...transicao }}>
         <Image
           src="/images/hero.webp"
@@ -100,6 +113,9 @@ export default function AntesDepois({ antes, depois }: { antes: string; depois: 
           draggable={false}
           className="pointer-events-none object-cover object-[50%_62%]"
         />
+        <p className="pointer-events-none absolute right-3 top-3 max-w-[47%] rounded-[14px] border-2 border-black bg-cyan px-2.5 py-1.5 text-right font-display text-[11.5px] font-black uppercase leading-tight text-black md:text-[15px]">
+          {depoisFrase}
+        </p>
       </div>
 
       <span className="pointer-events-none absolute bottom-3 left-3 rounded-full border-2 border-black bg-paper px-3 py-1 font-display text-[12px] font-black uppercase leading-none text-black md:text-[14px]">

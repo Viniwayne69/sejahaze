@@ -25,6 +25,8 @@ export const copy = {
     accent: 'SEM DESCONTO',
     antes: 'Antes',
     depois: 'Depois',
+    antesFrase: 'Sobrevivendo...',
+    depoisFrase: 'Crescendo cada vez mais!',
   },
 
   dores: {

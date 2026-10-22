@@ -4,7 +4,7 @@ import { Heading, Section } from './ui';
 
 /** Antes e depois no lugar do parágrafo: a mesma fachada apagada e depois desejada, que o visitante arrasta. */
 export default function Promessa() {
-  const { before, accent, antes, depois } = copy.promessa;
+  const { before, accent, antes, depois, antesFrase, depoisFrase } = copy.promessa;
 
   return (
     <Section texture="papel-azul" labelledBy="promessa-titulo">
@@ -13,7 +13,7 @@ export default function Promessa() {
       </div>
 
       <div data-reveal className="mt-5 md:mt-10">
-        <AntesDepois antes={antes} depois={depois} />
+        <AntesDepois antes={antes} depois={depois} antesFrase={antesFrase} depoisFrase={depoisFrase} />
       </div>
     </Section>
   );
