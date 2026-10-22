@@ -21,7 +21,8 @@ export const copy = {
   },
 
   promessa: {
-    before: 'CHEGA DE DESCONTO: TENHA UMA MARCA TÃO',
+    chamada: 'CHEGA DE DESCONTO',
+    before: 'TENHA UMA MARCA TÃO',
     accent: 'COBIÇADA',
     after: 'QUE O CLIENTE PAGA O PREÇO CHEIO',
     antes: 'Antes',

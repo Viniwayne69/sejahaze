@@ -137,7 +137,7 @@ export function Heading({
   bar?: 'cyan' | 'black';
   size?: keyof typeof headingSizes;
   className?: string;
-  as?: 'h1' | 'h2';
+  as?: 'h1' | 'h2' | 'h3';
 }) {
   return (
     <Tag id={id} className={cn('display', headingSizes[size], className)}>
