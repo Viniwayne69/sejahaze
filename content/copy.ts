@@ -46,17 +46,17 @@ export const copy = {
     steps: [
       {
         number: '01',
-        title: 'Dissipar',
+        title: 'Raio-X',
         body: 'Diagnóstico profundo para achar o que está travando a sua empresa',
       },
       {
         number: '02',
-        title: 'Acender',
+        title: 'Arquitetura',
         body: 'Estruturamos o comercial, posicionamos a marca e montamos o sistema de vendas',
       },
       {
         number: '03',
-        title: 'Brilhar',
+        title: 'Implementação',
         body: 'Colocamos tudo para funcionar na prática, com a equipe treinada',
       },
     ],
@@ -143,12 +143,12 @@ export const copy = {
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Dissipar: diagnóstico, raio-X do faturamento e mapa da jornada. Acender: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios). Brilhar: marca aplicada, time treinado e acompanhamento semanal',
+          'Raio-X: diagnóstico profundo, análise do faturamento e mapa da jornada. Arquitetura: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios). Implementação: marca aplicada, time treinado e acompanhamento semanal',
       },
       {
         question: 'Preciso já ter uma marca para começar?',
         answer:
-          'Basta ter um negócio funcionando, a marca pode estar confusa, é aí que começamos, na etapa Dissipar',
+          'Basta ter um negócio funcionando, a marca pode estar confusa, é aí que começamos, na etapa Raio-X',
       },
       {
         question: 'A HAZE serve para o meu tipo de negócio?',

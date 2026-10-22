@@ -18,7 +18,7 @@ const inter = Inter({
 
 const title = 'HAZE | Marcas desejadas começam pela clareza';
 const description =
-  'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais, conheça o Método HAZE: Dissipar, Acender e Brilhar';
+  'Criamos e aceleramos marcas que atraem os clientes certos, elevam o valor percebido e vendem mais, conheça o Método HAZE: Raio-X, Arquitetura e Implementação';
 const ogImage = { url: '/og.png', width: 1200, height: 630, alt: 'HAZE' };
 
 export const metadata: Metadata = {

@@ -4,7 +4,7 @@ import Carrossel from './Carrossel';
 import { Heading, Section } from './ui';
 
 /**
- * Uma foto por etapa, na mesma ordem de copy.metodo.steps (Dissipar, Acender, Brilhar).
+ * Uma foto por etapa, na mesma ordem de copy.metodo.steps (Raio-X, Arquitetura, Implementação).
  * A luz cresce de uma para a outra: `filtro` e `nevoa` apagam a foto, `luz` acende o ciano (a marca saindo da névoa).
  */
 const fotos = [
@@ -74,7 +74,7 @@ export default function Metodo() {
               </span>
             </div>
             <div className="flex flex-1 flex-col gap-1.5 px-4 pb-4 pt-3.5 md:px-5 md:pb-5">
-              <h3 className="font-display text-[22px] font-black uppercase leading-none md:text-[26px]">{step.title}</h3>
+              <h3 className="font-display text-[22px] font-black uppercase leading-none md:text-[22px]">{step.title}</h3>
               <p className="text-[14.5px] leading-snug md:text-[15px]">{step.body}</p>
             </div>
           </article>
