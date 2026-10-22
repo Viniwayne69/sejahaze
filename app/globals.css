@@ -238,3 +238,72 @@
   transform: scale(1.08);
   animation: foto-respira 26s ease-in-out infinite alternate;
 }
+
+/* Formulário: a pergunta entra deslizando (da direita ao avançar, da esquerda ao voltar) */
+@keyframes etapa-frente {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes etapa-tras {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-etapa-frente {
+  animation: etapa-frente 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.animate-etapa-tras {
+  animation: etapa-tras 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Opções que sobem uma a uma, cada uma com um pequeno atraso (--i) */
+@keyframes item-sobe {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-item {
+  animation: item-sobe 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 120ms);
+}
+
+/* Tela final: uma luz ciano acende atrás do título */
+@keyframes luz-acende {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.5);
+  }
+  45% {
+    opacity: 0.75;
+    transform: translate(-50%, 0) scale(1.15);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.luz-acende {
+  opacity: 0.3;
+  animation: luz-acende 2.4s ease-out both;
+}

@@ -55,6 +55,18 @@ export const perguntas: readonly Pergunta[] = [
   },
 ];
 
+/**
+ * Depois do nome, as perguntas passam a falar com a pessoa pelo primeiro nome.
+ * Quem não tem versão aqui usa o título normal.
+ */
+export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
+  email: (n) => `Prazer, ${n}. Qual o seu melhor e-mail?`,
+  telefone: (n) => `${n}, qual o seu WhatsApp?`,
+  empresa: (n) => `${n}, qual o nome da sua empresa?`,
+  cargo: (n) => `E qual o seu cargo, ${n}?`,
+  horario: (n) => `${n}, quando prefere conversar com a gente?`,
+};
+
 /** Dias (getDay: 1 = segunda) e horários oferecidos para a reunião. */
 export const diasReuniao = [
   { dia: 1, nome: 'Segunda-feira' },
@@ -74,6 +86,8 @@ export const textosAplicacao = {
     paragrafos: [
       'Responda às perguntas a seguir e nossa equipe indicará o caminho mais adequado para o seu negócio, leva menos de 2 minutos',
     ],
+    fotoAlt:
+      'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
     botao: 'Iniciar aplicação',
   },
   ok: 'OK',
@@ -94,10 +108,12 @@ export const textosAplicacao = {
   },
   fim: {
     titulo: 'PRONTO,',
-    comReuniao: (data: string, hora: string) =>
-      `Recebemos a sua aplicação e já vamos olhar a sua marca, a sua reunião ficou pré-agendada para ${data}, às ${hora}, e enviaremos o link pelo WhatsApp e por e-mail`,
+    recebido: 'Recebemos a sua aplicação e já vamos olhar a sua marca',
     semReuniao:
       'Recebemos a sua aplicação e já vamos olhar a sua marca, em breve nossa equipe entra em contato pelo WhatsApp',
     voltarSite: 'Voltar ao site',
+    reuniaoRotulo: 'Reunião pré-agendada',
+    proximos: 'O que acontece agora',
+    resumoReuniao: 'Link de acesso por WhatsApp e e-mail',
   },
 } as const;
