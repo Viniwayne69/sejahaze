@@ -86,6 +86,7 @@ export const textosAplicacao = {
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
     botao: 'Iniciar aplicação',
   },
+  som: { arquivo: '/audio/get-away.mp3', rotulo: 'Escute um som enquanto você nos conta sobre você' },
   ok: 'OK',
   dicaEnter: 'ou pressione Enter',
   voltar: 'Voltar',

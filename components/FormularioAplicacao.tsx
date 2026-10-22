@@ -22,6 +22,7 @@ import {
   type RespostasAplicacao,
 } from '@/lib/aplicacao';
 import Logo from './Logo';
+import SomAmbiente from './SomAmbiente';
 import { Accent, cn, textureProps } from './ui';
 
 const vazio: RespostasAplicacao = {
@@ -197,10 +198,11 @@ export default function FormularioAplicacao() {
         />
       </div>
 
-      <header className="flex justify-center px-[22px] pt-7 md:pt-10">
+      <header className="flex flex-col items-center px-[22px] pt-7 md:pt-10">
         <Link href="/" aria-label="HAZE, voltar ao site">
           <Logo tone="dark" size="sm" />
         </Link>
+        <SomAmbiente src={t.som.arquivo} rotulo={t.som.rotulo} />
       </header>
 
       <div className="flex flex-1 items-center px-[22px] py-7 md:py-14">
