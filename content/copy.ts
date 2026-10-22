@@ -65,7 +65,7 @@ export const copy = {
 
   paraQuem: {
     sim: {
-      title: 'Para quem é, e só para quem é',
+      title: 'Para quem é',
       dica: 'Toque no que faz sentido para você',
       resposta: 'Então a HAZE é para você',
       items: [
