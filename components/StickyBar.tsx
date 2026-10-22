@@ -45,7 +45,7 @@ export default function StickyBar() {
         <a
           href={APPLY_URL}
           tabIndex={heroVisivel ? -1 : undefined}
-          className="inline-flex min-h-[48px] w-[156px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-cyan px-4 text-[14px] font-semibold text-black transition active:scale-[0.98] min-[380px]:w-[175px]"
+          className="brilho inline-flex min-h-[48px] w-[156px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-cyan px-4 text-[14px] font-semibold text-black transition active:scale-[0.98] min-[380px]:w-[175px]"
         >
           {copy.apply}
         </a>

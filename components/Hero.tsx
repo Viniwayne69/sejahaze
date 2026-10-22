@@ -24,6 +24,10 @@ export default function Hero() {
             sizes="(min-width: 768px) 400px, 100vw"
             className="object-cover object-[50%_42%]"
           />
+          {/* Névoa da marca: começa densa, dissipa ao abrir a página e depois flutua devagar */}
+          <div aria-hidden="true" className="hero-nevoa pointer-events-none absolute inset-0" />
+          {/* Luz do letreiro ciano pulsando de leve */}
+          <div aria-hidden="true" className="letreiro-pulso pointer-events-none absolute -right-[10%] top-[15%] h-[20%] w-[50%] rounded-full bg-cyan mix-blend-screen blur-2xl" />
           {/* Degradê para o subtítulo e o botão lerem bem sobre a foto (só no celular) */}
           <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/75 to-transparent md:hidden" />
         </div>

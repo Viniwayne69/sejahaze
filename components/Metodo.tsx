@@ -3,22 +3,34 @@ import { copy } from '@/content/copy';
 import Carrossel from './Carrossel';
 import { Heading, Section } from './ui';
 
-/** Uma foto por etapa, na mesma ordem de copy.metodo.steps (Dissipar, Acender, Brilhar). */
+/**
+ * Uma foto por etapa, na mesma ordem de copy.metodo.steps (Dissipar, Acender, Brilhar).
+ * A luz cresce de uma para a outra: `filtro` e `nevoa` apagam a foto, `luz` acende o ciano (a marca saindo da névoa).
+ */
 const fotos = [
   {
     src: '/images/dissipar.webp',
     alt: 'Mão apontando com uma caneta o ponto de queda de um gráfico de vendas, marcado com um círculo ciano',
     posicao: 'object-[50%_45%]',
+    filtro: 'grayscale(0.55) brightness(0.8) contrast(0.95)',
+    nevoa: 0.55,
+    luz: 0,
   },
   {
     src: '/images/acender.webp',
     alt: 'Mesa com a identidade de uma marca: sacola preta, cartões, caderno com faixa ciano e paleta de cores',
     posicao: 'object-[50%_55%]',
+    filtro: 'grayscale(0.15) brightness(0.95)',
+    nevoa: 0.2,
+    luz: 0.12,
   },
   {
     src: '/images/brilhar.webp',
     alt: 'Equipe comemorando uma venda em volta de um notebook, em um escritório claro',
     posicao: 'object-[50%_30%]',
+    filtro: 'saturate(1.12) brightness(1.06)',
+    nevoa: 0,
+    luz: 0.4,
   },
 ] as const;
 
@@ -45,6 +57,17 @@ export default function Metodo() {
                 fill
                 sizes="(min-width: 768px) 340px, 100vw"
                 className={`object-cover ${fotos[i].posicao}`}
+                style={{ filter: fotos[i].filtro }}
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[url('/textures/nevoa.webp')] bg-cover bg-center mix-blend-screen"
+                style={{ opacity: fotos[i].nevoa }}
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_100%,#01BBFB,transparent_65%)] mix-blend-screen"
+                style={{ opacity: fotos[i].luz }}
               />
               <span className="absolute left-3 top-3 grid size-10 place-items-center rounded-[12px] border-2 border-black bg-cyan font-display text-[15px] font-black text-black">
                 {step.number}

@@ -66,7 +66,7 @@ export function Section({
 type ButtonVariant = 'cyan' | 'dark';
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  cyan: 'bg-cyan text-black hover:brightness-[.93]',
+  cyan: 'brilho bg-cyan text-black hover:brightness-[.93]',
   dark: 'bg-black text-paper hover:bg-graphite',
 };
 
