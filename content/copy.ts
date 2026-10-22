@@ -66,6 +66,8 @@ export const copy = {
   paraQuem: {
     sim: {
       title: 'Para quem é, e só para quem é',
+      dica: 'Toque no que faz sentido para você',
+      resposta: 'Então a HAZE é para você',
       items: [
         'Para quem quer uma comunicação clara, que atraia o cliente certo',
         'Quem sente que não está conseguindo escalar o negócio',
@@ -127,6 +129,7 @@ export const copy = {
     accent: 'COMEÇA AQUI',
     body: 'Conte sobre o seu negócio, avaliamos o encaixe e voltamos com o próximo passo',
     cta: 'Quero aplicar minha marca',
+    passos: ['Você responde', 'Avaliamos o encaixe', 'Voltamos com o próximo passo'],
   },
 
   perguntas: {

@@ -16,7 +16,7 @@ function Toggle({ open }: { open: boolean }) {
 
 export default function Perguntas() {
   const { title, items } = copy.perguntas;
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
   const baseId = useId();
 
   return (
