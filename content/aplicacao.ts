@@ -56,15 +56,11 @@ export const perguntas: readonly Pergunta[] = [
 ];
 
 /**
- * Depois do nome, as perguntas passam a falar com a pessoa pelo primeiro nome.
+ * Só a pergunta do e-mail chama a pessoa pelo primeiro nome, para não ficar repetitivo.
  * Quem não tem versão aqui usa o título normal.
  */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
   email: (n) => `Prazer, ${n}, qual o seu melhor e-mail?`,
-  telefone: (n) => `${n}, qual o seu WhatsApp?`,
-  empresa: (n) => `${n}, qual o nome da sua empresa?`,
-  cargo: (n) => `E qual o seu cargo, ${n}?`,
-  horario: (n) => `${n}, quando prefere conversar com a gente?`,
 };
 
 /** Dias (getDay: 1 = segunda) e horários oferecidos para a reunião. */
