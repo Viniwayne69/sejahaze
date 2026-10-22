@@ -17,7 +17,7 @@ export const copy = {
     before: 'FAZEMOS DA SUA MARCA UMA DAS MAIS',
     accent: 'desejadas',
     after: 'DA GERAÇÃO',
-    subtitle: 'Clientes certos, preço cheio e vendas que se repetem',
+    subtitle: 'Consultoria que estrutura a experiência do cliente, do primeiro contato ao pós-venda',
   },
 
   promessa: {
@@ -47,17 +47,17 @@ export const copy = {
       {
         number: '01',
         title: 'Dissipar',
-        body: 'Dissipamos a névoa e achamos onde a sua marca perde dinheiro',
+        body: 'Diagnóstico profundo para achar o que está travando a sua empresa',
       },
       {
         number: '02',
         title: 'Acender',
-        body: 'A marca que todo mundo quer e o sistema que vende por ela',
+        body: 'Estruturamos o comercial, posicionamos a marca e montamos o sistema de vendas',
       },
       {
         number: '03',
         title: 'Brilhar',
-        body: 'Tudo rodando, a equipe treinada e a gente do seu lado toda semana',
+        body: 'Colocamos tudo para funcionar na prática, com a equipe treinada',
       },
     ],
     result: 'Resultado: Marca forte no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
