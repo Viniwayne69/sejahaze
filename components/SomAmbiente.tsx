@@ -46,11 +46,11 @@ export default function SomAmbiente({ src, rotulo }: { src: string; rotulo: stri
       aria-pressed={ligado}
       aria-label={ligado ? 'Desligar o som' : 'Ligar o som'}
       className={cn(
-        'mx-auto mt-4 inline-flex items-center gap-2.5 rounded-full border-2 border-black px-3.5 py-2 text-[13px] font-semibold leading-tight transition duration-200 active:scale-[0.98] md:text-[14px]',
-        ligado ? 'bg-cyan shadow-[0_0_18px_rgba(1,187,251,.6)]' : 'bg-paper hover:border-cyan',
+        'mt-3 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-black px-3 py-1.5 text-[12px] font-medium leading-none transition duration-200 active:scale-[0.98] md:text-[13px]',
+        ligado ? 'bg-cyan shadow-[0_0_14px_rgba(1,187,251,.55)]' : 'bg-transparent hover:border-cyan',
       )}
     >
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" />
         {ligado ? (
           <>
