@@ -101,7 +101,7 @@ export default function AntesDepois({
         draggable={false}
         className="pointer-events-none object-cover object-[50%_62%]"
       />
-      <p className="pointer-events-none absolute left-3 top-3 max-w-[47%] rounded-[14px] border-2 border-black bg-paper px-2.5 py-1.5 font-display text-[11.5px] font-black uppercase leading-tight text-black md:text-[15px]">
+      <p className="pointer-events-none absolute left-3 top-3 max-w-[47%] rounded-[14px] border-2 border-black bg-paper px-2 py-1 font-display text-[10px] font-black uppercase leading-tight text-black md:text-[13px]">
         {antesFrase}
       </p>
       <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)`, ...transicao }}>
@@ -113,7 +113,7 @@ export default function AntesDepois({
           draggable={false}
           className="pointer-events-none object-cover object-[50%_62%]"
         />
-        <p className="pointer-events-none absolute right-3 top-3 max-w-[47%] rounded-[14px] border-2 border-black bg-cyan px-2.5 py-1.5 text-right font-display text-[11.5px] font-black uppercase leading-tight text-black md:text-[15px]">
+        <p className="pointer-events-none absolute right-3 top-3 max-w-[47%] rounded-[14px] border-2 border-black bg-cyan px-2 py-1 text-right font-display text-[10px] font-black uppercase leading-tight text-black md:text-[13px]">
           {depoisFrase}
         </p>
       </div>
