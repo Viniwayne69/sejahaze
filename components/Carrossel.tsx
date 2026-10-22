@@ -44,14 +44,14 @@ export default function Carrossel({
 
   return (
     <div data-reveal className="mt-5 md:mt-10">
-      <div className="relative">
+      <div className="relative mx-auto max-w-[560px] lg:max-w-none">
         <ol
           ref={trilho}
           aria-label={label}
-          className="flex snap-x snap-mandatory gap-3 overflow-x-auto [scrollbar-width:none] md:grid md:grid-cols-3 md:gap-5 md:overflow-visible [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-3 overflow-x-auto [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item, i) => (
-            <li key={i} className="w-full shrink-0 snap-center md:w-auto">
+            <li key={i} className="w-full shrink-0 snap-center lg:w-auto">
               {item}
             </li>
           ))}
@@ -63,7 +63,7 @@ export default function Carrossel({
           onClick={() => irPara(voltando ? Math.max(0, ativo - 1) : ativo + 1)}
           aria-label={voltando ? 'Cartão anterior' : 'Próximo cartão'}
           className={cn(
-            'absolute right-1.5 z-10 grid size-8 -translate-y-1/2 place-items-center rounded-full border-2 border-black bg-cyan text-black transition-transform duration-300 active:scale-95 md:hidden',
+            'absolute right-1.5 z-10 grid size-8 -translate-y-1/2 place-items-center rounded-full border-2 border-black bg-cyan text-black transition-transform duration-300 active:scale-95 lg:hidden',
             setaTop,
             voltando && 'rotate-180',
           )}
@@ -74,7 +74,7 @@ export default function Carrossel({
         </button>
       </div>
 
-      <div className="mt-3.5 flex justify-center gap-1.5 md:hidden" role="group" aria-label="Escolher cartão">
+      <div className="mt-3.5 flex justify-center gap-1.5 lg:hidden" role="group" aria-label="Escolher cartão">
         {items.map((_, i) => (
           <button
             key={i}

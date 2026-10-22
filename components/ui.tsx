@@ -7,7 +7,7 @@ export function cn(...classes: Array<string | false | null | undefined>) {
 
 /** Coluna central: 22px de margem no celular, como na página de referência. */
 export function Container({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={cn('relative mx-auto w-full max-w-[1080px] px-[22px] md:px-10', className)}>{children}</div>;
+  return <div className={cn('relative mx-auto w-full max-w-[1080px] px-[22px] md:px-10 min-[1700px]:max-w-[1240px]', className)}>{children}</div>;
 }
 
 /** Texturas da marca (Identidade-HAZE/texturas) e a cor de texto que cada uma pede. */
