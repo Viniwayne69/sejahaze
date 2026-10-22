@@ -26,5 +26,5 @@ export default function ScrollProgress() {
     };
   }, []);
 
-  return <div ref={barRef} aria-hidden="true" className="fixed inset-x-0 top-0 z-50 h-[3px] origin-left scale-x-0 bg-cyan" />;
+  return <div ref={barRef} aria-hidden="true" className="fixed inset-x-0 top-0 z-50 h-[3px] origin-left scale-x-0 bg-cyan shadow-[0_0_10px_rgba(1,187,251,.9)]" />;
 }

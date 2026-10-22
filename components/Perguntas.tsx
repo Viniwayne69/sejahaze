@@ -20,7 +20,7 @@ export default function Perguntas() {
   const baseId = useId();
 
   return (
-    <Section id="perguntas" texture="topografica-v3" labelledBy="perguntas-titulo">
+    <Section id="perguntas" texture="topografica-v3" fade="cyan" labelledBy="perguntas-titulo">
       <div data-reveal className="md:text-center">
         <Heading id="perguntas-titulo" before={title} />
       </div>

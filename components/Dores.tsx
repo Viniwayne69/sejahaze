@@ -15,7 +15,7 @@ export default function Dores() {
   const { title, items, closing, cta } = copy.dores;
 
   return (
-    <Section texture="fosca" labelledBy="dores-titulo">
+    <Section texture="fosca" fade="paper" luz labelledBy="dores-titulo">
       {/* Luz ciano saindo das laterais e do fundo: dá vida ao escuro sem tirar a tensão */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-16 top-[22%] h-56 w-32 rounded-full bg-cyan/40 blur-3xl md:-left-24 md:h-[420px] md:w-64" />

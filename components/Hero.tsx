@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { copy } from '@/content/copy';
+import HeroFoto from './HeroFoto';
 import { Accent, ApplyNote, Button, Container, cn, textureProps } from './ui';
 
 /**
@@ -16,18 +16,12 @@ export default function Hero() {
       <Container className="flex min-h-[max(560px,calc(100svh-53px))] flex-col md:grid md:min-h-0 md:grid-cols-[1fr_minmax(0,400px)] md:items-center md:gap-14 md:py-20">
         {/* Foto: fundo de tela cheia no celular, cartão vertical no desktop */}
         <div className="absolute inset-0 -z-10 md:relative md:inset-auto md:z-0 md:order-2 md:aspect-[9/16] md:max-h-[76vh] md:w-full md:justify-self-end md:overflow-hidden md:rounded-[24px]">
-          <Image
+          <HeroFoto
             src="/images/capa.webp"
             alt="Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar"
-            fill
-            priority
-            sizes="(min-width: 768px) 400px, 100vw"
-            className="object-cover object-[50%_42%]"
           />
           {/* Névoa da marca: começa densa, dissipa ao abrir a página e depois flutua devagar */}
           <div aria-hidden="true" className="hero-nevoa pointer-events-none absolute inset-0" />
-          {/* Luz do letreiro ciano pulsando de leve */}
-          <div aria-hidden="true" className="letreiro-pulso pointer-events-none absolute -right-[10%] top-[15%] h-[20%] w-[50%] rounded-full bg-cyan mix-blend-screen blur-2xl" />
           {/* Degradê para o subtítulo e o botão lerem bem sobre a foto (só no celular) */}
           <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/75 to-transparent md:hidden" />
         </div>

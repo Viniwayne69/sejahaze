@@ -36,6 +36,21 @@ export function textureProps(texture: Texture) {
   };
 }
 
+const fadeFrom = { paper: 'from-paper', black: 'from-black', cyan: 'from-cyan' } as const;
+
+/**
+ * Emenda entre seções: `fade` esfuma a cor da seção de cima para dentro desta (a névoa da marca) e
+ * `luz` acende uma linha ciano fina na junção. Fica atrás do conteúdo.
+ */
+export function Emenda({ fade, luz }: { fade?: keyof typeof fadeFrom; luz?: boolean }) {
+  return (
+    <>
+      {fade && <div aria-hidden="true" className={cn('pointer-events-none absolute inset-x-0 top-0 h-5 bg-gradient-to-b to-transparent md:h-10', fadeFrom[fade])} />}
+      {luz && <div aria-hidden="true" className="pointer-events-none absolute inset-x-[8%] top-0 h-[2px] bg-cyan shadow-[0_0_14px_3px_rgba(1,187,251,.7)]" />}
+    </>
+  );
+}
+
 /** Seção com o ritmo da página: 24px de respiro no celular, mais no desktop. */
 export function Section({
   id,
@@ -43,12 +58,16 @@ export function Section({
   className,
   children,
   labelledBy,
+  fade,
+  luz,
 }: {
   id?: string;
   texture: Texture;
   className?: string;
   children: React.ReactNode;
   labelledBy?: string;
+  fade?: keyof typeof fadeFrom;
+  luz?: boolean;
 }) {
   const bg = textureProps(texture);
   return (
@@ -58,6 +77,7 @@ export function Section({
       className={cn('relative isolate overflow-hidden py-6 md:py-20', bg.className, className)}
       style={bg.style}
     >
+      <Emenda fade={fade} luz={luz} />
       <Container>{children}</Container>
     </section>
   );

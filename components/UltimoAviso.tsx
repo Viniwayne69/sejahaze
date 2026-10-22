@@ -1,6 +1,6 @@
 import { copy } from '@/content/copy';
 import Logo from './Logo';
-import { ApplyNote, Button, Container, Heading, cn, textureProps } from './ui';
+import { ApplyNote, Button, Container, Emenda, Heading, cn, textureProps } from './ui';
 
 /** Fechamento: último aviso + rodapé no mesmo bloco, só com a textura fosca-azul. */
 export default function UltimoAviso() {
@@ -10,6 +10,7 @@ export default function UltimoAviso() {
 
   return (
     <footer className={cn('relative isolate overflow-hidden pb-[96px] md:pb-10', bg.className)} style={bg.style}>
+      <Emenda fade="paper" luz />
       <section aria-labelledby="ultimo-aviso-titulo" className="pt-7 md:pt-20">
         <Container className="text-center">
           <div data-reveal className="mx-auto max-w-[680px]">

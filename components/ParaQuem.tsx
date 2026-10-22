@@ -13,10 +13,14 @@ export default function ParaQuem() {
   const [marcados, setMarcados] = useState<number[]>([]);
   const alguem = marcados.length > 0;
 
-  const alternar = (i: number) => setMarcados((atual) => (atual.includes(i) ? atual.filter((n) => n !== i) : [...atual, i]));
+  const alternar = (i: number) => {
+    // Vibração curta no celular ao marcar (ignora onde não existe)
+    if (!marcados.includes(i)) navigator.vibrate?.(12);
+    setMarcados((atual) => (atual.includes(i) ? atual.filter((n) => n !== i) : [...atual, i]));
+  };
 
   return (
-    <Section id="para-quem" texture="fosca" labelledBy="para-quem-titulo">
+    <Section id="para-quem" texture="fosca" fade="paper" luz labelledBy="para-quem-titulo">
       {/* Luz ciano saindo das laterais, a mesma das "Dores" */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-16 top-[18%] h-56 w-32 rounded-full bg-cyan/40 blur-3xl md:-left-24 md:h-[420px] md:w-64" />

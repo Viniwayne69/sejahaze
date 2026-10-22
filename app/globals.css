@@ -206,3 +206,35 @@
   transform: translateX(-130%);
   animation: brilho-passa 4.5s ease-in-out infinite;
 }
+
+/* "Aplicações abertas": a barrinha pisca devagar, como um aviso ao vivo */
+@keyframes ao-vivo-pisca {
+  0%,
+  100% {
+    opacity: 0.35;
+    box-shadow: 0 0 0 rgba(1, 187, 251, 0);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(1, 187, 251, 0.9);
+  }
+}
+
+.ao-vivo {
+  animation: ao-vivo-pisca 2.2s ease-in-out infinite;
+}
+
+/* Hero: a foto respira com um zoom bem lento (a rolagem move a foto em HeroFoto) */
+@keyframes foto-respira {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1.16);
+  }
+}
+
+.foto-respira {
+  transform: scale(1.08);
+  animation: foto-respira 26s ease-in-out infinite alternate;
+}
