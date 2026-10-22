@@ -37,7 +37,7 @@ export const copy = {
       'Vende barato enquanto o concorrente leva a fama e o cliente',
       'Só atrai quem pergunta o preço e perde quem paga',
     ],
-    closing: 'Chega. Hora de virar o jogo com a HAZE',
+    closing: 'Chega, hora de virar o jogo com a HAZE',
     cta: 'Quero ser a marca mais desejada',
   },
 
@@ -128,7 +128,7 @@ export const copy = {
   aplicacao: {
     before: 'A SUA MARCA DESEJADA',
     accent: 'COMEÇA AQUI',
-    body: 'Mostre o seu negócio. Avaliamos o encaixe e voltamos com o próximo passo',
+    body: 'Mostre o seu negócio, avaliamos o encaixe e voltamos com o próximo passo',
     cta: 'Quero aplicar minha marca',
     passos: ['Você responde', 'Avaliamos o encaixe', 'Voltamos com o próximo passo'],
   },
@@ -144,7 +144,7 @@ export const copy = {
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Raio-X: diagnóstico profundo, análise do faturamento e mapa da jornada. Arquitetura: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios). Implementação: marca aplicada, time treinado e acompanhamento semanal',
+          'Raio-X: diagnóstico profundo, análise do faturamento e mapa da jornada; Arquitetura: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios); Implementação: marca aplicada, time treinado e acompanhamento semanal',
       },
       {
         question: 'Preciso já ter uma marca para começar?',

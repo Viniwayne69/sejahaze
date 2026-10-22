@@ -60,7 +60,7 @@ export const perguntas: readonly Pergunta[] = [
  * Quem não tem versão aqui usa o título normal.
  */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
-  email: (n) => `Prazer, ${n}. Qual o seu melhor e-mail?`,
+  email: (n) => `Prazer, ${n}, qual o seu melhor e-mail?`,
   telefone: (n) => `${n}, qual o seu WhatsApp?`,
   empresa: (n) => `${n}, qual o nome da sua empresa?`,
   cargo: (n) => `E qual o seu cargo, ${n}?`,
