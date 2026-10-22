@@ -16,7 +16,7 @@ export default function Promessa() {
         <AntesDepois antes={antes} depois={depois} antesFrase={antesFrase} depoisFrase={depoisFrase} />
       </div>
 
-      <div data-reveal className="mt-5 text-center md:mx-auto md:mt-10 md:max-w-[820px]">
+      <div data-reveal className="mt-5 md:mx-auto md:mt-10 md:max-w-[820px] md:text-center">
         <Heading id="promessa-titulo" as="h3" before={before} accent={accent} after={after} className="[text-wrap:wrap]" />
       </div>
     </Section>
