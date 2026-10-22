@@ -206,19 +206,3 @@
   transform: translateX(-130%);
   animation: brilho-passa 4.5s ease-in-out infinite;
 }
-
-/* Luz clara que pulsa devagar atrás de títulos em fundo ciano */
-@keyframes luz-pulsa {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.9;
-  }
-}
-
-.luz-pulsa {
-  opacity: 0.35;
-  animation: luz-pulsa 4.5s ease-in-out infinite;
-}

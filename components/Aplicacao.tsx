@@ -7,8 +7,6 @@ export default function Aplicacao() {
 
   return (
     <Section id="aplicar" texture="ciano" labelledBy="aplicar-titulo">
-      {/* Luz clara pulsando atrás do título, como a do letreiro no hero */}
-      <div aria-hidden="true" className="luz-pulsa pointer-events-none absolute left-1/2 top-0 -z-10 h-64 w-[120%] -translate-x-1/2 rounded-full bg-paper/70 blur-3xl md:h-80 md:w-[640px]" />
       <div data-reveal className="mx-auto max-w-[680px] text-center">
         <Heading id="aplicar-titulo" before={before} accent={accent} bar="black" />
         <p className="mt-3 text-[15.5px] font-medium leading-[1.45] md:mt-5 md:text-[18px]">{body}</p>
