@@ -3,38 +3,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { WHATSAPP_NUMBER } from '@/config';
 import { copy } from '@/content/copy';
-import {
-  diasReuniao,
-  horariosReuniao,
-  perguntas,
-  textosAplicacao as t,
-  titulosComNome,
-  type Pergunta,
-} from '@/content/aplicacao';
-import {
-  apenasDigitos,
-  buscarHorariosOcupados,
-  dataPorExtenso,
-  enviarAplicacao,
-  formatarTelefone,
-  proximaDataReuniao,
-  type RespostasAplicacao,
-} from '@/lib/aplicacao';
+import { perguntas, textosAplicacao as t, titulosComNome, type Pergunta } from '@/content/aplicacao';
+import { apenasDigitos, enviarAplicacao, formatarTelefone, type RespostasAplicacao } from '@/lib/aplicacao';
+import { calcularDiagnostico } from '@/lib/diagnostico';
 import Logo from './Logo';
 import SomAmbiente from './SomAmbiente';
 import { Accent, cn, textureProps } from './ui';
 
 const vazio: RespostasAplicacao = {
   nome: '',
-  email: '',
-  telefone: '',
   empresa: '',
-  cargo: '',
+  processo: '',
+  desconto: '',
+  diferenca: '',
+  trava: '',
   faturamento: '',
-  setor: '',
-  dia: '',
-  horario: '',
+  telefone: '',
 };
 
 const total = perguntas.length;
@@ -54,22 +40,19 @@ const btnPrincipal =
   'brilho inline-flex min-h-[52px] items-center justify-center rounded-full bg-cyan px-8 text-[16px] font-semibold text-black transition hover:brightness-[.93] disabled:cursor-not-allowed disabled:opacity-40';
 
 function validar(pergunta: Pergunta, respostas: RespostasAplicacao) {
-  if (pergunta.tipo === 'horario') return '';
   const valor = respostas[pergunta.id].trim();
   if (!valor) return t.erros.obrigatoria;
-  if (pergunta.id === 'nome' && valor.split(/\s+/).length < 2) return t.erros.nome;
-  if (pergunta.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor)) return t.erros.email;
+  if (pergunta.id === 'nome' && valor.length < 2) return t.erros.nome;
   if (pergunta.id === 'telefone' && ![10, 11].includes(apenasDigitos(valor).length)) return t.erros.telefone;
   return '';
 }
 
 export default function FormularioAplicacao() {
-  const [etapa, setEtapa] = useState(-1); // -1 boas-vindas, 0..total-1 perguntas, total = obrigado
+  const [etapa, setEtapa] = useState(-1); // -1 boas-vindas, 0..total-1 perguntas, total = resultado
   const [direcao, setDirecao] = useState<'frente' | 'tras'>('frente');
   const [respostas, setRespostas] = useState<RespostasAplicacao>(vazio);
   const [erro, setErro] = useState('');
   const [enviando, setEnviando] = useState(false);
-  const [dataReuniao, setDataReuniao] = useState('');
   const [armadilha, setArmadilha] = useState(''); // campo escondido contra robôs
   const inputRef = useRef<HTMLInputElement>(null);
   const tituloRef = useRef<HTMLHeadingElement>(null);
@@ -87,7 +70,7 @@ export default function FormularioAplicacao() {
     else tituloRef.current?.focus();
   }, [etapa]);
 
-  // Ao terminar, uma vibração de comemoração
+  // Ao ver o resultado, uma vibração de comemoração
   useEffect(() => {
     if (etapa === total) vibrar([20, 60, 20]);
   }, [etapa]);
@@ -102,6 +85,7 @@ export default function FormularioAplicacao() {
     setRespostas((r) => ({ ...r, [campo]: valor }));
   };
 
+  // O lead é gravado aqui, antes do resultado: mesmo que a pessoa feche a tela, o contato e as respostas ficam no CRM
   const enviar = useCallback(
     async (dados: RespostasAplicacao) => {
       if (armadilha) {
@@ -112,26 +96,22 @@ export default function FormularioAplicacao() {
       setEnviando(true);
       setErro('');
       try {
-        let data = '';
-        if (dados.dia && dados.horario) {
-          const ocupados = await buscarHorariosOcupados();
-          data = proximaDataReuniao(Number(dados.dia), dados.horario, ocupados);
-        }
+        const { perfil, pontos, etapa: comecar } = calcularDiagnostico(dados);
+        const resumo = [
+          `Diagnóstico HAZE: ${perfil.titulo} (${pontos}/6)`,
+          `Processo: ${dados.processo}`,
+          `Desconto: ${dados.desconto}`,
+          `Diferença: ${dados.diferenca}`,
+          `Trava: ${dados.trava}`,
+          `Começar por: ${copy.metodo.steps[comecar].title}`,
+        ].join(' | ');
         await enviarAplicacao({
-          nome: dados.nome.trim(),
-          email: dados.email.trim(),
-          telefone: dados.telefone.trim(),
+          ...dados,
+          nome: dados.nome.trim().split(/\s+/).map(capitalizar).join(' '),
           empresa: dados.empresa.trim(),
-          cargo: dados.cargo,
-          faturamento: dados.faturamento,
-          setor: dados.setor,
-          dia: dados.dia,
-          horario: dados.horario,
-          dataReuniao: data,
-          origem: 'formulario-aplicar',
-          enviadoEm: new Date().toISOString(),
+          telefone: dados.telefone.trim(),
+          resumo,
         });
-        setDataReuniao(data);
         setDirecao('frente');
         setEtapa(total);
       } catch {
@@ -183,6 +163,14 @@ export default function FormularioAplicacao() {
   }, [pergunta, escolherOpcao]);
 
   const bg = textureProps('papel-azul');
+  const resultado = etapa === total ? calcularDiagnostico(respostas) : null;
+  const etapaIndicada = resultado ? copy.metodo.steps[resultado.etapa] : null;
+  const linkWhatsapp =
+    resultado && WHATSAPP_NUMBER
+      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.perfil.titulo, respostas.faturamento),
+        )}`
+      : '';
 
   return (
     // No celular a textura fica um pouco mais larga que a tela, para só um toque da névoa azul aparecer nas laterais
@@ -222,7 +210,7 @@ export default function FormularioAplicacao() {
                 <div aria-hidden="true" className="hero-nevoa pointer-events-none absolute inset-0" />
               </div>
               <h1 className="display mt-6 text-[27px] md:mt-8 md:text-[44px]">
-                {copy.aplicacao.before} <Accent>{copy.aplicacao.accent}</Accent>
+                {t.boasVindas.antes} <Accent>{t.boasVindas.destaque}</Accent>
               </h1>
               {t.boasVindas.paragrafos.map((p) => (
                 <p key={p} className="mx-auto mt-3 max-w-[540px] text-[15px] leading-[1.45] md:mt-4 md:text-[19px]">
@@ -252,18 +240,16 @@ export default function FormularioAplicacao() {
               </h1>
               {pergunta.ajuda && <p className="mt-3 text-[15px] leading-snug md:text-[17px]">{pergunta.ajuda}</p>}
 
-              {(pergunta.tipo === 'texto' || pergunta.tipo === 'email' || pergunta.tipo === 'tel') && (
+              {(pergunta.tipo === 'texto' || pergunta.tipo === 'tel') && (
                 <>
                   <input
                     ref={inputRef}
                     aria-labelledby="pergunta-titulo"
                     aria-invalid={Boolean(erro)}
                     aria-describedby={erro ? 'erro-aplicacao' : undefined}
-                    type={pergunta.tipo === 'texto' ? 'text' : pergunta.tipo}
+                    type={pergunta.tipo === 'texto' ? 'text' : 'tel'}
                     inputMode={pergunta.tipo === 'tel' ? 'tel' : undefined}
-                    autoComplete={
-                      pergunta.id === 'nome' ? 'name' : pergunta.id === 'email' ? 'email' : pergunta.id === 'telefone' ? 'tel' : 'organization'
-                    }
+                    autoComplete={pergunta.id === 'nome' ? 'given-name' : pergunta.id === 'telefone' ? 'tel' : 'organization'}
                     placeholder={pergunta.placeholder}
                     value={respostas[pergunta.id]}
                     onChange={(e) =>
@@ -278,8 +264,8 @@ export default function FormularioAplicacao() {
                     className="mt-7 w-full border-0 border-b-2 border-black bg-transparent py-3 text-[22px] text-black outline-none transition-[border-color,box-shadow] placeholder:text-gray focus:border-cyan focus:shadow-[0_12px_18px_-12px_#01BBFB] focus-visible:outline-none md:text-[28px]"
                   />
                   <div className="mt-7 flex items-center gap-4">
-                    <button type="button" onClick={avancar} className={btnPrincipal}>
-                      {t.ok}
+                    <button type="button" onClick={avancar} disabled={enviando} className={btnPrincipal}>
+                      {pergunta.id === 'telefone' ? (enviando ? t.enviando : t.ver) : t.ok}
                     </button>
                     <span className="hidden text-[13px] md:inline">{t.dicaEnter}</span>
                   </div>
@@ -320,47 +306,8 @@ export default function FormularioAplicacao() {
                 </div>
               )}
 
-              {pergunta.tipo === 'horario' && (
-                <>
-                  <div role="group" aria-label="Dia da reunião" className="mt-7 flex flex-wrap gap-2">
-                    {diasReuniao.map(({ dia, nome }) => (
-                      <Chip key={dia} ativo={respostas.dia === String(dia)} onClick={() => responder('dia', String(dia))}>
-                        {nome}
-                      </Chip>
-                    ))}
-                  </div>
-                  {respostas.dia && (
-                    <div role="group" aria-label="Horário da reunião" className="mt-4 flex flex-wrap gap-2">
-                      {horariosReuniao.map((hora) => (
-                        <Chip key={hora} ativo={respostas.horario === hora} onClick={() => responder('horario', hora)}>
-                          {hora}
-                        </Chip>
-                      ))}
-                    </div>
-                  )}
-                  <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-                    <button
-                      type="button"
-                      onClick={avancar}
-                      disabled={enviando || !(respostas.dia && respostas.horario)}
-                      className={btnPrincipal}
-                    >
-                      {enviando ? t.enviando : t.enviar}
-                    </button>
-                    <button
-                      type="button"
-                      disabled={enviando}
-                      onClick={() => void enviar({ ...respostas, dia: '', horario: '' })}
-                      className="text-[15px] font-medium underline decoration-gray underline-offset-4 transition-colors hover:decoration-cyan disabled:opacity-40"
-                    >
-                      {t.pular}
-                    </button>
-                  </div>
-                </>
-              )}
-
               {erro && (
-                <p id="erro-aplicacao" role="alert" className="mt-5 flex items-center gap-2.5 text-[15px] font-medium text-black">
+                <p id="erro-aplicacao" role="alert" className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-black">
                   <span aria-hidden="true" className="inline-block h-[3px] w-4 bg-cyan" />
                   {erro}
                 </p>
@@ -368,57 +315,63 @@ export default function FormularioAplicacao() {
             </div>
           )}
 
-          {/* Obrigado: a luz acende, o primeiro passo vira feito e a reunião aparece em destaque */}
-          {etapa === total && (
-            <div className="relative text-center">
+          {/* Resultado: perfil, pontos de atenção, por onde começar e o WhatsApp */}
+          {resultado && etapaIndicada && (
+            <div className="relative">
               <div
                 aria-hidden="true"
                 className="luz-acende pointer-events-none absolute -top-16 left-1/2 -z-10 size-64 rounded-full bg-cyan blur-3xl md:size-80"
               />
-              <h1 ref={tituloRef} tabIndex={-1} className="display text-[30px] outline-none md:text-[52px]">
-                {t.fim.titulo} <Accent>{primeiroNome}</Accent>
-              </h1>
-              <p className="mx-auto mt-4 max-w-[540px] text-[16px] leading-[1.5] md:text-[18px]">
-                {dataReuniao ? t.fim.recebido : t.fim.semReuniao}
+              <p className="text-center text-[12px] font-semibold uppercase tracking-[0.08em]">
+                {primeiroNome}, {t.resultado.rotulo.toLowerCase()}
               </p>
+              <h1 ref={tituloRef} tabIndex={-1} className="display mt-2 text-center text-[30px] outline-none md:text-[48px]">
+                {resultado.perfil.titulo.split(' ').slice(0, -1).join(' ')}{' '}
+                <Accent>{resultado.perfil.titulo.split(' ').slice(-1)[0]}</Accent>
+              </h1>
+              <p className="mx-auto mt-4 max-w-[540px] text-center text-[16px] leading-[1.5] md:text-[18px]">{resultado.perfil.texto}</p>
 
-              {dataReuniao && (
-                <div className="mx-auto mt-5 max-w-[440px] rounded-[24px] border-2 border-black bg-paper px-5 py-4 shadow-[0_0_26px_rgba(1,187,251,.45)]">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.08em]">{t.fim.reuniaoRotulo}</p>
-                  <p className="display mt-1.5 text-[20px] md:text-[24px]">
-                    {dataPorExtenso(dataReuniao)}, às {respostas.horario}
-                  </p>
-                  <p className="mt-1.5 text-[14px] leading-snug">{t.fim.resumoReuniao}</p>
+              {/* Medidor: seis barras, quantas estão acesas é a pontuação */}
+              <div className="mx-auto mt-4 flex max-w-[300px] items-center gap-3" role="img" aria-label={t.resultado.pontuacao(resultado.pontos)}>
+                <div className="flex flex-1 gap-1.5" aria-hidden="true">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <span key={i} className={cn('h-2 flex-1 rounded-full border border-black', i < resultado.pontos ? 'bg-cyan shadow-[0_0_8px_rgba(1,187,251,.8)]' : 'bg-transparent')} />
+                  ))}
                 </div>
-              )}
+                <span className="font-display text-[13px] font-black">{t.resultado.pontuacao(resultado.pontos)}</span>
+              </div>
 
-              <p className="mt-7 text-[13px] font-semibold uppercase tracking-[0.08em]">{t.fim.proximos}</p>
-              <ol className="relative mx-auto mt-3 grid max-w-[420px] grid-cols-3 gap-2">
-                <span aria-hidden="true" className="absolute left-[16.6%] right-[16.6%] top-[18px] h-[3px] bg-black" />
-                {copy.aplicacao.passos.map((passo, i) => (
-                  <li key={passo} className="relative flex flex-col items-center gap-2 text-center">
-                    <span
-                      className={cn(
-                        'grid size-9 place-items-center rounded-full border-2 border-black font-display text-[14px] font-black text-black',
-                        i === 0 ? 'bg-cyan shadow-[0_0_14px_rgba(1,187,251,.8)]' : 'bg-paper',
-                      )}
-                    >
-                      {i === 0 ? (
-                        <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M5 12.5l4.5 4.5L19 7.5" />
-                        </svg>
-                      ) : (
-                        i + 1
-                      )}
-                    </span>
-                    <span className="text-[12.5px] font-semibold leading-tight">{passo}</span>
-                  </li>
-                ))}
-              </ol>
+              <div className="mt-6 rounded-[24px] border-2 border-black bg-paper px-5 py-4 shadow-[0_0_26px_rgba(1,187,251,.35)]">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.08em]">{t.resultado.atencaoTitulo}</p>
+                <ul className="mt-2.5 grid gap-2">
+                  {resultado.alertas.map((alerta) => (
+                    <li key={alerta} className="flex items-start gap-3 text-[15px] leading-snug">
+                      <span aria-hidden="true" className="mt-[0.6em] inline-block h-[3px] w-4 shrink-0 bg-cyan" />
+                      {alerta}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <Link href="/" className={cn(btnPrincipal, 'mt-8')}>
-                {t.fim.voltarSite}
-              </Link>
+              <div className="mt-3 rounded-[24px] border-2 border-black bg-black px-5 py-4 text-paper">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-gray">{t.resultado.comecarTitulo}</p>
+                <p className="display mt-1.5 text-[22px] text-cyan md:text-[26px]">{etapaIndicada.title}</p>
+                <p className="mt-1 text-[14.5px] leading-snug">{etapaIndicada.body}</p>
+              </div>
+
+              <div className="mt-6 text-center">
+                {linkWhatsapp ? (
+                  <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'w-full md:w-auto md:min-w-[340px]')}>
+                    {t.resultado.whatsappBotao}
+                  </a>
+                ) : (
+                  <p className="text-[15px] font-medium leading-snug">{t.resultado.semWhatsapp}</p>
+                )}
+                <p className="mx-auto mt-3 max-w-[420px] text-[12px] leading-snug text-gray">{t.resultado.nota}</p>
+                <Link href="/" className="mt-4 inline-block text-[14px] font-medium underline underline-offset-4">
+                  {t.resultado.voltarSite}
+                </Link>
+              </div>
             </div>
           )}
 
@@ -448,21 +401,5 @@ export default function FormularioAplicacao() {
         </nav>
       )}
     </main>
-  );
-}
-
-function Chip({ ativo, onClick, children }: { ativo: boolean; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-pressed={ativo}
-      onClick={onClick}
-      className={cn(
-        'rounded-full border-2 border-black px-4 py-2.5 text-[14px] font-medium transition duration-200 active:scale-[0.97] md:text-[15px]',
-        ativo ? 'bg-cyan shadow-[0_0_16px_rgba(1,187,251,.55)]' : 'bg-paper hover:border-cyan',
-      )}
-    >
-      {children}
-    </button>
   );
 }

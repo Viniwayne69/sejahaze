@@ -15,4 +15,4 @@ export const SUPABASE_KEY =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_-4w_VFF_Gl1YlHdj8hVoFQ_G2mVxRwa';
 
 /** WhatsApp da HAZE (só dígitos, com 55 e DDD, ex.: 5511999998888). Enquanto estiver vazio, o botão de WhatsApp não aparece. */
-export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP || '').replace(/D/g, '');
+export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP || '').replace(/\D/g, '');

@@ -1,33 +1,45 @@
 /**
- * Textos e perguntas do formulário de aplicação (/aplicar).
- * Para mudar uma pergunta ou opção, edite aqui — o componente só lê deste arquivo.
+ * Textos, perguntas e regras do mini diagnóstico (/aplicar).
+ * Para mudar uma pergunta, opção, perfil ou ponto de atenção, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'email' | 'telefone' | 'empresa' | 'cargo' | 'faturamento' | 'setor' | 'horario';
+export type CampoId = 'nome' | 'empresa' | 'processo' | 'desconto' | 'diferenca' | 'trava' | 'faturamento' | 'telefone';
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: 'email'; tipo: 'email'; titulo: string; ajuda?: string; placeholder: string }
   | { id: 'telefone'; tipo: 'tel'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: 'cargo' | 'faturamento' | 'setor'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] }
-  | { id: 'horario'; tipo: 'horario'; titulo: string; ajuda?: string; opcional: true };
+  | { id: 'processo' | 'desconto' | 'diferenca' | 'trava' | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
 
+/**
+ * As três primeiras perguntas de opções valem pontos: a primeira opção vale 2, a segunda 1 e a terceira 0.
+ * Por isso elas vão sempre da melhor para a pior resposta.
+ */
 export const perguntas: readonly Pergunta[] = [
-  { id: 'nome', tipo: 'texto', titulo: 'Qual o seu nome completo?', placeholder: 'Digite seu nome' },
-  { id: 'email', tipo: 'email', titulo: 'Qual o seu melhor e-mail?', placeholder: 'nome@suaempresa.com.br' },
+  { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
+  { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome do seu negócio?', placeholder: 'Ex: Almeida & Silva' },
   {
-    id: 'telefone',
-    tipo: 'tel',
-    titulo: 'Qual o seu WhatsApp?',
-    ajuda: 'Com DDD, é por aqui que entraremos em contato',
-    placeholder: '(11) 99999-9999',
-  },
-  { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome da sua empresa?', placeholder: 'Ex: Almeida & Silva' },
-  {
-    id: 'cargo',
+    id: 'processo',
     tipo: 'opcoes',
-    titulo: 'Qual o seu cargo?',
-    opcoes: ['Sócio ou fundador', 'CEO ou C-Level', 'Diretor', 'Profissional Liberal', 'Autônomo', 'Outros'],
+    titulo: 'Você já tem um processo comercial definido?',
+    opcoes: ['Sim, bem definido', 'Mais ou menos, cada um faz de um jeito', 'Não tenho'],
+  },
+  {
+    id: 'desconto',
+    tipo: 'opcoes',
+    titulo: 'Com que frequência você dá desconto para fechar uma venda?',
+    opcoes: ['Nunca', 'Às vezes', 'Quase sempre'],
+  },
+  {
+    id: 'diferenca',
+    tipo: 'opcoes',
+    titulo: 'O seu cliente sabe dizer por que você é diferente?',
+    opcoes: ['Sim, com clareza', 'Mais ou menos', 'Não, ele compara com os outros'],
+  },
+  {
+    id: 'trava',
+    tipo: 'opcoes',
+    titulo: 'O que mais trava o seu crescimento hoje?',
+    opcoes: ['Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
   },
   {
     id: 'faturamento',
@@ -45,72 +57,92 @@ export const perguntas: readonly Pergunta[] = [
       'R$ 200 mi+/ano',
     ],
   },
-  { id: 'setor', tipo: 'opcoes', titulo: 'Qual o setor da sua empresa?', opcoes: ['Serviço', 'Comércio', 'Indústria'] },
   {
-    id: 'horario',
-    tipo: 'horario',
-    titulo: 'Quando prefere conversar com a gente?',
-    ajuda: 'Escolha um dia e horário para a reunião online, ou, se preferir, pule e entramos em contato',
-    opcional: true,
+    id: 'telefone',
+    tipo: 'tel',
+    titulo: 'Qual o seu WhatsApp?',
+    ajuda: 'Com DDD, o seu resultado aparece na próxima tela e a equipe continua a conversa por aqui',
+    placeholder: '(11) 99999-9999',
   },
 ];
 
-/**
- * Só a pergunta do e-mail chama a pessoa pelo primeiro nome, para não ficar repetitivo.
- * Quem não tem versão aqui usa o título normal.
- */
+/** Depois do nome, só esta pergunta chama a pessoa pelo primeiro nome, para não ficar repetitivo. */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
-  email: (n) => `Prazer, ${n}, qual o seu melhor e-mail?`,
+  processo: (n) => `${n}, você já tem um processo comercial definido?`,
 };
 
-/** Dias (getDay: 1 = segunda) e horários oferecidos para a reunião. */
-export const diasReuniao = [
-  { dia: 1, nome: 'Segunda-feira' },
-  { dia: 2, nome: 'Terça-feira' },
-  { dia: 3, nome: 'Quarta-feira' },
-  { dia: 4, nome: 'Quinta-feira' },
-  { dia: 5, nome: 'Sexta-feira' },
+/** Perfis pela pontuação (0 a 6): quanto menor, mais a marca está na névoa. */
+export const perfis = [
+  {
+    ate: 2,
+    titulo: 'MARCA NA NÉVOA',
+    texto: 'Hoje o cliente enxerga pouco do que você tem de melhor, e o preço acaba decidindo a compra',
+  },
+  {
+    ate: 4,
+    titulo: 'MARCA EM CONSTRUÇÃO',
+    texto: 'Você tem boas bases, mas ainda deixa dinheiro na mesa por falta de clareza e de processo',
+  },
+  {
+    ate: 6,
+    titulo: 'MARCA QUASE DESEJADA',
+    texto: 'Os seus pilares estão firmes, o próximo passo é escalar o que já funciona',
+  },
 ] as const;
 
-export const horariosReuniao = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'] as const;
+/** Ponto de atenção por pergunta: [pontuação 0, pontuação 1]. Com 2 pontos não há alerta. */
+export const atencao = {
+  processo: ['Sem processo comercial, cada venda depende de improviso', 'O processo existe, mas cada pessoa vende de um jeito'],
+  desconto: ['Desconto frequente ensina o cliente a esperar preço baixo', 'O desconto ocasional já mostra que o preço não se sustenta sozinho'],
+  diferenca: ['O cliente compara você só pelo preço', 'A sua diferença existe, mas o cliente ainda não a enxerga com clareza'],
+} as const;
+
+/** Por onde começar (índice da etapa do método): pontuação baixa começa pelo diagnóstico, senão depende da maior trava. */
+export const etapaPorTrava: Record<string, 0 | 1 | 2> = {
+  'Atrair os clientes certos': 1,
+  'Fechar as vendas': 1,
+  'Vender barato': 1,
+  'A equipe': 2,
+  'Não sei': 0,
+};
 
 export const textosAplicacao = {
-  metaTitle: 'HAZE | Aplicação',
-  metaDescription: 'Responda às perguntas e nossa equipe indicará o caminho mais adequado para o seu negócio, leva menos de 2 minutos',
+  metaTitle: 'HAZE | Diagnóstico',
+  metaDescription: 'Responda a 7 perguntas rápidas e receba uma leitura da sua marca, leva menos de 2 minutos',
   boasVindas: {
-    tituloAcessivel: 'Aplicação HAZE',
-    paragrafos: [
-      'Responda às perguntas a seguir e nossa equipe indicará o caminho mais adequado para o seu negócio, leva menos de 2 minutos',
-    ],
+    antes: 'DESCUBRA O QUANTO A SUA MARCA É',
+    destaque: 'DESEJADA',
+    paragrafos: ['Responda a 7 perguntas rápidas e receba uma leitura da sua marca, leva menos de 2 minutos'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
-    botao: 'Iniciar aplicação',
+    botao: 'Fazer o diagnóstico',
   },
   som: { arquivo: '/audio/get-away.mp3', rotulo: 'Escute um som enquanto nos conta sobre você' },
   ok: 'OK',
   dicaEnter: 'ou pressione Enter',
   voltar: 'Voltar',
-  enviar: 'Enviar',
+  ver: 'Ver o meu resultado',
   enviando: 'Enviando',
-  pular: 'Pular e enviar',
   de: 'de',
-  /** Incentivos curtos no contador, perto do fim: Diversão e Preguiça (está acabando) */
   incentivos: { quaseLa: 'Quase lá', ultima: 'Última pergunta' },
   erros: {
     obrigatoria: 'Esta pergunta é obrigatória',
-    nome: 'Informe nome e sobrenome',
-    email: 'Informe um e-mail válido',
+    nome: 'Informe o seu primeiro nome',
     telefone: 'Informe um WhatsApp válido com DDD',
     envio: 'Não foi possível enviar agora, tente novamente em instantes',
   },
-  fim: {
-    titulo: 'PRONTO,',
-    recebido: 'Recebemos a sua aplicação e já vamos olhar a sua marca',
-    semReuniao:
-      'Recebemos a sua aplicação e já vamos olhar a sua marca, em breve nossa equipe entra em contato pelo WhatsApp',
+  resultado: {
+    rotulo: 'Leitura rápida da sua marca',
+    pontuacao: (pontos: number) => `${pontos} de 6`,
+    atencaoTitulo: 'Pontos de atenção',
+    atencaoTrava: (trava: string) => `Você apontou como maior trava: ${trava.toLowerCase()}`,
+    atencaoOk: 'Processo, preço e diferença estão firmes, o desafio agora é crescer',
+    comecarTitulo: 'Por onde começar',
+    whatsappBotao: 'Falar com a HAZE sobre o meu resultado',
+    whatsappMensagem: (nome: string, empresa: string, perfil: string, faturamento: string) =>
+      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE e o meu resultado foi: ${perfil.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
+    semWhatsapp: 'Recebemos as suas respostas, em breve nossa equipe entra em contato pelo WhatsApp',
+    nota: 'Leitura baseada nas suas respostas, o diagnóstico completo acontece na primeira etapa',
     voltarSite: 'Voltar ao site',
-    reuniaoRotulo: 'Reunião pré-agendada',
-    proximos: 'O que acontece agora',
-    resumoReuniao: 'Link de acesso por WhatsApp e e-mail',
   },
 } as const;
