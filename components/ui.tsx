@@ -37,17 +37,15 @@ export function textureProps(texture: Texture) {
 }
 
 /** Toda emenda é azul: a névoa ciano da marca, qualquer que seja a cor da seção de cima. */
-const fadeFrom = { paper: 'from-cyan/60', black: 'from-cyan/60', cyan: 'from-cyan/60' } as const;
+const fadeFrom = { paper: 'from-cyan/40', black: 'from-cyan/40', cyan: 'from-cyan/40' } as const;
 
 /**
- * Emenda entre seções: `fade` esfuma uma névoa ciano no topo da seção e
- * `luz` acende uma linha ciano fina na junção. Fica atrás do conteúdo.
+ * Emenda entre seções: `fade` esfuma uma névoa ciano no topo da seção. Fica atrás do conteúdo.
  */
-export function Emenda({ fade, luz }: { fade?: keyof typeof fadeFrom; luz?: boolean }) {
+export function Emenda({ fade }: { fade?: keyof typeof fadeFrom }) {
   return (
     <>
       {fade && <div aria-hidden="true" className={cn('pointer-events-none absolute inset-x-0 top-0 h-7 bg-gradient-to-b via-cyan/15 to-transparent md:h-14', fadeFrom[fade])} />}
-      {luz && <div aria-hidden="true" className="pointer-events-none absolute inset-x-[8%] top-0 h-[2px] bg-cyan shadow-[0_0_14px_3px_rgba(1,187,251,.7)]" />}
     </>
   );
 }
@@ -60,7 +58,6 @@ export function Section({
   children,
   labelledBy,
   fade,
-  luz,
 }: {
   id?: string;
   texture: Texture;
@@ -68,7 +65,6 @@ export function Section({
   children: React.ReactNode;
   labelledBy?: string;
   fade?: keyof typeof fadeFrom;
-  luz?: boolean;
 }) {
   const bg = textureProps(texture);
   return (
@@ -78,7 +74,7 @@ export function Section({
       className={cn('relative isolate overflow-hidden py-6 md:py-20', bg.className, className)}
       style={bg.style}
     >
-      <Emenda fade={fade} luz={luz} />
+      <Emenda fade={fade} />
       <Container>{children}</Container>
     </section>
   );

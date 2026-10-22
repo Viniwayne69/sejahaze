@@ -20,7 +20,7 @@ export default function ParaQuem() {
   };
 
   return (
-    <Section id="para-quem" texture="fosca" fade="paper" luz labelledBy="para-quem-titulo">
+    <Section id="para-quem" texture="fosca" fade="paper" labelledBy="para-quem-titulo">
       {/* Luz ciano saindo das laterais, a mesma das "Dores" */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-16 top-[18%] h-56 w-32 rounded-full bg-cyan/40 blur-3xl md:-left-24 md:h-[420px] md:w-64" />

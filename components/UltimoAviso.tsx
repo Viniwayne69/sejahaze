@@ -10,7 +10,7 @@ export default function UltimoAviso() {
 
   return (
     <footer className={cn('relative isolate overflow-hidden pb-[96px] md:pb-10', bg.className)} style={bg.style}>
-      <Emenda fade="paper" luz />
+      <Emenda fade="paper" />
       <section aria-labelledby="ultimo-aviso-titulo" className="pt-7 md:pt-20">
         <Container className="text-center">
           <div data-reveal className="mx-auto max-w-[680px]">
