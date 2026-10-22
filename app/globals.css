@@ -308,3 +308,80 @@
   opacity: 0.3;
   animation: luz-acende 2.4s ease-out both;
 }
+
+/* Luz que segue o mouse nas seções escuras (só com mouse; a posição vem de LuzMouse) */
+@media (hover: hover) and (pointer: fine) {
+  .glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(1, 187, 251, 0.2), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .glow:hover::before {
+    opacity: 1;
+  }
+}
+
+/* As fotos dos cartões respiram com um zoom bem lento */
+@keyframes foto-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.foto-zoom {
+  animation: foto-zoom 18s ease-in-out infinite alternate;
+}
+
+/* Revelação cinematográfica: o título aparece como uma cortina da esquerda para a direita */
+.js [data-reveal] .display {
+  clip-path: inset(-12% 100% -12% 0);
+  transition: clip-path 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s;
+}
+
+.js [data-reveal].is-revealed .display {
+  clip-path: inset(-12% 0 -12% 0);
+}
+
+/* No computador, os cartões e passos entram um depois do outro */
+@media (min-width: 768px) {
+  .js [data-reveal] ol > li {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .js [data-reveal].is-revealed ol > li {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js [data-reveal] ol > li:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+
+  .js [data-reveal] ol > li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] .display {
+    clip-path: none;
+  }
+
+  .js [data-reveal] ol > li {
+    opacity: 1;
+    transform: none;
+  }
+}

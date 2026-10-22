@@ -36,7 +36,7 @@ export default function Dores() {
               alt={fotos[i].alt}
               fill
               sizes="(min-width: 768px) 340px, 100vw"
-              className={`object-cover ${fotos[i].posicao}`}
+              className={`foto-zoom object-cover ${fotos[i].posicao}`}
             />
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-4 pr-14 text-[20px] font-semibold leading-snug md:px-6 md:pb-6 md:pr-6 md:text-[22px]">

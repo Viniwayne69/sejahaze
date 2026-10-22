@@ -131,6 +131,7 @@ export const copy = {
     accent: 'COMEÇA AQUI',
     body: 'Mostre o seu negócio, avaliamos o encaixe e desenhamos o caminho para a sua marca ser irresistível',
     cta: 'Quero aplicar minha marca',
+    whatsapp: { texto: 'Prefere falar direto?', botao: 'Chamar no WhatsApp', mensagem: 'Oi, vim pelo site da HAZE e quero saber mais' },
     passos: ['Você responde', 'Avaliamos o encaixe', 'Voltamos com o próximo passo'],
   },
 

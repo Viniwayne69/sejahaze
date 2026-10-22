@@ -56,7 +56,7 @@ export default function Metodo() {
                 alt={fotos[i].alt}
                 fill
                 sizes="(min-width: 768px) 340px, 100vw"
-                className={`object-cover ${fotos[i].posicao}`}
+                className={`foto-zoom object-cover ${fotos[i].posicao}`}
                 style={{ filter: fotos[i].filtro }}
               />
               <div

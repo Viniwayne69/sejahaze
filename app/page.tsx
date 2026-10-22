@@ -1,6 +1,7 @@
 import Aplicacao from '@/components/Aplicacao';
 import Dores from '@/components/Dores';
 import Hero from '@/components/Hero';
+import LuzMouse from '@/components/LuzMouse';
 import Metodo from '@/components/Metodo';
 import ParaQuem from '@/components/ParaQuem';
 import Perguntas from '@/components/Perguntas';
@@ -35,6 +36,7 @@ export default function Home() {
       <UltimoAviso />
       <StickyBar />
       <RevealObserver />
+      <LuzMouse />
     </>
   );
 }
