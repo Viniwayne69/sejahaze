@@ -21,13 +21,13 @@ export const copy = {
   },
 
   promessa: {
-    before: 'CHEGA DE DESCONTO:',
-    accent: 'VENDA MAIS CARO',
-    after: 'PARA OS CLIENTES CERTOS',
+    before: 'CHEGA DE DESCONTO: TENHA UMA MARCA TÃO',
+    accent: 'COBIÇADA',
+    after: 'QUE O CLIENTE PAGA O PREÇO CHEIO',
     antes: 'Antes',
     depois: 'Depois',
-    antesFrase: 'Brigando por preço...',
-    depoisFrase: 'Escolhida pelo valor!',
+    antesFrase: 'Marca ignorada...',
+    depoisFrase: 'Marca disputada pelo cliente certo!',
   },
 
   dores: {
@@ -37,7 +37,7 @@ export const copy = {
       'Vende barato enquanto o concorrente leva a fama e o cliente',
       'Só atrai quem pergunta o preço e perde quem paga',
     ],
-    closing: 'Chega, hora de virar o jogo com a HAZE',
+    closing: 'Chega de passar despercebido, hora de ser impossível de ignorar com a HAZE',
     cta: 'Quero ser a marca mais desejada',
   },
 
@@ -53,7 +53,7 @@ export const copy = {
       {
         number: '02',
         title: 'Arquitetura',
-        body: 'Estruturamos o comercial, posicionamos a marca e montamos a máquina de vendas',
+        body: 'Estruturamos o comercial, posicionamos a marca e montamos a máquina que encanta o cliente certo e fecha a venda',
       },
       {
         number: '03',
@@ -128,7 +128,7 @@ export const copy = {
   aplicacao: {
     before: 'A SUA MARCA DESEJADA',
     accent: 'COMEÇA AQUI',
-    body: 'Mostre o seu negócio, avaliamos o encaixe e voltamos com o próximo passo',
+    body: 'Mostre o seu negócio, avaliamos o encaixe e desenhamos o caminho para a sua marca ser irresistível',
     cta: 'Quero aplicar minha marca',
     passos: ['Você responde', 'Avaliamos o encaixe', 'Voltamos com o próximo passo'],
   },
@@ -162,8 +162,8 @@ export const copy = {
   ultimoAviso: {
     before: 'O PREÇO DE CONTINUAR',
     accent: 'IGUAL',
-    body: 'Marca igual a todas vira comparação de preço, e quem compara escolhe o mais barato',
-    cta: 'Quero sair da comparação por preço',
+    body: 'Marca igual a todas não dá vontade de comprar, só de comparar preço',
+    cta: 'Quero ser escolhido, não comparado',
   },
 
   stickyBar: {
