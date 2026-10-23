@@ -31,7 +31,7 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'sobra',
     tipo: 'opcoes',
-    titulo: 'Você trabalha muito e no fim do mês não sobra dinheiro?',
+    titulo: 'Você trabalha muito e no fim do mês não sobra muito dinheiro?',
     opcoes: ['Sobra bastante', 'Sobra pouco', 'Não sobra nada'],
   },
   {
