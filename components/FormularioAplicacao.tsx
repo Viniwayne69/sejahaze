@@ -20,6 +20,8 @@ const vazio: RespostasAplicacao = {
   somem: '',
   concorrente: '',
   dependencia: '',
+  trava: '',
+  futuro: '',
   faturamento: '',
   telefone: '',
 };
@@ -105,6 +107,8 @@ export default function FormularioAplicacao() {
           `Só pergunta preço: ${dados.somem}`,
           `Concorrente leva clientes: ${dados.concorrente}`,
           `Vendas sem o dono: ${dados.dependencia}`,
+          `Maior trava: ${dados.trava}`,
+          `Se continuar assim: ${dados.futuro}`,
           `Começar por: ${copy.metodo.steps[0].title}`,
         ].join(' | ');
         await enviarAplicacao({
@@ -169,7 +173,7 @@ export default function FormularioAplicacao() {
   const linkWhatsapp =
     resultado && WHATSAPP_NUMBER
       ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.faturamento),
+          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava, respostas.faturamento),
         )}`
       : '';
 

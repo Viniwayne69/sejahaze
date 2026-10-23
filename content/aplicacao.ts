@@ -3,7 +3,7 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'processo' | 'desconto' | 'somem' | 'concorrente' | 'dependencia' | 'faturamento' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'processo' | 'desconto' | 'somem' | 'concorrente' | 'dependencia' | 'trava' | 'futuro' | 'faturamento' | 'telefone';
 
 /** Campos de dor: cada um vale pontos de dificuldade. */
 export const camposDeDor = ['processo', 'desconto', 'somem', 'concorrente', 'dependencia'] as const;
@@ -11,12 +11,13 @@ export const camposDeDor = ['processo', 'desconto', 'somem', 'concorrente', 'dep
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
   | { id: 'telefone'; tipo: 'tel'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: (typeof camposDeDor)[number] | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
+  | { id: (typeof camposDeDor)[number] | 'trava' | 'futuro' | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
 
 /**
  * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
  * Nas perguntas de dor, as opções vão sempre da menor para a maior dificuldade:
  * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Cinco perguntas somam de 0 a 10 pontos.
+ * As perguntas "trava" e "futuro" não valem pontos: dizem à equipe a maior dor dele e o que ele teme se nada mudar.
  */
 export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
@@ -50,6 +51,18 @@ export const perguntas: readonly Pergunta[] = [
     tipo: 'opcoes',
     titulo: 'Se você parar de vender, as vendas continuam?',
     opcoes: ['Sim, continuam', 'Em parte', 'Não, tudo para'],
+  },
+  {
+    id: 'trava',
+    tipo: 'opcoes',
+    titulo: 'O que mais trava o seu crescimento hoje?',
+    opcoes: ['Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
+  },
+  {
+    id: 'futuro',
+    tipo: 'opcoes',
+    titulo: 'O que você acha que vai acontecer com a sua empresa se continuar do jeito que está hoje?',
+    opcoes: ['Vai continuar igual, sem crescer', 'Vou perder cada vez mais clientes', 'Vou ter que baixar ainda mais o preço', 'Pode não se sustentar', 'Não sei'],
   },
   {
     id: 'faturamento',
@@ -119,8 +132,8 @@ export const textosAplicacao = {
     medidorTitulo: 'Dificuldade hoje',
     medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
-    whatsappMensagem: (nome: string, empresa: string, nota: number, faturamento: string) =>
-      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE e o meu nível de dificuldade foi ${nota} de 10. Faturamento: ${faturamento}. Quero conversar`,
+    whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
+      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o que mais trava hoje é ${trava.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
     semWhatsapp: 'Em breve nossa equipe chama você no WhatsApp',
     voltarSite: 'Voltar ao site',
   },
