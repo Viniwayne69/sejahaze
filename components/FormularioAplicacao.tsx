@@ -96,9 +96,9 @@ export default function FormularioAplicacao() {
       setEnviando(true);
       setErro('');
       try {
-        const { perfil, pontos, etapa: comecar } = calcularDiagnostico(dados);
+        const { perfil, nota, etapa: comecar } = calcularDiagnostico(dados);
         const resumo = [
-          `Diagnóstico HAZE: ${perfil.titulo} (${pontos}/6)`,
+          `Diagnóstico HAZE: ${perfil.titulo} (nota ${nota}/10)`,
           `Processo: ${dados.processo}`,
           `Desconto: ${dados.desconto}`,
           `Diferença: ${dados.diferenca}`,
@@ -164,7 +164,6 @@ export default function FormularioAplicacao() {
 
   const bg = textureProps('papel-azul');
   const resultado = etapa === total ? calcularDiagnostico(respostas) : null;
-  const etapaIndicada = resultado ? copy.metodo.steps[resultado.etapa] : null;
   const linkWhatsapp =
     resultado && WHATSAPP_NUMBER
       ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -315,51 +314,39 @@ export default function FormularioAplicacao() {
             </div>
           )}
 
-          {/* Resultado: perfil, pontos de atenção, por onde começar e o WhatsApp */}
-          {resultado && etapaIndicada && (
+          {/* Resultado minimalista: o perfil, onde a marca está de 1 a 10 e o WhatsApp */}
+          {resultado && (
             <div className="relative">
               <div
                 aria-hidden="true"
                 className="luz-acende pointer-events-none absolute -top-16 left-1/2 -z-10 size-64 rounded-full bg-cyan blur-3xl md:size-80"
               />
               <p className="text-center text-[12px] font-semibold uppercase tracking-[0.08em]">
-                {primeiroNome}, {t.resultado.rotulo.toLowerCase()}
+                {primeiroNome}, {t.resultado.rotulo}
               </p>
               <h1 ref={tituloRef} tabIndex={-1} className="display mt-2 text-center text-[30px] outline-none md:text-[48px]">
                 {resultado.perfil.titulo.split(' ').slice(0, -1).join(' ')}{' '}
                 <Accent>{resultado.perfil.titulo.split(' ').slice(-1)[0]}</Accent>
               </h1>
-              <p className="mx-auto mt-4 max-w-[540px] text-center text-[16px] leading-[1.5] md:text-[18px]">{resultado.perfil.texto}</p>
 
-              {/* Medidor: seis barras, quantas estão acesas é a pontuação */}
-              <div className="mx-auto mt-4 flex max-w-[300px] items-center gap-3" role="img" aria-label={t.resultado.pontuacao(resultado.pontos)}>
-                <div className="flex flex-1 gap-1.5" aria-hidden="true">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <span key={i} className={cn('h-2 flex-1 rounded-full border border-black', i < resultado.pontos ? 'bg-cyan shadow-[0_0_8px_rgba(1,187,251,.8)]' : 'bg-transparent')} />
+              {/* Medidor de 1 a 10: quantas barras estão acesas é a nota da marca (processo, desconto e diferença) */}
+              <div className="mx-auto mt-6 max-w-[340px]" role="img" aria-label={`${t.resultado.medidorTitulo}: ${t.resultado.pontuacao(resultado.nota)}`}>
+                <p className="flex items-baseline justify-between gap-3 text-[12px] font-semibold uppercase tracking-[0.08em]">
+                  <span>{t.resultado.medidorTitulo}</span>
+                  <span className="font-display text-[14px] font-black tracking-normal">{t.resultado.pontuacao(resultado.nota)}</span>
+                </p>
+                <div className="mt-2 flex gap-1" aria-hidden="true">
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <span key={i} className={cn('h-2 flex-1 rounded-full border border-black', i < resultado.nota ? 'bg-cyan shadow-[0_0_8px_rgba(1,187,251,.8)]' : 'bg-transparent')} />
                   ))}
                 </div>
-                <span className="font-display text-[13px] font-black">{t.resultado.pontuacao(resultado.pontos)}</span>
+                <p className="mt-1.5 flex justify-between text-[11px] font-medium" aria-hidden="true">
+                  <span>{t.resultado.medidorExtremos[0]}</span>
+                  <span>{t.resultado.medidorExtremos[1]}</span>
+                </p>
               </div>
 
-              <div className="mt-6 rounded-[24px] border-2 border-black bg-paper px-5 py-4 shadow-[0_0_26px_rgba(1,187,251,.35)]">
-                <p className="text-[12px] font-semibold uppercase tracking-[0.08em]">{t.resultado.atencaoTitulo}</p>
-                <ul className="mt-2.5 grid gap-2">
-                  {resultado.alertas.map((alerta) => (
-                    <li key={alerta} className="flex items-start gap-3 text-[15px] leading-snug">
-                      <span aria-hidden="true" className="mt-[0.6em] inline-block h-[3px] w-4 shrink-0 bg-cyan" />
-                      {alerta}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-3 rounded-[24px] border-2 border-black bg-black px-5 py-4 text-paper">
-                <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-gray">{t.resultado.comecarTitulo}</p>
-                <p className="display mt-1.5 text-[22px] text-cyan md:text-[26px]">{etapaIndicada.title}</p>
-                <p className="mt-1 text-[14.5px] leading-snug">{etapaIndicada.body}</p>
-              </div>
-
-              <div className="mt-6 text-center">
+              <div className="mt-8 text-center">
                 {linkWhatsapp ? (
                   <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'w-full md:w-auto md:min-w-[340px]')}>
                     {t.resultado.whatsappBotao}
@@ -367,7 +354,6 @@ export default function FormularioAplicacao() {
                 ) : (
                   <p className="text-[15px] font-medium leading-snug">{t.resultado.semWhatsapp}</p>
                 )}
-                <p className="mx-auto mt-3 max-w-[420px] text-[12px] leading-snug text-gray">{t.resultado.nota}</p>
                 <Link href="/" className="mt-4 inline-block text-[14px] font-medium underline underline-offset-4">
                   {t.resultado.voltarSite}
                 </Link>

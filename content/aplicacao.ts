@@ -97,15 +97,6 @@ export const atencao = {
   diferenca: ['O cliente compara você só pelo preço', 'A sua diferença existe, mas o cliente ainda não a enxerga com clareza'],
 } as const;
 
-/** Por onde começar (índice da etapa do método): pontuação baixa começa pelo diagnóstico, senão depende da maior trava. */
-export const etapaPorTrava: Record<string, 0 | 1 | 2> = {
-  'Atrair os clientes certos': 1,
-  'Fechar as vendas': 1,
-  'Vender barato': 1,
-  'A equipe': 2,
-  'Não sei': 0,
-};
-
 export const textosAplicacao = {
   metaTitle: 'HAZE | Diagnóstico',
   metaDescription: '7 perguntas, 2 minutos e uma leitura direta do que está travando as suas vendas',
@@ -132,16 +123,18 @@ export const textosAplicacao = {
     envio: 'Não foi possível enviar agora, tente novamente em instantes',
   },
   resultado: {
-    rotulo: 'Leitura rápida da sua marca',
-    pontuacao: (pontos: number) => `${pontos} de 6`,
+    rotulo: 'o seu resultado',
+    pontuacao: (nota: number) => `${nota} de 10`,
+    medidorTitulo: 'Onde está a sua marca',
+    medidorExtremos: ['Na névoa', 'Desejada'],
     atencaoTitulo: 'Pontos de atenção',
     atencaoTrava: (trava: string) => `Você apontou como maior trava: ${trava.toLowerCase()}`,
     atencaoOk: 'Processo, preço e diferença estão firmes, o desafio agora é crescer',
     comecarTitulo: 'Por onde começar',
-    whatsappBotao: 'Falar com a HAZE sobre o meu resultado',
+    whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string, perfil: string, faturamento: string) =>
       `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE e o meu resultado foi: ${perfil.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
-    semWhatsapp: 'Recebemos as suas respostas, em breve nossa equipe entra em contato pelo WhatsApp',
+    semWhatsapp: 'Em breve nossa equipe chama você no WhatsApp',
     nota: 'Leitura baseada nas suas respostas, o diagnóstico completo acontece na primeira etapa',
     voltarSite: 'Voltar ao site',
   },

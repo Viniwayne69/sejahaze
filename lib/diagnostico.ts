@@ -3,18 +3,20 @@
  * (a primeira opção vale 2, a segunda 1, a terceira 0), a soma vai de 0 a 6 e define o perfil.
  */
 
-import { atencao, etapaPorTrava, perfis, perguntas, textosAplicacao as t } from '@/content/aplicacao';
+import { atencao, perfis, perguntas, textosAplicacao as t } from '@/content/aplicacao';
 import type { RespostasAplicacao } from './aplicacao';
 
 const pontuaveis = ['processo', 'desconto', 'diferenca'] as const;
 
 export type Diagnostico = {
   pontos: number;
+  /** Pontuação convertida para a escala de 1 a 10 (0 pontos = 1, 6 pontos = 10). */
+  nota: number;
   perfil: (typeof perfis)[number];
   /** Até 3 pontos de atenção, dos mais críticos para os menos. */
   alertas: string[];
-  /** Índice da etapa do método para começar (0 Raio-X, 1 Arquitetura, 2 Implementação). */
-  etapa: 0 | 1 | 2;
+  /** Índice da etapa do método para começar: sempre 0 (Raio-X), seja qual for o resultado. */
+  etapa: 0;
 };
 
 function pontosDe(id: (typeof pontuaveis)[number], resposta: string) {
@@ -35,7 +37,5 @@ export function calcularDiagnostico(r: RespostasAplicacao): Diagnostico {
   if (alertas.length < 3 && r.trava && r.trava !== 'Não sei') alertas.push(t.resultado.atencaoTrava(r.trava));
   if (!alertas.length) alertas.push(t.resultado.atencaoOk);
 
-  // Pontuação baixa começa pelo diagnóstico; senão, pela etapa ligada à maior trava
-  const etapa = pontos <= 2 ? 0 : (etapaPorTrava[r.trava] ?? 1);
-  return { pontos, perfil, alertas: alertas.slice(0, 3), etapa };
+  return { pontos, nota: Math.round(1 + pontos * 1.5), perfil, alertas: alertas.slice(0, 3), etapa: 0 };
 }
