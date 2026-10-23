@@ -108,14 +108,14 @@ export const etapaPorTrava: Record<string, 0 | 1 | 2> = {
 
 export const textosAplicacao = {
   metaTitle: 'HAZE | Diagnóstico',
-  metaDescription: 'Responda a 7 perguntas rápidas e receba uma leitura da sua marca, leva menos de 2 minutos',
+  metaDescription: '7 perguntas, 2 minutos e uma leitura direta do que está travando as suas vendas',
   boasVindas: {
-    antes: 'DESCUBRA O QUANTO A SUA MARCA É',
-    destaque: 'DESEJADA',
-    paragrafos: ['Responda a 7 perguntas rápidas e receba uma leitura da sua marca, leva menos de 2 minutos'],
+    antes: 'QUANTO A SUA MARCA ESTÁ TE FAZENDO',
+    destaque: 'PERDER?',
+    paragrafos: ['7 perguntas, 2 minutos e uma leitura direta do que está travando as suas vendas'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
-    botao: 'Fazer o diagnóstico',
+    botao: 'Iniciar diagnóstico',
   },
   som: { arquivo: '/audio/get-away.mp3', rotulo: 'Escute um som enquanto nos conta sobre você' },
   ok: 'OK',
