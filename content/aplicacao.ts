@@ -61,8 +61,8 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'futuro',
     tipo: 'opcoes',
-    titulo: 'O que você acha que vai acontecer com a sua empresa se continuar do jeito que está hoje?',
-    opcoes: ['Vai continuar igual, sem crescer', 'Vou perder cada vez mais clientes', 'Vou ter que baixar ainda mais o preço', 'Pode não se sustentar', 'Não sei'],
+    titulo: 'O que acontece com a sua empresa se nada mudar?',
+    opcoes: ['Fica igual', 'Perco clientes', 'Tenho que baixar o preço', 'Pode fechar', 'Não sei'],
   },
   {
     id: 'faturamento',
