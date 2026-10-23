@@ -23,6 +23,12 @@ export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
   { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome do seu negócio?', placeholder: 'Ex: Almeida & Silva' },
   {
+    id: 'trava',
+    tipo: 'opcoes',
+    titulo: 'Qual tem sido seu maior desafio hoje?',
+    opcoes: ['Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
+  },
+  {
     id: 'sobra',
     tipo: 'opcoes',
     titulo: 'Você trabalha muito e no fim do mês não sobra dinheiro?',
@@ -51,12 +57,6 @@ export const perguntas: readonly Pergunta[] = [
     tipo: 'opcoes',
     titulo: 'Seu cliente sabe por que comprar de você e não do outro?',
     opcoes: ['Sabe bem', 'Mais ou menos', 'Não, para ele é tudo igual'],
-  },
-  {
-    id: 'trava',
-    tipo: 'opcoes',
-    titulo: 'Qual tem sido seu maior desafio hoje?',
-    opcoes: ['Nada, estou crescendo bem', 'Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
   },
   {
     id: 'futuro',
@@ -91,7 +91,7 @@ export const perguntas: readonly Pergunta[] = [
 
 /** Depois do nome, só esta pergunta chama a pessoa pelo primeiro nome, para não ficar repetitivo. */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
-  sobra: (n) => `${n}, você trabalha muito e no fim do mês não sobra dinheiro?`,
+  trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
 };
 
 /** Perfis pelos pontos de dificuldade (0 a 10): quanto maior, mais a pessoa está sofrendo hoje. */
