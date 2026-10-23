@@ -331,6 +331,10 @@ export default function FormularioAplicacao() {
               </h1>
 
               {/* Medidor de 1 a 10: quantas barras estão acesas é a nota da marca (processo, desconto e diferença) */}
+              {resultado.perfil.texto && (
+                <p className="mx-auto mt-4 max-w-[440px] text-center text-[16px] leading-snug md:text-[18px]">{resultado.perfil.texto}</p>
+              )}
+
               <div className="mx-auto mt-6 max-w-[340px]" role="img" aria-label={`${t.resultado.medidorTitulo}: ${t.resultado.pontuacao(resultado.nota)}`}>
                 <p className="flex items-baseline justify-between gap-3 text-[12px] font-semibold uppercase tracking-[0.08em]">
                   <span>{t.resultado.medidorTitulo}</span>

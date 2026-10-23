@@ -77,9 +77,9 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
 
 /** Perfis pelos pontos de dificuldade (0 a 6): quanto maior, mais a pessoa está sofrendo hoje. */
 export const perfis = [
-  { ate: 1, titulo: 'DIFICULDADE LEVE' },
-  { ate: 3, titulo: 'DIFICULDADE MODERADA' },
-  { ate: 6, titulo: 'DIFICULDADE ALTA' },
+  { ate: 1, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
+  { ate: 3, titulo: 'DINHEIRO NA MESA', texto: '' },
+  { ate: 6, titulo: 'PRECISA DE AÇÃO AGORA', texto: '' },
 ] as const;
 
 export const textosAplicacao = {
@@ -110,11 +110,11 @@ export const textosAplicacao = {
   resultado: {
     rotulo: 'o seu resultado',
     pontuacao: (nota: number) => `${nota} de 10`,
-    medidorTitulo: 'Dificuldade hoje',
+    medidorTitulo: 'Como está o seu negócio',
     medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
-      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
+      `Oi, sou ${nome}, da ${empresa}, fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}, faturamento ${faturamento}, quero conversar`,
     voltarSite: 'Voltar ao site',
   },
 } as const;
