@@ -11,11 +11,11 @@ import { SUPABASE_KEY, SUPABASE_URL } from '@/config';
 export type RespostasAplicacao = {
   nome: string;
   empresa: string;
-  processo: string;
-  desconto: string;
-  somem: string;
-  concorrente: string;
-  dependencia: string;
+  sobra: string;
+  parado: string;
+  folga: string;
+  equipe: string;
+  diferenca: string;
   trava: string;
   futuro: string;
   faturamento: string;

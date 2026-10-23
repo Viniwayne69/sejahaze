@@ -3,10 +3,10 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'processo' | 'desconto' | 'somem' | 'concorrente' | 'dependencia' | 'trava' | 'futuro' | 'faturamento' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'sobra' | 'parado' | 'folga' | 'equipe' | 'diferenca' | 'trava' | 'futuro' | 'faturamento' | 'telefone';
 
 /** Campos de dor: cada um vale pontos de dificuldade. */
-export const camposDeDor = ['processo', 'desconto', 'somem', 'concorrente', 'dependencia'] as const;
+export const camposDeDor = ['sobra', 'parado', 'folga', 'equipe', 'diferenca'] as const;
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
@@ -23,34 +23,34 @@ export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
   { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome do seu negócio?', placeholder: 'Ex: Almeida & Silva' },
   {
-    id: 'processo',
+    id: 'sobra',
     tipo: 'opcoes',
-    titulo: 'Você já tem um processo comercial definido?',
-    opcoes: ['Sim, bem definido', 'Mais ou menos, cada um faz de um jeito', 'Não tenho'],
+    titulo: 'Você trabalha muito e no fim do mês não sobra dinheiro?',
+    opcoes: ['Sobra bastante', 'Sobra pouco', 'Não sobra nada'],
   },
   {
-    id: 'desconto',
+    id: 'parado',
     tipo: 'opcoes',
-    titulo: 'Com que frequência você precisa dar desconto para fechar uma venda?',
-    opcoes: ['Quase nunca', 'Às vezes', 'Quase sempre'],
+    titulo: 'Sua empresa está do mesmo tamanho há muito tempo?',
+    opcoes: ['Não, está crescendo', 'Cresceu pouco', 'Sim, não sai do lugar'],
   },
   {
-    id: 'somem',
+    id: 'folga',
     tipo: 'opcoes',
-    titulo: 'Quantos clientes só perguntam o preço e somem?',
-    opcoes: ['Poucos', 'Alguns', 'A maioria'],
+    titulo: 'Se você tirar uma semana de folga, as vendas caem?',
+    opcoes: ['Não caem', 'Caem um pouco', 'Caem muito'],
   },
   {
-    id: 'concorrente',
+    id: 'equipe',
     tipo: 'opcoes',
-    titulo: 'O concorrente leva clientes que deveriam ser seus?',
-    opcoes: ['Raramente', 'Às vezes', 'O tempo todo'],
+    titulo: 'Seus funcionários vendem ou só dão trabalho?',
+    opcoes: ['Vendem bem', 'Alguns vendem', 'Só dão trabalho'],
   },
   {
-    id: 'dependencia',
+    id: 'diferenca',
     tipo: 'opcoes',
-    titulo: 'Se você parar de vender, as vendas continuam?',
-    opcoes: ['Sim, continuam', 'Em parte', 'Não, tudo para'],
+    titulo: 'Seu cliente sabe por que comprar de você e não do outro?',
+    opcoes: ['Sabe bem', 'Mais ou menos', 'Não, para ele é tudo igual'],
   },
   {
     id: 'trava',
@@ -91,7 +91,7 @@ export const perguntas: readonly Pergunta[] = [
 
 /** Depois do nome, só esta pergunta chama a pessoa pelo primeiro nome, para não ficar repetitivo. */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
-  processo: (n) => `${n}, você já tem um processo comercial definido?`,
+  sobra: (n) => `${n}, você trabalha muito e no fim do mês não sobra dinheiro?`,
 };
 
 /** Perfis pelos pontos de dificuldade (0 a 10): quanto maior, mais a pessoa está sofrendo hoje. */
