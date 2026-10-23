@@ -234,7 +234,7 @@ export default function FormularioAplicacao() {
                 ref={tituloRef}
                 id="pergunta-titulo"
                 tabIndex={-1}
-                className="display mt-3 text-[24px] outline-none md:text-[38px]"
+                className="mt-3 text-[26px] font-bold leading-[1.18] tracking-[-0.015em] outline-none md:text-[38px]"
               >
                 {tituloDaPergunta}
               </h1>
