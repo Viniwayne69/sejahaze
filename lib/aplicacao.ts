@@ -14,7 +14,8 @@ export type RespostasAplicacao = {
   sobra: string;
   parado: string;
   folga: string;
-  equipe: string;
+  caixa: string;
+  preco: string;
   diferenca: string;
   trava: string;
   futuro: string;

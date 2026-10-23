@@ -1,13 +1,13 @@
 /**
  * Leitura rápida das dores, calculada só pelas respostas (sem IA): cada pergunta de dor vale 0, 1 ou 2 pontos
- * (a primeira opção vale 0, a terceira 2), a soma vai de 0 a 10 e vira uma nota de 1 a 10 de dificuldade hoje.
+ * (a primeira opção vale 0, a terceira 2), a soma (0 a 12) vira uma nota de 1 a 10 de dificuldade hoje.
  */
 
 import { camposDeDor, perfis, perguntas } from '@/content/aplicacao';
 import type { RespostasAplicacao } from './aplicacao';
 
 export type Diagnostico = {
-  /** Soma dos pontos de dificuldade (0 a 10). */
+  /** Soma dos pontos de dificuldade (0 a 12). */
   pontos: number;
   /** Nota de 1 a 10: 1 é tranquilo, 10 é crítico. */
   nota: number;
@@ -23,5 +23,6 @@ function pontosDe(id: (typeof camposDeDor)[number], resposta: string) {
 export function calcularDiagnostico(r: RespostasAplicacao): Diagnostico {
   const pontos = camposDeDor.reduce((soma, id) => soma + pontosDe(id, r[id]), 0);
   const perfil = perfis.find((p) => pontos <= p.ate) ?? perfis[perfis.length - 1];
-  return { pontos, nota: Math.round(1 + pontos * 0.9), perfil };
+  const maximo = camposDeDor.length * 2;
+  return { pontos, nota: Math.round(1 + (pontos / maximo) * 9), perfil };
 }

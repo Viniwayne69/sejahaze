@@ -3,10 +3,10 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'sobra' | 'parado' | 'folga' | 'equipe' | 'diferenca' | 'trava' | 'futuro' | 'faturamento' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'sobra' | 'parado' | 'folga' | 'caixa' | 'preco' | 'diferenca' | 'trava' | 'futuro' | 'faturamento' | 'telefone';
 
 /** Campos de dor: cada um vale pontos de dificuldade. */
-export const camposDeDor = ['sobra', 'parado', 'folga', 'equipe', 'diferenca'] as const;
+export const camposDeDor = ['sobra', 'parado', 'folga', 'caixa', 'preco', 'diferenca'] as const;
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
@@ -16,7 +16,7 @@ export type Pergunta =
 /**
  * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
  * Nas perguntas de dor, as opções vão sempre da menor para a maior dificuldade:
- * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Cinco perguntas somam de 0 a 10 pontos.
+ * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Seis perguntas somam de 0 a 12 pontos.
  * As perguntas "trava" e "futuro" não valem pontos: dizem à equipe a maior dor dele e o que ele teme se nada mudar.
  */
 export const perguntas: readonly Pergunta[] = [
@@ -26,7 +26,7 @@ export const perguntas: readonly Pergunta[] = [
     id: 'trava',
     tipo: 'opcoes',
     titulo: 'Qual tem sido seu maior desafio hoje?',
-    opcoes: ['Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
+    opcoes: ['Conseguir clientes novos', 'Fechar as vendas', 'Vender sem baixar o preço', 'O caixa não fecha', 'A equipe', 'Outro'],
   },
   {
     id: 'sobra',
@@ -47,10 +47,16 @@ export const perguntas: readonly Pergunta[] = [
     opcoes: ['Não caem', 'Caem um pouco', 'Caem muito'],
   },
   {
-    id: 'equipe',
+    id: 'caixa',
     tipo: 'opcoes',
-    titulo: 'Seus funcionários vendem ou só dão trabalho?',
-    opcoes: ['Vendem bem', 'Alguns vendem', 'Só dão trabalho'],
+    titulo: 'Você sabe quanto vai ganhar no mês que vem?',
+    opcoes: ['Sei quase exato', 'Mais ou menos', 'Não faço ideia'],
+  },
+  {
+    id: 'preco',
+    tipo: 'opcoes',
+    titulo: 'Quando o seu custo sobe, você consegue aumentar o preço?',
+    opcoes: ['Sim, sem problema', 'Às vezes', 'Não, o cliente reclama ou some'],
   },
   {
     id: 'diferenca',
@@ -94,11 +100,11 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
 };
 
-/** Perfis pelos pontos de dificuldade (0 a 10): quanto maior, mais a pessoa está sofrendo hoje. */
+/** Perfis pelos pontos de dificuldade (0 a 12): quanto maior, mais a pessoa está sofrendo hoje. */
 export const perfis = [
-  { ate: 3, titulo: 'DIFICULDADE LEVE' },
-  { ate: 6, titulo: 'DIFICULDADE MODERADA' },
-  { ate: 10, titulo: 'DIFICULDADE ALTA' },
+  { ate: 4, titulo: 'DIFICULDADE LEVE' },
+  { ate: 8, titulo: 'DIFICULDADE MODERADA' },
+  { ate: 12, titulo: 'DIFICULDADE ALTA' },
 ] as const;
 
 export const textosAplicacao = {
