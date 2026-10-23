@@ -56,13 +56,13 @@ export const perguntas: readonly Pergunta[] = [
     id: 'trava',
     tipo: 'opcoes',
     titulo: 'O que mais trava o seu crescimento hoje?',
-    opcoes: ['Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
+    opcoes: ['Nada, estou crescendo bem', 'Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
   },
   {
     id: 'futuro',
     tipo: 'opcoes',
     titulo: 'O que acontece com a sua empresa se nada mudar daqui a 2 anos?',
-    opcoes: ['Fica igual', 'Perco clientes', 'Tenho que baixar o preço', 'Pode fechar', 'Não sei'],
+    opcoes: ['Vai crescer', 'Fica igual', 'Perco clientes', 'Tenho que baixar o preço', 'Pode fechar', 'Não sei'],
   },
   {
     id: 'faturamento',
