@@ -13,8 +13,9 @@ export type RespostasAplicacao = {
   empresa: string;
   processo: string;
   desconto: string;
-  diferenca: string;
-  trava: string;
+  somem: string;
+  concorrente: string;
+  dependencia: string;
   faturamento: string;
   telefone: string;
 };

@@ -1,18 +1,22 @@
 /**
  * Textos, perguntas e regras do mini diagnóstico (/aplicar).
- * Para mudar uma pergunta, opção, perfil ou ponto de atenção, edite aqui: o componente só lê deste arquivo.
+ * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'processo' | 'desconto' | 'diferenca' | 'trava' | 'faturamento' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'processo' | 'desconto' | 'somem' | 'concorrente' | 'dependencia' | 'faturamento' | 'telefone';
+
+/** Campos de dor: cada um vale pontos de dificuldade. */
+export const camposDeDor = ['processo', 'desconto', 'somem', 'concorrente', 'dependencia'] as const;
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
   | { id: 'telefone'; tipo: 'tel'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: 'processo' | 'desconto' | 'diferenca' | 'trava' | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
+  | { id: (typeof camposDeDor)[number] | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
 
 /**
- * As três primeiras perguntas de opções valem pontos: a primeira opção vale 2, a segunda 1 e a terceira 0.
- * Por isso elas vão sempre da melhor para a pior resposta.
+ * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
+ * Nas perguntas de dor, as opções vão sempre da menor para a maior dificuldade:
+ * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Cinco perguntas somam de 0 a 10 pontos.
  */
 export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
@@ -26,20 +30,26 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'desconto',
     tipo: 'opcoes',
-    titulo: 'Com que frequência você dá desconto para fechar uma venda?',
-    opcoes: ['Nunca', 'Às vezes', 'Quase sempre'],
+    titulo: 'Com que frequência você precisa dar desconto para fechar uma venda?',
+    opcoes: ['Quase nunca', 'Às vezes', 'Quase sempre'],
   },
   {
-    id: 'diferenca',
+    id: 'somem',
     tipo: 'opcoes',
-    titulo: 'O seu cliente sabe dizer por que você é diferente?',
-    opcoes: ['Sim, com clareza', 'Mais ou menos', 'Não, ele compara com os outros'],
+    titulo: 'Quantos clientes só perguntam o preço e somem?',
+    opcoes: ['Poucos', 'Alguns', 'A maioria'],
   },
   {
-    id: 'trava',
+    id: 'concorrente',
     tipo: 'opcoes',
-    titulo: 'O que mais trava o seu crescimento hoje?',
-    opcoes: ['Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
+    titulo: 'O concorrente leva clientes que deveriam ser seus?',
+    opcoes: ['Raramente', 'Às vezes', 'O tempo todo'],
+  },
+  {
+    id: 'dependencia',
+    tipo: 'opcoes',
+    titulo: 'Se você parar de vender, as vendas continuam?',
+    opcoes: ['Sim, continuam', 'Em parte', 'Não, tudo para'],
   },
   {
     id: 'faturamento',
@@ -71,39 +81,20 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   processo: (n) => `${n}, você já tem um processo comercial definido?`,
 };
 
-/** Perfis pela pontuação (0 a 6): quanto menor, mais a marca está na névoa. */
+/** Perfis pelos pontos de dificuldade (0 a 10): quanto maior, mais a pessoa está sofrendo hoje. */
 export const perfis = [
-  {
-    ate: 2,
-    titulo: 'MARCA NA NÉVOA',
-    texto: 'Hoje o cliente enxerga pouco do que você tem de melhor, e o preço acaba decidindo a compra',
-  },
-  {
-    ate: 4,
-    titulo: 'MARCA EM CONSTRUÇÃO',
-    texto: 'Você tem boas bases, mas ainda deixa dinheiro na mesa por falta de clareza e de processo',
-  },
-  {
-    ate: 6,
-    titulo: 'MARCA QUASE DESEJADA',
-    texto: 'Os seus pilares estão firmes, o próximo passo é escalar o que já funciona',
-  },
+  { ate: 3, titulo: 'DIFICULDADE LEVE' },
+  { ate: 6, titulo: 'DIFICULDADE MODERADA' },
+  { ate: 10, titulo: 'DIFICULDADE ALTA' },
 ] as const;
-
-/** Ponto de atenção por pergunta: [pontuação 0, pontuação 1]. Com 2 pontos não há alerta. */
-export const atencao = {
-  processo: ['Sem processo comercial, cada venda depende de improviso', 'O processo existe, mas cada pessoa vende de um jeito'],
-  desconto: ['Desconto frequente ensina o cliente a esperar preço baixo', 'O desconto ocasional já mostra que o preço não se sustenta sozinho'],
-  diferenca: ['O cliente compara você só pelo preço', 'A sua diferença existe, mas o cliente ainda não a enxerga com clareza'],
-} as const;
 
 export const textosAplicacao = {
   metaTitle: 'HAZE | Diagnóstico',
-  metaDescription: '7 perguntas, 2 minutos e uma leitura direta do que está travando as suas vendas',
+  metaDescription: 'Perguntas rápidas, 2 minutos e uma leitura direta do que está travando as suas vendas',
   boasVindas: {
     antes: 'QUANTO A SUA MARCA ESTÁ TE FAZENDO',
     destaque: 'PERDER?',
-    paragrafos: ['7 perguntas, 2 minutos e uma leitura direta do que está travando as suas vendas'],
+    paragrafos: ['Perguntas rápidas, 2 minutos e uma leitura direta do que está travando as suas vendas'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
     botao: 'Iniciar diagnóstico',
@@ -125,17 +116,12 @@ export const textosAplicacao = {
   resultado: {
     rotulo: 'o seu resultado',
     pontuacao: (nota: number) => `${nota} de 10`,
-    medidorTitulo: 'Onde está a sua marca',
-    medidorExtremos: ['Na névoa', 'Desejada'],
-    atencaoTitulo: 'Pontos de atenção',
-    atencaoTrava: (trava: string) => `Você apontou como maior trava: ${trava.toLowerCase()}`,
-    atencaoOk: 'Processo, preço e diferença estão firmes, o desafio agora é crescer',
-    comecarTitulo: 'Por onde começar',
+    medidorTitulo: 'Dificuldade hoje',
+    medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
-    whatsappMensagem: (nome: string, empresa: string, perfil: string, faturamento: string) =>
-      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE e o meu resultado foi: ${perfil.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
+    whatsappMensagem: (nome: string, empresa: string, nota: number, faturamento: string) =>
+      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE e o meu nível de dificuldade foi ${nota} de 10. Faturamento: ${faturamento}. Quero conversar`,
     semWhatsapp: 'Em breve nossa equipe chama você no WhatsApp',
-    nota: 'Leitura baseada nas suas respostas, o diagnóstico completo acontece na primeira etapa',
     voltarSite: 'Voltar ao site',
   },
 } as const;

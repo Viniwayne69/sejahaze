@@ -129,7 +129,7 @@ export const copy = {
   aplicacao: {
     before: 'A SUA MARCA DESEJADA',
     accent: 'COMEÇA AQUI',
-    body: 'Responda a 7 perguntas rápidas e veja a leitura da sua marca, o primeiro passo para ela ser irresistível',
+    body: 'Responda a perguntas rápidas e veja o quanto as suas dores custam hoje, o primeiro passo para sair delas',
     cta: 'Quero o meu diagnóstico',
     whatsapp: { texto: 'Prefere falar direto?', botao: 'Chamar no WhatsApp', mensagem: 'Oi, vim pelo site da HAZE e quero saber mais' },
     passos: ['Você responde', 'Vê o seu resultado', 'Conversa com a gente'],
@@ -141,7 +141,7 @@ export const copy = {
       {
         question: 'Como funciona o diagnóstico?',
         answer:
-          'Você responde 7 perguntas em menos de 2 minutos, vê a leitura da sua marca na hora e a nossa equipe continua a conversa pelo WhatsApp',
+          'Você responde a perguntas rápidas em menos de 2 minutos, vê o seu resultado na hora e a nossa equipe continua a conversa pelo WhatsApp',
       },
       {
         question: 'O que eu recebo em cada parte?',

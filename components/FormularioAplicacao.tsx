@@ -17,8 +17,9 @@ const vazio: RespostasAplicacao = {
   empresa: '',
   processo: '',
   desconto: '',
-  diferenca: '',
-  trava: '',
+  somem: '',
+  concorrente: '',
+  dependencia: '',
   faturamento: '',
   telefone: '',
 };
@@ -96,14 +97,15 @@ export default function FormularioAplicacao() {
       setEnviando(true);
       setErro('');
       try {
-        const { perfil, nota, etapa: comecar } = calcularDiagnostico(dados);
+        const { perfil, nota } = calcularDiagnostico(dados);
         const resumo = [
-          `Diagnóstico HAZE: ${perfil.titulo} (nota ${nota}/10)`,
+          `Diagnóstico HAZE: ${perfil.titulo} (dificuldade ${nota}/10)`,
           `Processo: ${dados.processo}`,
           `Desconto: ${dados.desconto}`,
-          `Diferença: ${dados.diferenca}`,
-          `Trava: ${dados.trava}`,
-          `Começar por: ${copy.metodo.steps[comecar].title}`,
+          `Só pergunta preço: ${dados.somem}`,
+          `Concorrente leva clientes: ${dados.concorrente}`,
+          `Vendas sem o dono: ${dados.dependencia}`,
+          `Começar por: ${copy.metodo.steps[0].title}`,
         ].join(' | ');
         await enviarAplicacao({
           ...dados,
@@ -167,7 +169,7 @@ export default function FormularioAplicacao() {
   const linkWhatsapp =
     resultado && WHATSAPP_NUMBER
       ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.perfil.titulo, respostas.faturamento),
+          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.faturamento),
         )}`
       : '';
 
