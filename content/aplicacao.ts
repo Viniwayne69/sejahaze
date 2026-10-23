@@ -3,21 +3,21 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'sobra' | 'parado' | 'folga' | 'caixa' | 'preco' | 'diferenca' | 'trava' | 'futuro' | 'faturamento' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'folga' | 'preco' | 'diferenca' | 'trava' | 'telefone';
 
 /** Campos de dor: cada um vale pontos de dificuldade. */
-export const camposDeDor = ['sobra', 'parado', 'folga', 'caixa', 'preco', 'diferenca'] as const;
+export const camposDeDor = ['folga', 'preco', 'diferenca'] as const;
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
   | { id: 'telefone'; tipo: 'tel'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: (typeof camposDeDor)[number] | 'trava' | 'futuro' | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
+  | { id: (typeof camposDeDor)[number] | 'trava'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
 
 /**
  * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
  * Nas perguntas de dor, as opções vão sempre da menor para a maior dificuldade:
- * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Seis perguntas somam de 0 a 12 pontos.
- * As perguntas "trava" e "futuro" não valem pontos: dizem à equipe a maior dor dele e o que ele teme se nada mudar.
+ * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Três perguntas somam de 0 a 6 pontos.
+ * A pergunta "trava" não vale pontos: diz à equipe a maior dor dele.
  */
 export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
@@ -29,28 +29,10 @@ export const perguntas: readonly Pergunta[] = [
     opcoes: ['Conseguir clientes novos', 'Fechar as vendas', 'Vender sem baixar o preço', 'O caixa não fecha', 'A equipe', 'Outro'],
   },
   {
-    id: 'sobra',
-    tipo: 'opcoes',
-    titulo: 'Você trabalha muito e no fim do mês não sobra muito dinheiro?',
-    opcoes: ['Sobra bastante', 'Sobra pouco', 'Não sobra nada'],
-  },
-  {
-    id: 'parado',
-    tipo: 'opcoes',
-    titulo: 'Sua empresa está do mesmo tamanho há muito tempo?',
-    opcoes: ['Não, está crescendo', 'Cresceu pouco', 'Sim, não sai do lugar'],
-  },
-  {
     id: 'folga',
     tipo: 'opcoes',
     titulo: 'Se você tirar uma semana de folga, as vendas caem?',
     opcoes: ['Não caem', 'Caem um pouco', 'Caem muito'],
-  },
-  {
-    id: 'caixa',
-    tipo: 'opcoes',
-    titulo: 'Você sabe quanto vai ganhar no mês que vem?',
-    opcoes: ['Sei quase exato', 'Mais ou menos', 'Não faço ideia'],
   },
   {
     id: 'preco',
@@ -63,28 +45,6 @@ export const perguntas: readonly Pergunta[] = [
     tipo: 'opcoes',
     titulo: 'Seu cliente sabe por que comprar de você e não do outro?',
     opcoes: ['Sabe bem', 'Mais ou menos', 'Não, para ele é tudo igual'],
-  },
-  {
-    id: 'futuro',
-    tipo: 'opcoes',
-    titulo: 'O que acontece com a sua empresa se nada mudar daqui a 2 anos?',
-    opcoes: ['Vai crescer', 'Fica igual', 'Perco clientes', 'Tenho que baixar o preço', 'Pode fechar', 'Não sei'],
-  },
-  {
-    id: 'faturamento',
-    tipo: 'opcoes',
-    titulo: 'Qual o faturamento anual da sua empresa?',
-    ajuda: 'Escolha a faixa que mais se aproxima da sua realidade',
-    opcoes: [
-      'Ainda não faturamos',
-      'Até R$ 500 mil/ano',
-      'R$ 500 mil – 1 mi/ano',
-      'R$ 1 – 5 mi/ano',
-      'R$ 5 – 10 mi/ano',
-      'R$ 10 – 50 mi/ano',
-      'R$ 50 – 200 mi/ano',
-      'R$ 200 mi+/ano',
-    ],
   },
   {
     id: 'telefone',
@@ -100,11 +60,11 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
 };
 
-/** Perfis pelos pontos de dificuldade (0 a 12): quanto maior, mais a pessoa está sofrendo hoje. */
+/** Perfis pelos pontos de dificuldade (0 a 6): quanto maior, mais a pessoa está sofrendo hoje. */
 export const perfis = [
-  { ate: 4, titulo: 'DIFICULDADE LEVE' },
-  { ate: 8, titulo: 'DIFICULDADE MODERADA' },
-  { ate: 12, titulo: 'DIFICULDADE ALTA' },
+  { ate: 1, titulo: 'DIFICULDADE LEVE' },
+  { ate: 3, titulo: 'DIFICULDADE MODERADA' },
+  { ate: 6, titulo: 'DIFICULDADE ALTA' },
 ] as const;
 
 export const textosAplicacao = {
@@ -138,8 +98,8 @@ export const textosAplicacao = {
     medidorTitulo: 'Dificuldade hoje',
     medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
-    whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
-      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
+    whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string) =>
+      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}. Quero conversar`,
     semWhatsapp: 'Em breve nossa equipe chama você no WhatsApp',
     voltarSite: 'Voltar ao site',
   },

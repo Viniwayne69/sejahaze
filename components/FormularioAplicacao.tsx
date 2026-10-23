@@ -15,15 +15,10 @@ import { Accent, cn, textureProps } from './ui';
 const vazio: RespostasAplicacao = {
   nome: '',
   empresa: '',
-  sobra: '',
-  parado: '',
   folga: '',
-  caixa: '',
   preco: '',
   diferenca: '',
   trava: '',
-  futuro: '',
-  faturamento: '',
   telefone: '',
 };
 
@@ -103,14 +98,10 @@ export default function FormularioAplicacao() {
         const { perfil, nota } = calcularDiagnostico(dados);
         const resumo = [
           `Diagnóstico HAZE: ${perfil.titulo} (dificuldade ${nota}/10)`,
-          `Sobra dinheiro: ${dados.sobra}`,
-          `Empresa parada: ${dados.parado}`,
           `Vendas na folga: ${dados.folga}`,
-          `Sabe quanto ganha mês que vem: ${dados.caixa}`,
           `Se subir o preço: ${dados.preco}`,
           `Cliente sabe a diferença: ${dados.diferenca}`,
           `Maior desafio: ${dados.trava}`,
-          `Se continuar assim: ${dados.futuro}`,
           `Começar por: ${copy.metodo.steps[0].title}`,
         ].join(' | ');
         await enviarAplicacao({
@@ -175,7 +166,7 @@ export default function FormularioAplicacao() {
   const linkWhatsapp =
     resultado && WHATSAPP_NUMBER
       ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava, respostas.faturamento),
+          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava),
         )}`
       : '';
 

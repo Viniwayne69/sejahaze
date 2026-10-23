@@ -1,13 +1,13 @@
 /**
  * Leitura rápida das dores, calculada só pelas respostas (sem IA): cada pergunta de dor vale 0, 1 ou 2 pontos
- * (a primeira opção vale 0, a terceira 2), a soma (0 a 12) vira uma nota de 1 a 10 de dificuldade hoje.
+ * (a primeira opção vale 0, a terceira 2), a soma (0 a 6) vira uma nota de 1 a 10 de dificuldade hoje.
  */
 
 import { camposDeDor, perfis, perguntas } from '@/content/aplicacao';
 import type { RespostasAplicacao } from './aplicacao';
 
 export type Diagnostico = {
-  /** Soma dos pontos de dificuldade (0 a 12). */
+  /** Soma dos pontos de dificuldade (0 a 6). */
   pontos: number;
   /** Nota de 1 a 10: 1 é tranquilo, 10 é crítico. */
   nota: number;

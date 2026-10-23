@@ -11,15 +11,10 @@ import { SUPABASE_KEY, SUPABASE_URL } from '@/config';
 export type RespostasAplicacao = {
   nome: string;
   empresa: string;
-  sobra: string;
-  parado: string;
   folga: string;
-  caixa: string;
   preco: string;
   diferenca: string;
   trava: string;
-  futuro: string;
-  faturamento: string;
   telefone: string;
 };
 
@@ -49,7 +44,7 @@ export async function enviarAplicacao(aplicacao: Aplicacao): Promise<void> {
     body: JSON.stringify({
       id,
       nome: aplicacao.empresa,
-      faturamento: aplicacao.faturamento,
+      faturamento: '',
       estagio: 'lead',
       contato_nome: aplicacao.nome,
       contato_cargo: '',
