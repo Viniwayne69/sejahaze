@@ -107,7 +107,7 @@ export default function FormularioAplicacao() {
           `Vendas na folga: ${dados.folga}`,
           `Equipe: ${dados.equipe}`,
           `Cliente sabe a diferença: ${dados.diferenca}`,
-          `Maior trava: ${dados.trava}`,
+          `Maior desafio: ${dados.trava}`,
           `Se continuar assim: ${dados.futuro}`,
           `Começar por: ${copy.metodo.steps[0].title}`,
         ].join(' | ');

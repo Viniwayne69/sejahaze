@@ -55,7 +55,7 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'trava',
     tipo: 'opcoes',
-    titulo: 'O que mais trava o seu crescimento hoje?',
+    titulo: 'Qual tem sido seu maior desafio hoje?',
     opcoes: ['Nada, estou crescendo bem', 'Atrair os clientes certos', 'Fechar as vendas', 'Vender barato', 'A equipe', 'Não sei'],
   },
   {
@@ -133,7 +133,7 @@ export const textosAplicacao = {
     medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
-      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o que mais trava hoje é ${trava.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
+      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
     semWhatsapp: 'Em breve nossa equipe chama você no WhatsApp',
     voltarSite: 'Voltar ao site',
   },
