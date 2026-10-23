@@ -107,7 +107,7 @@ export default function FormularioAplicacao() {
           `Empresa parada: ${dados.parado}`,
           `Vendas na folga: ${dados.folga}`,
           `Sabe quanto ganha mês que vem: ${dados.caixa}`,
-          `Consegue subir o preço: ${dados.preco}`,
+          `Se subir o preço: ${dados.preco}`,
           `Cliente sabe a diferença: ${dados.diferenca}`,
           `Maior desafio: ${dados.trava}`,
           `Se continuar assim: ${dados.futuro}`,

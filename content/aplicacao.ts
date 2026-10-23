@@ -55,8 +55,8 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'preco',
     tipo: 'opcoes',
-    titulo: 'Quando o seu custo sobe, você consegue aumentar o preço?',
-    opcoes: ['Sim, sem problema', 'Às vezes', 'Não, o cliente reclama ou some'],
+    titulo: 'Se você aumentar o seu preço, o cliente continua comprando?',
+    opcoes: ['Sim, continua', 'Alguns vão embora', 'Quase todos somem'],
   },
   {
     id: 'diferenca',
