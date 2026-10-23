@@ -15,6 +15,7 @@ export type RespostasAplicacao = {
   preco: string;
   diferenca: string;
   trava: string;
+  faturamento: string;
   telefone: string;
 };
 
@@ -44,7 +45,7 @@ export async function enviarAplicacao(aplicacao: Aplicacao): Promise<void> {
     body: JSON.stringify({
       id,
       nome: aplicacao.empresa,
-      faturamento: '',
+      faturamento: aplicacao.faturamento,
       estagio: 'lead',
       contato_nome: aplicacao.nome,
       contato_cargo: '',

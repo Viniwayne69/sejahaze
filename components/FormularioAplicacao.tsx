@@ -19,6 +19,7 @@ const vazio: RespostasAplicacao = {
   preco: '',
   diferenca: '',
   trava: '',
+  faturamento: '',
   telefone: '',
 };
 
@@ -102,6 +103,7 @@ export default function FormularioAplicacao() {
           `Se subir o preço: ${dados.preco}`,
           `Cliente sabe a diferença: ${dados.diferenca}`,
           `Maior desafio: ${dados.trava}`,
+          `Faturamento: ${dados.faturamento}`,
           `Começar por: ${copy.metodo.steps[0].title}`,
         ].join(' | ');
         await enviarAplicacao({
@@ -163,12 +165,12 @@ export default function FormularioAplicacao() {
 
   const bg = textureProps('papel-azul');
   const resultado = etapa === total ? calcularDiagnostico(respostas) : null;
-  const linkWhatsapp =
-    resultado && WHATSAPP_NUMBER
-      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-          t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava),
-        )}`
-      : '';
+  // Sem o número da HAZE configurado, o link abre o WhatsApp só com a mensagem pronta (a pessoa escolhe o contato)
+  const linkWhatsapp = resultado
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava, respostas.faturamento),
+      )}`
+    : '';
 
   return (
     // No celular a textura fica um pouco mais larga que a tela, para só um toque da névoa azul aparecer nas laterais
@@ -346,13 +348,9 @@ export default function FormularioAplicacao() {
               </div>
 
               <div className="mt-8 text-center">
-                {linkWhatsapp ? (
-                  <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'w-full md:w-auto md:min-w-[340px]')}>
-                    {t.resultado.whatsappBotao}
-                  </a>
-                ) : (
-                  <p className="text-[15px] font-medium leading-snug">{t.resultado.semWhatsapp}</p>
-                )}
+                <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'w-full md:w-auto md:min-w-[340px]')}>
+                  {t.resultado.whatsappBotao}
+                </a>
                 <Link href="/" className="mt-4 inline-block text-[14px] font-medium underline underline-offset-4">
                   {t.resultado.voltarSite}
                 </Link>

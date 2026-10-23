@@ -3,7 +3,7 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'folga' | 'preco' | 'diferenca' | 'trava' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'folga' | 'preco' | 'diferenca' | 'trava' | 'faturamento' | 'telefone';
 
 /** Campos de dor: cada um vale pontos de dificuldade. */
 export const camposDeDor = ['folga', 'preco', 'diferenca'] as const;
@@ -11,7 +11,7 @@ export const camposDeDor = ['folga', 'preco', 'diferenca'] as const;
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
   | { id: 'telefone'; tipo: 'tel'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: (typeof camposDeDor)[number] | 'trava'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
+  | { id: (typeof camposDeDor)[number] | 'trava' | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
 
 /**
  * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
@@ -45,6 +45,21 @@ export const perguntas: readonly Pergunta[] = [
     tipo: 'opcoes',
     titulo: 'Seu cliente sabe por que comprar de você e não do outro?',
     opcoes: ['Sabe bem', 'Mais ou menos', 'Não, para ele é tudo igual'],
+  },
+  {
+    id: 'faturamento',
+    tipo: 'opcoes',
+    titulo: 'Qual o faturamento anual da sua empresa?',
+    ajuda: 'Escolha a faixa que mais se aproxima da sua realidade',
+    opcoes: [
+      'Ainda não faturamos',
+      'Até R$ 60 mil/ano',
+      'R$ 60 – 180 mil/ano',
+      'R$ 180 – 500 mil/ano',
+      'R$ 500 mil – 1 mi/ano',
+      'R$ 1 – 5 mi/ano',
+      'Mais de R$ 5 mi/ano',
+    ],
   },
   {
     id: 'telefone',
@@ -98,9 +113,8 @@ export const textosAplicacao = {
     medidorTitulo: 'Dificuldade hoje',
     medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
-    whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string) =>
-      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}. Quero conversar`,
-    semWhatsapp: 'Em breve nossa equipe chama você no WhatsApp',
+    whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
+      `Oi, sou ${nome}, da ${empresa}. Fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}. Faturamento: ${faturamento}. Quero conversar`,
     voltarSite: 'Voltar ao site',
   },
 } as const;
