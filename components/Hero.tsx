@@ -27,7 +27,7 @@ export default function Hero() {
         </div>
 
         <div data-reveal className="flex flex-1 flex-col pb-8 pt-7 lg:order-1 lg:flex-none lg:py-0">
-          <h1 className="display text-[30px] text-black [--accent-bar:#000] min-[400px]:text-[33px] md:text-[46px] lg:text-[56px] lg:text-paper lg:[--accent-bar:theme(colors.cyan)]">
+          <h1 className="display text-[30px] text-black [--accent-bar:theme(colors.cyan)] min-[400px]:text-[33px] md:text-[46px] lg:text-[56px] lg:text-paper">
             {before} <Accent>{accent}</Accent> {after}
           </h1>
 
