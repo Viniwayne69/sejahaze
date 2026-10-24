@@ -10,7 +10,7 @@ import { cn } from './ui';
  * Fica escondida enquanto o hero está na tela, porque o hero já tem o botão grande.
  */
 export default function StickyBar() {
-  const { lead, note } = copy.stickyBar;
+  const { lead, note, botao } = copy.stickyBar;
   const [heroVisivel, setHeroVisivel] = useState(true);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function StickyBar() {
           tabIndex={heroVisivel ? -1 : undefined}
           className="brilho inline-flex min-h-[48px] w-[156px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-cyan px-4 text-[14px] font-semibold text-black transition active:scale-[0.98] min-[380px]:w-[175px]"
         >
-          {copy.apply}
+          {botao}
         </a>
       </div>
     </aside>

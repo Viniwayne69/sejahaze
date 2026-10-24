@@ -357,7 +357,8 @@ export default function FormularioAplicacao() {
                 <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'w-full md:w-auto md:min-w-[340px]')}>
                   {t.resultado.whatsappBotao}
                 </a>
-                <Link href="/" className="mt-4 inline-block text-[14px] font-medium underline underline-offset-4">
+                <p className="mx-auto mt-3 max-w-[360px] text-[12px] leading-snug text-gray">{t.resultado.primeiraLeitura}</p>
+                <Link href="/" className="mt-3 inline-block text-[14px] font-medium underline underline-offset-4">
                   {t.resultado.voltarSite}
                 </Link>
               </div>

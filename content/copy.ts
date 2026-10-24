@@ -5,12 +5,12 @@
 
 export const copy = {
   brand: 'HAZE',
-  apply: 'Iniciar diagnóstico',
+  apply: 'Iniciar diagnóstico gratuito',
   applyNote: 'Leva menos de 2 minutos',
   skipLink: 'Pular para o conteúdo',
 
   topBar: {
-    status: 'Diagnóstico aberto',
+    status: 'Diagnóstico gratuito',
   },
 
   hero: {
@@ -130,7 +130,7 @@ export const copy = {
     before: 'A SUA MARCA DESEJADA',
     accent: 'COMEÇA AQUI',
     body: 'Responda a perguntas rápidas e veja o quanto as suas dores custam hoje, o primeiro passo para sair delas',
-    cta: 'Quero o meu diagnóstico',
+    cta: 'Quero o meu diagnóstico gratuito',
     passos: ['Você responde', 'Vê o seu resultado', 'Conversa com a gente'],
   },
 
@@ -168,8 +168,9 @@ export const copy = {
   },
 
   stickyBar: {
-    lead: 'Diagnóstico',
+    lead: 'Diagnóstico grátis',
     note: 'Menos de 2 min',
+    botao: 'Iniciar diagnóstico',
   },
 
   footer: {

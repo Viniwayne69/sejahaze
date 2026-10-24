@@ -97,7 +97,7 @@ export const textosAplicacao = {
     paragrafos: ['Perguntas rápidas, 2 minutos e uma leitura direta do que está travando as suas vendas'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
-    botao: 'Iniciar diagnóstico',
+    botao: 'Iniciar diagnóstico gratuito',
   },
   som: { arquivo: '/audio/get-away.mp3', rotulo: 'Escute um som enquanto nos conta sobre você' },
   ok: 'OK',
@@ -121,6 +121,7 @@ export const textosAplicacao = {
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
       `Oi, sou ${nome}, da ${empresa}, fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}, faturamento ${faturamento}, quero conversar`,
+    primeiraLeitura: 'Primeira leitura, o diagnóstico profundo é o Raio-X',
     voltarSite: 'Voltar ao site',
   },
 } as const;
