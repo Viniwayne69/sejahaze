@@ -16,7 +16,7 @@ export const copy = {
   hero: {
     before: 'FAZEMOS DA SUA MARCA UMA DAS MAIS',
     accent: 'desejadas',
-    after: 'DA GERAÇÃO',
+    after: '',
     subtitle: 'Consultoria que estrutura a experiência do cliente, do primeiro contato ao pós-venda',
   },
 
