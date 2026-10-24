@@ -91,11 +91,13 @@ export const perfis = [
 
 export const textosAplicacao = {
   metaTitle: 'HAZE | Diagnóstico',
-  metaDescription: 'Perguntas rápidas, 2 minutos e uma leitura direta do que está travando as suas vendas',
+  metaDescription: 'Descubra o que está travando as suas vendas, perguntas rápidas e o resultado na hora',
   boasVindas: {
-    antes: 'QUANTO A SUA MARCA ESTÁ TE FAZENDO',
-    destaque: 'PERDER?',
-    paragrafos: ['Perguntas rápidas, 2 minutos e uma leitura direta do que está travando as suas vendas'],
+    antes: 'O QUE ESTÁ',
+    destaque: 'TRAVANDO',
+    depois: 'AS SUAS VENDAS?',
+    paragrafos: ['Perguntas rápidas e o seu resultado na hora, leva menos de 2 minutos'],
+    recebe: ['Sua nota de 1 a 10', 'O ponto que mais trava a sua marca', 'O primeiro passo para resolver'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
     botao: 'Iniciar diagnóstico gratuito',
@@ -123,6 +125,15 @@ export const textosAplicacao = {
     whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
       `Oi, sou ${nome}, da ${empresa}, fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}, faturamento ${faturamento}, quero conversar`,
     calculando: 'Calculando o seu resultado',
+    pontoFraco: 'Ponto mais fraco',
+    primeiroPasso: 'Primeiro passo',
+    primeiroPassoTexto: 'o Raio-X, o diagnóstico profundo da sua marca',
+    areas: {
+      diferenca: 'o seu cliente ainda não sabe por que escolher você',
+      folga: 'o seu negócio depende só de você',
+      preco: 'o seu cliente compra pelo preço',
+      procura: 'você corre atrás de cada cliente',
+    },
     primeiraLeitura: 'Primeira leitura, o diagnóstico profundo é o Raio-X',
     voltarSite: 'Voltar ao site',
   },

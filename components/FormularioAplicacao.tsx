@@ -215,7 +215,7 @@ export default function FormularioAplicacao() {
                 <div aria-hidden="true" className="hero-nevoa pointer-events-none absolute inset-0" />
               </div>
               <h1 className="display mt-6 text-[27px] md:mt-8 md:text-[44px]">
-                {t.boasVindas.antes} <Accent>{t.boasVindas.destaque}</Accent>
+                {t.boasVindas.antes} <Accent>{t.boasVindas.destaque}</Accent> {t.boasVindas.depois}
               </h1>
               {t.boasVindas.paragrafos.map((p) => (
                 <p key={p} className="mx-auto mt-3 max-w-[540px] text-[15px] leading-[1.45] md:mt-4 md:text-[19px]">
@@ -225,6 +225,14 @@ export default function FormularioAplicacao() {
               <button type="button" onClick={() => ir(0)} className={cn(btnPrincipal, 'mt-6 w-full md:mt-8 md:w-auto md:min-w-[300px]')}>
                 {t.boasVindas.botao}
               </button>
+              <ul className="mx-auto mt-5 grid max-w-[340px] gap-2 text-left text-[14px] leading-snug md:text-[15px]">
+                {t.boasVindas.recebe.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span aria-hidden="true" className="mt-[0.55em] inline-block h-[3px] w-4 shrink-0 bg-cyan" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
 
@@ -372,11 +380,24 @@ export default function FormularioAplicacao() {
                 </p>
               </div>
 
-              <div className="mt-8 text-center">
+              {/* O que a pessoa foi buscar: o ponto mais fraco e o primeiro passo */}
+              <div className="mx-auto mt-6 grid max-w-[360px] gap-2.5 text-left text-[15px] leading-snug">
+                {resultado.fraco && (
+                  <p>
+                    <span className="font-semibold uppercase tracking-[0.08em] text-[12px]">{t.resultado.pontoFraco}: </span>
+                    {t.resultado.areas[resultado.fraco]}
+                  </p>
+                )}
+                <p>
+                  <span className="font-semibold uppercase tracking-[0.08em] text-[12px]">{t.resultado.primeiroPasso}: </span>
+                  {t.resultado.primeiroPassoTexto}
+                </p>
+              </div>
+
+              <div className="mt-7 text-center">
                 <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'w-full md:w-auto md:min-w-[340px]')}>
                   {t.resultado.whatsappBotao}
                 </a>
-                <p className="mx-auto mt-3 max-w-[360px] text-[12px] leading-snug text-gray">{t.resultado.primeiraLeitura}</p>
                 <Link href="/" className="mt-3 inline-block text-[14px] font-medium underline underline-offset-4">
                   {t.resultado.voltarSite}
                 </Link>

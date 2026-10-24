@@ -12,6 +12,8 @@ export type Diagnostico = {
   /** Nota de 1 a 10: 1 é tranquilo, 10 é crítico. */
   nota: number;
   perfil: (typeof perfis)[number];
+  /** Área com mais pontos de dificuldade (a que mais trava), ou null se nenhuma pontuou. */
+  fraco: (typeof camposDeDor)[number] | null;
 };
 
 function pontosDe(id: (typeof camposDeDor)[number], resposta: string) {
@@ -24,5 +26,16 @@ export function calcularDiagnostico(r: RespostasAplicacao): Diagnostico {
   const pontos = camposDeDor.reduce((soma, id) => soma + pontosDe(id, r[id]), 0);
   const perfil = perfis.find((p) => pontos <= p.ate) ?? perfis[perfis.length - 1];
   const maximo = camposDeDor.length * 2;
-  return { pontos, nota: Math.round(1 + (pontos / maximo) * 9), perfil };
+  // Em empate, vale a ordem abaixo: do que mais liga à oferta da HAZE para o que menos liga
+  const prioridade = ['diferenca', 'folga', 'preco', 'procura'] as const;
+  let fraco: Diagnostico['fraco'] = null;
+  let melhor = 0;
+  for (const id of prioridade) {
+    const p = pontosDe(id, r[id]);
+    if (p > melhor) {
+      melhor = p;
+      fraco = id;
+    }
+  }
+  return { pontos, nota: Math.round(1 + (pontos / maximo) * 9), perfil, fraco };
 }
