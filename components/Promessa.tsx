@@ -15,7 +15,7 @@ export default function Promessa() {
         <div data-reveal className="text-center lg:self-end lg:text-left lg:[grid-area:chamada]">
           <h2
             id="promessa-chamada"
-            className="display whitespace-nowrap text-[clamp(16px,5.6vw,40px)] md:text-[40px] lg:whitespace-normal lg:text-[64px]"
+            className="display whitespace-nowrap text-[clamp(14px,4.8vw,40px)] md:text-[40px] lg:whitespace-normal lg:text-[64px]"
           >
             {chamada}
           </h2>
