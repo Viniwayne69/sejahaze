@@ -5,24 +5,14 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { WHATSAPP_NUMBER } from '@/config';
 import { copy } from '@/content/copy';
-import { perguntas, textosAplicacao as t, titulosComNome, type Pergunta } from '@/content/aplicacao';
+import { areas, perguntas, textosAplicacao as t, titulosComNome, type Pergunta } from '@/content/aplicacao';
 import { apenasDigitos, enviarAplicacao, formatarTelefone, type RespostasAplicacao } from '@/lib/aplicacao';
 import { calcularDiagnostico } from '@/lib/diagnostico';
 import Logo from './Logo';
 import SomAmbiente from './SomAmbiente';
 import { Accent, cn, textureProps } from './ui';
 
-const vazio: RespostasAplicacao = {
-  nome: '',
-  empresa: '',
-  folga: '',
-  preco: '',
-  diferenca: '',
-  procura: '',
-  trava: '',
-  faturamento: '',
-  telefone: '',
-};
+const vazio = Object.fromEntries(perguntas.map((p) => [p.id, ""])) as RespostasAplicacao;
 
 const total = perguntas.length;
 const doisDigitos = (n: number) => String(n).padStart(2, '0');
@@ -98,17 +88,17 @@ export default function FormularioAplicacao() {
       setEnviando(true);
       setErro('');
       try {
-        const { perfil, nota } = calcularDiagnostico(dados);
+        const { perfil, nota, porArea, graves } = calcularDiagnostico(dados);
         const resumo = [
           `Diagnóstico HAZE: ${perfil.titulo} (dificuldade ${nota}/10)`,
-          `Vendas na folga: ${dados.folga}`,
-          `Se subir o preço: ${dados.preco}`,
-          `Cliente sabe a diferença: ${dados.diferenca}`,
-          `Clientes procuram ou ele corre atrás: ${dados.procura}`,
+          `Dor por área (0 a 4): ${areas.map((a) => `${a.rotulo} ${porArea[a.id]}`).join(', ')}`,
           `Maior desafio: ${dados.trava}`,
           `Faturamento: ${dados.faturamento}`,
+          graves.length ? `Mais graves: ${graves.slice(0, 5).join('; ')}` : '',
           `Começar por: ${copy.metodo.steps[0].title}`,
-        ].join(' | ');
+        ]
+          .filter(Boolean)
+          .join(' | ');
         await enviarAplicacao({
           ...dados,
           nome: dados.nome.trim().split(/\s+/).map(capitalizar).join(' '),
@@ -385,7 +375,7 @@ export default function FormularioAplicacao() {
                 {resultado.fraco && (
                   <p>
                     <span className="font-semibold uppercase tracking-[0.08em] text-[12px]">{t.resultado.pontoFraco}: </span>
-                    {t.resultado.areas[resultado.fraco]}
+                    {areas.find((a) => a.id === resultado.fraco)?.fraco}
                   </p>
                 )}
                 <p>

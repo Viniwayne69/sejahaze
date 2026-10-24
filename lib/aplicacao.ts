@@ -7,18 +7,9 @@
  */
 
 import { SUPABASE_KEY, SUPABASE_URL } from '@/config';
+import type { CampoId } from '@/content/aplicacao';
 
-export type RespostasAplicacao = {
-  nome: string;
-  empresa: string;
-  folga: string;
-  preco: string;
-  diferenca: string;
-  procura: string;
-  trava: string;
-  faturamento: string;
-  telefone: string;
-};
+export type RespostasAplicacao = Record<CampoId, string>;
 
 export type Aplicacao = RespostasAplicacao & {
   /** Resumo do diagnóstico, gravado na observação do negócio (o banco aceita até 500 caracteres). */

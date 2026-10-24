@@ -3,21 +3,59 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'folga' | 'preco' | 'diferenca' | 'procura' | 'trava' | 'faturamento' | 'telefone';
+/** As 12 perguntas de dor: cada uma vale pontos de dificuldade (0, 1 ou 2). */
+export const camposDeDor = [
+  'escolha',
+  'lembrado',
+  'procura',
+  'somem',
+  'medo',
+  'aumento',
+  'sobra',
+  'escuro',
+  'doente',
+  'folga',
+  'parado',
+  'doisAnos',
+] as const;
 
-/** Campos de dor: cada um vale pontos de dificuldade. */
-export const camposDeDor = ['folga', 'preco', 'diferenca', 'procura'] as const;
+export type CampoId = 'nome' | 'empresa' | 'trava' | 'faturamento' | 'telefone' | (typeof camposDeDor)[number];
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
   | { id: 'telefone'; tipo: 'tel'; titulo: string; ajuda?: string; placeholder: string }
-  | { id: (typeof camposDeDor)[number] | 'trava' | 'faturamento'; tipo: 'opcoes'; titulo: string; ajuda?: string; opcoes: readonly string[] };
+  | {
+      id: (typeof camposDeDor)[number] | 'trava' | 'faturamento';
+      tipo: 'opcoes';
+      titulo: string;
+      ajuda?: string;
+      opcoes: readonly string[];
+      /** Só nas perguntas de dor: o problema em poucas palavras, usado no resumo para a equipe. */
+      dor?: string;
+    };
 
 /**
- * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
+ * Seis áreas, duas perguntas cada. A soma dos pontos das duas mostra qual área está mais fraca.
+ * `fraco` é a frase do resultado ("Ponto mais fraco: ...").
+ */
+export const areas = [
+  { id: 'desejo', rotulo: 'Desejo', fraco: 'a sua marca ainda não é a escolha do cliente', campos: ['escolha', 'lembrado'] },
+  { id: 'vendas', rotulo: 'Vendas', fraco: 'você corre atrás de clientes e perde muitos no caminho', campos: ['procura', 'somem'] },
+  { id: 'preco', rotulo: 'Preço', fraco: 'você deixa dinheiro na mesa por medo de cobrar mais', campos: ['medo', 'aumento'] },
+  { id: 'dinheiro', rotulo: 'Dinheiro', fraco: 'o dinheiro não acompanha o seu trabalho', campos: ['sobra', 'escuro'] },
+  { id: 'liberdade', rotulo: 'Liberdade', fraco: 'o negócio depende só de você', campos: ['doente', 'folga'] },
+  { id: 'futuro', rotulo: 'Futuro', fraco: 'o seu negócio está parado há tempo demais', campos: ['parado', 'doisAnos'] },
+] as const;
+
+export type AreaId = (typeof areas)[number]['id'];
+
+/** Em empate de áreas, vale esta ordem: da que mais liga à oferta da HAZE para a que menos liga. */
+export const prioridadeAreas: readonly AreaId[] = ['desejo', 'preco', 'vendas', 'liberdade', 'dinheiro', 'futuro'];
+
+/**
+ * Nome e empresa primeiro, depois o maior desafio (sem pontos) e as 12 perguntas de dor.
  * Nas perguntas de dor, as opções vão sempre da menor para a maior dificuldade:
- * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Quatro perguntas somam de 0 a 8 pontos.
- * A pergunta "trava" não vale pontos: diz à equipe a maior dor dele.
+ * a primeira vale 0 ponto, a segunda 1 e a terceira 2, então doze perguntas somam de 0 a 24 pontos.
  */
 export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
@@ -29,29 +67,88 @@ export const perguntas: readonly Pergunta[] = [
     opcoes: ['Conseguir clientes novos', 'Fechar as vendas', 'Vender sem baixar o preço', 'O caixa não fecha', 'A equipe', 'Outro'],
   },
   {
-    id: 'folga',
+    id: 'escolha',
     tipo: 'opcoes',
-    titulo: 'Se você tirar uma semana de folga, as vendas caem?',
-    opcoes: ['Não caem', 'Caem um pouco', 'Caem muito'],
+    titulo: 'Na hora de escolher, o cliente escolhe você ou o mais barato?',
+    opcoes: ['Escolhe você', 'Depende do dia', 'O mais barato, quase sempre'],
+    dor: 'escolhem o mais barato',
   },
   {
-    id: 'preco',
+    id: 'lembrado',
     tipo: 'opcoes',
-    titulo: 'Se você aumentar o seu preço, o cliente continua comprando?',
-    ajuda: 'Mostra o quanto a sua marca vale',
-    opcoes: ['Sim, continua', 'Alguns vão embora', 'Quase todos somem'],
-  },
-  {
-    id: 'diferenca',
-    tipo: 'opcoes',
-    titulo: 'Seu cliente sabe por que comprar de você e não do outro?',
-    opcoes: ['Sabe bem', 'Mais ou menos', 'Não, para ele é tudo igual'],
+    titulo: 'Quando alguém precisa do que você vende, o seu nome é o primeiro em que ele pensa?',
+    opcoes: ['Sim, sou o primeiro', 'Às vezes', 'Quase nunca, eu sumo na hora de decidir'],
+    dor: 'não é lembrado',
   },
   {
     id: 'procura',
     tipo: 'opcoes',
-    titulo: 'Seus clientes procuram você ou você corre atrás deles?',
+    titulo: 'Os clientes correm atrás de você ou você corre atrás deles?',
     opcoes: ['Eles me procuram', 'Metade a metade', 'Eu corro atrás de todos'],
+    dor: 'corre atrás dos clientes',
+  },
+  {
+    id: 'somem',
+    tipo: 'opcoes',
+    titulo: 'Quantas pessoas se interessam por você e somem sem comprar?',
+    opcoes: ['Poucas', 'Muitas', 'A maioria, e eu nem sei por quê'],
+    dor: 'interessados somem sem comprar',
+  },
+  {
+    id: 'medo',
+    tipo: 'opcoes',
+    titulo: 'Quantas vezes você deixou de ganhar o que merecia por medo de cobrar mais?',
+    opcoes: ['Nunca', 'Algumas vezes', 'Sempre'],
+    dor: 'medo de cobrar mais',
+  },
+  {
+    id: 'aumento',
+    tipo: 'opcoes',
+    titulo: 'Se amanhã você aumentasse o seu preço, o que aconteceria?',
+    opcoes: ['Continuariam comprando', 'Alguns iriam embora', 'Quase todos sumiriam'],
+    dor: 'cliente some se subir o preço',
+  },
+  {
+    id: 'sobra',
+    tipo: 'opcoes',
+    titulo: 'Você trabalha muito e, no fim do mês, o dinheiro sobra?',
+    opcoes: ['Sobra bastante', 'Sobra pouco', 'Não sobra nada'],
+    dor: 'não sobra dinheiro',
+  },
+  {
+    id: 'escuro',
+    tipo: 'opcoes',
+    titulo: 'Você sabe quanto vai ganhar no mês que vem ou vive no escuro?',
+    opcoes: ['Sei quase certo', 'Mais ou menos', 'Vivo no escuro'],
+    dor: 'vive no escuro',
+  },
+  {
+    id: 'doente',
+    tipo: 'opcoes',
+    titulo: 'Se você ficasse doente por 30 dias, o que aconteceria com o seu negócio?',
+    opcoes: ['Continuaria funcionando', 'Cairia muito', 'Pararia, o negócio sou eu'],
+    dor: 'o negócio para sem ele',
+  },
+  {
+    id: 'folga',
+    tipo: 'opcoes',
+    titulo: 'Quando foi a última vez que você tirou um dia de folga sem pensar no negócio?',
+    opcoes: ['Faço isso sempre', 'Raramente', 'Nem lembro'],
+    dor: 'não tira folga',
+  },
+  {
+    id: 'parado',
+    tipo: 'opcoes',
+    titulo: 'Há quanto tempo o seu negócio está do mesmo tamanho?',
+    opcoes: ['Está crescendo', 'Cresceu pouco', 'Travado há muito tempo'],
+    dor: 'negócio parado',
+  },
+  {
+    id: 'doisAnos',
+    tipo: 'opcoes',
+    titulo: 'Se nada mudar nos próximos 2 anos, onde o seu negócio estará?',
+    opcoes: ['Maior e melhor', 'No mesmo lugar', 'Menor, ou fechado'],
+    dor: 'pode encolher se nada mudar',
   },
   {
     id: 'faturamento',
@@ -82,11 +179,11 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
 };
 
-/** Perfis pelos pontos de dificuldade (0 a 8): quanto maior, mais a pessoa está sofrendo hoje. */
+/** Perfis pelos pontos de dificuldade (0 a 24): quanto maior, mais a pessoa está sofrendo hoje. */
 export const perfis = [
-  { ate: 2, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
-  { ate: 5, titulo: 'DINHEIRO NA MESA', texto: '' },
-  { ate: 8, titulo: 'PRECISA DE AÇÃO AGORA', texto: 'Cada mês assim é cliente indo para o concorrente' },
+  { ate: 6, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
+  { ate: 15, titulo: 'DINHEIRO NA MESA', texto: '' },
+  { ate: 24, titulo: 'PRECISA DE AÇÃO AGORA', texto: 'Cada mês assim é cliente indo para o concorrente' },
 ] as const;
 
 export const textosAplicacao = {
@@ -96,7 +193,7 @@ export const textosAplicacao = {
     antes: 'O QUE ESTÁ',
     destaque: 'TRAVANDO',
     depois: 'AS SUAS VENDAS?',
-    paragrafos: ['Perguntas rápidas e o seu resultado na hora, leva menos de 2 minutos'],
+    paragrafos: ['Perguntas rápidas e o seu resultado na hora, leva menos de 3 minutos'],
     recebe: ['Sua nota de 1 a 10', 'O ponto que mais trava a sua marca', 'O primeiro passo para resolver'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
@@ -128,12 +225,6 @@ export const textosAplicacao = {
     pontoFraco: 'Ponto mais fraco',
     primeiroPasso: 'Primeiro passo',
     primeiroPassoTexto: 'o Raio-X, uma reunião que termina em um plano de ação claro',
-    areas: {
-      diferenca: 'o seu cliente ainda não sabe por que escolher você',
-      folga: 'o seu negócio depende só de você',
-      preco: 'o seu cliente compra pelo preço',
-      procura: 'você corre atrás de cada cliente',
-    },
     voltarSite: 'Voltar ao site',
   },
 } as const;
