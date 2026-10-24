@@ -172,3 +172,7 @@ export function Bar({ tone = 'cyan', className }: { tone?: 'cyan' | 'gray' | 'bl
   const color = { cyan: 'bg-cyan', gray: 'bg-gray', black: 'bg-black' }[tone];
   return <span aria-hidden="true" className={cn('inline-block h-[4px] w-5 shrink-0', color, className)} />;
 }
+
+/** Botão principal ciano do formulário e do resultado (pílula, com o reflexo que passa). */
+export const btnPrincipal =
+  'brilho inline-flex min-h-[52px] items-center justify-center rounded-full bg-cyan px-8 text-[16px] font-semibold text-black transition hover:brightness-[.93] disabled:cursor-not-allowed disabled:opacity-40';

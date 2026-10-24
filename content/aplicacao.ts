@@ -28,12 +28,12 @@ export type Pergunta =
  * `fraco` é a frase do resultado ("Ponto mais fraco: ...").
  */
 export const areas = [
-  { id: 'desejo', rotulo: 'Desejo', fraco: 'a sua marca ainda não é a escolha do cliente', campos: ['escolha', 'lembrado'] },
-  { id: 'vendas', rotulo: 'Vendas', fraco: 'muita gente se interessa por você e não compra', campos: ['procura'] },
-  { id: 'preco', rotulo: 'Preço', fraco: 'você deixa dinheiro na mesa por medo de cobrar mais', campos: ['medo'] },
-  { id: 'dinheiro', rotulo: 'Dinheiro', fraco: 'o dinheiro não acompanha o seu trabalho', campos: ['sobra'] },
-  { id: 'liberdade', rotulo: 'Liberdade', fraco: 'o negócio depende só de você', campos: ['doente'] },
-  { id: 'futuro', rotulo: 'Futuro', fraco: 'o seu negócio corre o risco de ficar para trás', campos: ['doisAnos'] },
+  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você e falam de você', meio: 'parte dos clientes ainda compara só pelo preço', fraco: 'a sua marca ainda não é a escolha do cliente', campos: ['escolha', 'lembrado'] },
+  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa por você costuma comprar', meio: 'parte de quem se interessa não chega a comprar', fraco: 'muita gente se interessa por você e não compra', campos: ['procura'] },
+  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que o seu trabalho vale', meio: 'existe receio na hora de aumentar o preço', fraco: 'você deixa dinheiro na mesa por medo de cobrar mais', campos: ['medo'] },
+  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'sobra pouco para o tanto que você trabalha', fraco: 'o dinheiro não acompanha o seu trabalho', campos: ['sobra'] },
+  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio perde o ritmo quando você não está', fraco: 'o negócio depende só de você', campos: ['doente'] },
+  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode ficar parado se nada mudar', fraco: 'o seu negócio corre o risco de ficar para trás', campos: ['doisAnos'] },
 ] as const;
 
 export type AreaId = (typeof areas)[number]['id'];
@@ -184,6 +184,11 @@ export const textosAplicacao = {
       `Oi, sou ${nome}, da ${empresa}, fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}, faturamento ${faturamento}, quero conversar`,
     calculando: 'Calculando o seu resultado',
     pontoFraco: 'Ponto mais fraco',
+    radarTitulo: 'O seu negócio por área',
+    toque: 'Toque em uma área para ver o que ela diz',
+    forte: 'Forte',
+    atencao: 'Atenção',
+    fragil: 'Frágil',
     primeiroPasso: 'Primeiro passo',
     primeiroPassoTexto: 'o Raio-X, uma reunião que termina em um plano de ação claro',
     voltarSite: 'Voltar ao site',

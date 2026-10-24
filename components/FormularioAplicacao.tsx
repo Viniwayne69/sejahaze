@@ -9,8 +9,9 @@ import { areas, perguntas, textosAplicacao as t, titulosComNome, type Pergunta }
 import { apenasDigitos, enviarAplicacao, formatarTelefone, type RespostasAplicacao } from '@/lib/aplicacao';
 import { calcularDiagnostico } from '@/lib/diagnostico';
 import Logo from './Logo';
+import ResultadoDiagnostico from './ResultadoDiagnostico';
 import SomAmbiente from './SomAmbiente';
-import { Accent, cn, textureProps } from './ui';
+import { Accent, btnPrincipal, cn, textureProps } from './ui';
 
 const vazio = Object.fromEntries(perguntas.map((p) => [p.id, ""])) as RespostasAplicacao;
 
@@ -27,8 +28,6 @@ const vibrar = (padrao: number | number[]) => {
   }
 };
 
-const btnPrincipal =
-  'brilho inline-flex min-h-[52px] items-center justify-center rounded-full bg-cyan px-8 text-[16px] font-semibold text-black transition hover:brightness-[.93] disabled:cursor-not-allowed disabled:opacity-40';
 
 function validar(pergunta: Pergunta, respostas: RespostasAplicacao) {
   const valor = respostas[pergunta.id].trim();
@@ -44,7 +43,6 @@ export default function FormularioAplicacao() {
   const [respostas, setRespostas] = useState<RespostasAplicacao>(vazio);
   const [erro, setErro] = useState('');
   const [enviando, setEnviando] = useState(false);
-  const [contagem, setContagem] = useState(0); // número que sobe de 0 até a nota no resultado
   const [calculando, setCalculando] = useState(false); // pausa curta de expectativa antes do resultado
   const [armadilha, setArmadilha] = useState(''); // campo escondido contra robôs
   const inputRef = useRef<HTMLInputElement>(null);
@@ -158,28 +156,6 @@ export default function FormularioAplicacao() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [pergunta, escolherOpcao]);
-
-  const notaFinal = etapa === total && !calculando ? calcularDiagnostico(respostas).nota : 0;
-  useEffect(() => {
-    if (!notaFinal) {
-      setContagem(0);
-      return;
-    }
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setContagem(notaFinal);
-      return;
-    }
-    let frame = 0;
-    const inicio = performance.now() + 1100; // começa junto com a primeira barra
-    const duracao = notaFinal * 170 + 400;
-    const passo = (agora: number) => {
-      const p = Math.min(1, Math.max(0, (agora - inicio) / duracao));
-      setContagem(Math.round(p * notaFinal));
-      if (p < 1) frame = requestAnimationFrame(passo);
-    };
-    frame = requestAnimationFrame(passo);
-    return () => cancelAnimationFrame(frame);
-  }, [notaFinal]);
 
   const bg = textureProps('papel-azul');
   const resultado = etapa === total && !calculando ? calcularDiagnostico(respostas) : null;
@@ -357,73 +333,9 @@ export default function FormularioAplicacao() {
             </div>
           )}
 
-          {/* Resultado minimalista: o perfil, onde a marca está de 1 a 10 e o WhatsApp */}
+          {/* Resultado em cena: medidor, radar das áreas, ponto mais fraco e WhatsApp */}
           {resultado && (
-            <div className="relative">
-              <div
-                aria-hidden="true"
-                className="luz-acende pointer-events-none absolute -top-16 left-1/2 -z-10 size-64 rounded-full bg-cyan blur-3xl md:size-80"
-              />
-              {/* Clarão ciano que cobre a tela quando o resultado aparece */}
-              <div aria-hidden="true" className="res-flash pointer-events-none fixed inset-0 z-20 bg-[radial-gradient(ellipse_at_center,rgba(1,187,251,.7),rgba(1,187,251,0)_70%)]" />
-              <p className="res-entra text-center text-[12px] font-semibold uppercase tracking-[0.08em]">
-                {primeiroNome}, {t.resultado.rotulo}
-              </p>
-              <h1 ref={tituloRef} tabIndex={-1} className="res-titulo display mt-2 text-center text-[30px] outline-none md:text-[48px]">
-                {resultado.perfil.titulo.split(' ').slice(0, -1).join(' ')}{' '}
-                <Accent>{resultado.perfil.titulo.split(' ').slice(-1)[0]}</Accent>
-              </h1>
-
-              {/* Medidor de 1 a 10: quantas barras estão acesas é a nota da marca (processo, desconto e diferença) */}
-              {resultado.perfil.texto && (
-                <p style={{ '--d': '900ms' } as React.CSSProperties} className="res-entra mx-auto mt-4 max-w-[440px] text-center text-[16px] leading-snug md:text-[18px]">{resultado.perfil.texto}</p>
-              )}
-
-              <div className="mx-auto mt-6 max-w-[340px]" role="img" aria-label={`${t.resultado.medidorTitulo}: ${t.resultado.pontuacao(resultado.nota)}`}>
-                <p className="flex items-baseline justify-between gap-3 text-[12px] font-semibold uppercase tracking-[0.08em]">
-                  <span>{t.resultado.medidorTitulo}</span>
-                  <span className="font-display text-[14px] font-black tracking-normal tabular-nums">{t.resultado.pontuacao(contagem)}</span>
-                </p>
-                <div className="relative mt-2 flex gap-1 overflow-visible" aria-hidden="true">
-                  {Array.from({ length: 10 }).map((_, i) => (
-                    <span
-                      key={i}
-                      style={{ '--i': i } as React.CSSProperties}
-                      className={cn('h-2 flex-1 rounded-full border border-black', i < resultado.nota ? 'res-barra bg-cyan' : 'bg-transparent')}
-                    />
-                  ))}
-                  {/* Raio de luz que cruza o medidor enquanto ele acende */}
-                  <span className="res-raio pointer-events-none absolute -inset-y-2 left-0 w-10 rounded-full bg-[linear-gradient(90deg,transparent,rgba(241,238,231,.95),transparent)] blur-[2px]" />
-                </div>
-                <p className="mt-1.5 flex justify-between text-[11px] font-medium" aria-hidden="true">
-                  <span>{t.resultado.medidorExtremos[0]}</span>
-                  <span>{t.resultado.medidorExtremos[1]}</span>
-                </p>
-              </div>
-
-              {/* O que a pessoa foi buscar: o ponto mais fraco e o primeiro passo */}
-              <div style={{ '--d': '2300ms' } as React.CSSProperties} className="res-entra mx-auto mt-6 grid max-w-[360px] gap-2.5 text-left text-[15px] leading-snug">
-                {resultado.fraco && (
-                  <p>
-                    <span className="font-semibold uppercase tracking-[0.08em] text-[12px]">{t.resultado.pontoFraco}: </span>
-                    {areas.find((a) => a.id === resultado.fraco)?.fraco}
-                  </p>
-                )}
-                <p>
-                  <span className="font-semibold uppercase tracking-[0.08em] text-[12px]">{t.resultado.primeiroPasso}: </span>
-                  {t.resultado.primeiroPassoTexto}
-                </p>
-              </div>
-
-              <div className="mt-7 text-center">
-                <a href={linkWhatsapp} target="_blank" rel="noopener noreferrer" className={cn(btnPrincipal, 'res-cta w-full md:w-auto md:min-w-[340px]')}>
-                  {t.resultado.whatsappBotao}
-                </a>
-                <Link href="/" className="mt-3 inline-block text-[14px] font-medium underline underline-offset-4">
-                  {t.resultado.voltarSite}
-                </Link>
-              </div>
-            </div>
+            <ResultadoDiagnostico nome={primeiroNome} negocio={respostas.empresa.trim()} resultado={resultado} linkWhatsapp={linkWhatsapp} />
           )}
 
           <input
