@@ -3,10 +3,10 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-export type CampoId = 'nome' | 'empresa' | 'folga' | 'preco' | 'diferenca' | 'trava' | 'faturamento' | 'telefone';
+export type CampoId = 'nome' | 'empresa' | 'folga' | 'preco' | 'diferenca' | 'procura' | 'trava' | 'faturamento' | 'telefone';
 
 /** Campos de dor: cada um vale pontos de dificuldade. */
-export const camposDeDor = ['folga', 'preco', 'diferenca'] as const;
+export const camposDeDor = ['folga', 'preco', 'diferenca', 'procura'] as const;
 
 export type Pergunta =
   | { id: 'nome' | 'empresa'; tipo: 'texto'; titulo: string; ajuda?: string; placeholder: string }
@@ -16,7 +16,7 @@ export type Pergunta =
 /**
  * Depois do nome e da empresa, as perguntas são sobre as dores do dono.
  * Nas perguntas de dor, as opções vão sempre da menor para a maior dificuldade:
- * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Três perguntas somam de 0 a 6 pontos.
+ * a primeira vale 0 ponto, a segunda 1 e a terceira 2. Quatro perguntas somam de 0 a 8 pontos.
  * A pergunta "trava" não vale pontos: diz à equipe a maior dor dele.
  */
 export const perguntas: readonly Pergunta[] = [
@@ -47,6 +47,12 @@ export const perguntas: readonly Pergunta[] = [
     opcoes: ['Sabe bem', 'Mais ou menos', 'Não, para ele é tudo igual'],
   },
   {
+    id: 'procura',
+    tipo: 'opcoes',
+    titulo: 'Seus clientes procuram você ou você corre atrás deles?',
+    opcoes: ['Eles me procuram', 'Metade a metade', 'Eu corro atrás de todos'],
+  },
+  {
     id: 'faturamento',
     tipo: 'opcoes',
     titulo: 'Qual o faturamento anual da sua empresa?',
@@ -75,11 +81,11 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
 };
 
-/** Perfis pelos pontos de dificuldade (0 a 6): quanto maior, mais a pessoa está sofrendo hoje. */
+/** Perfis pelos pontos de dificuldade (0 a 8): quanto maior, mais a pessoa está sofrendo hoje. */
 export const perfis = [
-  { ate: 1, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
-  { ate: 3, titulo: 'DINHEIRO NA MESA', texto: '' },
-  { ate: 6, titulo: 'PRECISA DE AÇÃO AGORA', texto: '' },
+  { ate: 2, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
+  { ate: 5, titulo: 'DINHEIRO NA MESA', texto: '' },
+  { ate: 8, titulo: 'PRECISA DE AÇÃO AGORA', texto: '' },
 ] as const;
 
 export const textosAplicacao = {

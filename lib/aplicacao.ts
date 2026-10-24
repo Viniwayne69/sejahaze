@@ -14,6 +14,7 @@ export type RespostasAplicacao = {
   folga: string;
   preco: string;
   diferenca: string;
+  procura: string;
   trava: string;
   faturamento: string;
   telefone: string;

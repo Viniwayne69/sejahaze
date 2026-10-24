@@ -34,7 +34,7 @@ export const copy = {
   dores: {
     title: 'SE A SUA MARCA ESTÁ ASSIM...',
     items: [
-      'Vende, mas não cresce',
+      'Vende, mas a sua marca não desperta desejo',
       'Vende barato enquanto o concorrente leva a fama e o cliente',
       'Só atrai quem pergunta o preço e perde quem paga',
     ],
@@ -49,7 +49,7 @@ export const copy = {
       {
         number: '01',
         title: 'Raio-X',
-        body: 'Diagnóstico profundo: achamos onde a sua empresa trava e perde dinheiro',
+        body: 'Diagnóstico profundo: achamos por que a sua marca não é desejada e onde ela perde vendas',
       },
       {
         number: '02',
@@ -62,7 +62,7 @@ export const copy = {
         body: 'Colocamos tudo para rodar, com a sua equipe treinada para vender',
       },
     ],
-    result: 'Resultado: Marca forte no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
+    result: 'Resultado: Marca desejada no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
   },
 
   paraQuem: {
@@ -131,7 +131,6 @@ export const copy = {
     accent: 'COMEÇA AQUI',
     body: 'Responda a perguntas rápidas e veja o quanto as suas dores custam hoje, o primeiro passo para sair delas',
     cta: 'Quero o meu diagnóstico',
-    whatsapp: { texto: 'Prefere falar direto?', botao: 'Chamar no WhatsApp', mensagem: 'Oi, vim pelo site da HAZE e quero saber mais' },
     passos: ['Você responde', 'Vê o seu resultado', 'Conversa com a gente'],
   },
 
@@ -174,7 +173,7 @@ export const copy = {
   },
 
   footer: {
-    tagline: 'Marcas que atraem os clientes certos',
+    tagline: 'Marca desejada vende mais',
     copyright: '© 2026 HAZE, todos os direitos reservados',
   },
 } as const;

@@ -1,10 +1,9 @@
-import { WHATSAPP_NUMBER } from '@/config';
 import { copy } from '@/content/copy';
 import { ApplyNote, Button, Heading, Section } from './ui';
 
 /** Única seção ciano da página: texto preto, barra preta e botão preto. */
 export default function Aplicacao() {
-  const { before, accent, body, cta, passos, whatsapp } = copy.aplicacao;
+  const { before, accent, body, cta, passos } = copy.aplicacao;
 
   return (
     <Section id="aplicar" texture="ciano" fade="black" labelledBy="aplicar-titulo">
@@ -26,15 +25,6 @@ export default function Aplicacao() {
           <Button variant="dark">{cta}</Button>
           <ApplyNote />
         </div>
-        <p className="mt-5 text-[14px] font-medium md:mt-6">{whatsapp.texto}</p>
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsapp.mensagem)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2.5 inline-flex min-h-[52px] w-full items-center justify-center rounded-full border-2 border-black px-6 py-3 text-center text-[16px] font-semibold leading-tight transition duration-200 hover:-translate-y-0.5 hover:bg-black hover:text-cyan active:translate-y-0 md:w-auto md:min-w-[340px]"
-        >
-          {whatsapp.botao}
-        </a>
       </div>
     </Section>
   );
