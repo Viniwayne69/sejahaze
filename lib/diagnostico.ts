@@ -1,6 +1,6 @@
 /**
- * Leitura rápida das dores, calculada só pelas respostas (sem IA): cada pergunta de dor vale 0, 1 ou 2 pontos
- * (a primeira opção vale 0, a terceira 2). A soma (0 a 24) vira a nota de 1 a 10 de dificuldade hoje,
+ * Leitura rápida das dores, calculada só pelas respostas (sem IA): cada opção das perguntas de dor vale
+ * 0, 1 ou 2 pontos (definidos em `pontos` no conteúdo). A soma (0 a 14) vira a nota de 1 a 10 de dificuldade hoje,
  * e a soma por área (duas perguntas cada) mostra qual área está mais fraca.
  */
 
@@ -8,12 +8,12 @@ import { areas, camposDeDor, perfis, perguntas, prioridadeAreas, type AreaId } f
 import type { RespostasAplicacao } from './aplicacao';
 
 export type Diagnostico = {
-  /** Soma dos pontos de dificuldade (0 a 24). */
+  /** Soma dos pontos de dificuldade (0 a 14). */
   pontos: number;
   /** Nota de 1 a 10: 1 é tranquilo, 10 é crítico. */
   nota: number;
   perfil: (typeof perfis)[number];
-  /** Pontos de dificuldade por área (0 a 4). */
+  /** Pontos de dificuldade por área (Desejo vai de 0 a 4, as outras de 0 a 2). */
   porArea: Record<AreaId, number>;
   /** Área com mais pontos (a que mais trava), ou null se nenhuma pontuou. */
   fraco: AreaId | null;
@@ -23,8 +23,10 @@ export type Diagnostico = {
 
 function pontosDe(id: (typeof camposDeDor)[number], resposta: string) {
   const pergunta = perguntas.find((p) => p.id === id);
-  const indice = pergunta && pergunta.tipo === 'opcoes' ? pergunta.opcoes.indexOf(resposta) : -1;
-  return Math.max(0, indice);
+  if (!pergunta || pergunta.tipo !== 'opcoes') return 0;
+  const indice = pergunta.opcoes.indexOf(resposta);
+  if (indice < 0) return 0;
+  return pergunta.pontos?.[indice] ?? Math.min(indice, 2);
 }
 
 export function calcularDiagnostico(r: RespostasAplicacao): Diagnostico {
@@ -36,11 +38,14 @@ export function calcularDiagnostico(r: RespostasAplicacao): Diagnostico {
     areas.map((a) => [a.id, a.campos.reduce((soma, id) => soma + pontosDe(id, r[id]), 0)]),
   ) as Record<AreaId, number>;
 
+  // A área mais fraca é a de maior proporção de pontos; em empate vale a ordem de prioridade
   let fraco: AreaId | null = null;
   let melhor = 0;
   for (const id of prioridadeAreas) {
-    if (porArea[id] > melhor) {
-      melhor = porArea[id];
+    const area = areas.find((a) => a.id === id)!;
+    const proporcao = porArea[id] / (area.campos.length * 2);
+    if (proporcao > melhor) {
+      melhor = proporcao;
       fraco = id;
     }
   }
