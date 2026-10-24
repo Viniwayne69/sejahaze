@@ -14,9 +14,9 @@ export const copy = {
   },
 
   hero: {
-    before: 'FAZEMOS DA SUA MARCA UMA DAS MAIS',
-    accent: 'desejadas',
-    after: '',
+    before: 'MOLDAMOS A SUA MARCA PARA SER',
+    accent: 'desejada',
+    after: 'E VENDER MAIS',
     subtitle: 'Consultoria que estrutura a experiência do cliente, do primeiro contato ao pós-venda',
   },
 
