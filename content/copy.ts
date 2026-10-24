@@ -50,7 +50,7 @@ export const copy = {
       {
         number: '01',
         title: 'Raio-X',
-        body: 'Diagnóstico profundo: achamos por que a sua marca não é desejada e onde ela perde vendas',
+        body: 'Reunião de diagnóstico: entendemos por que a sua marca não é desejada e saímos com um plano de ação claro',
       },
       {
         number: '02',
@@ -146,7 +146,7 @@ export const copy = {
       {
         question: 'O que eu recebo em cada parte?',
         answer:
-          'Raio-X: diagnóstico profundo, análise do faturamento e mapa da jornada; Arquitetura: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios); Implementação: marca aplicada, time treinado e acompanhamento semanal',
+          'Raio-X: reunião de diagnóstico que termina em um plano de ação claro; Arquitetura: posicionamento, identidade visual, mentoria da equipe e sistema comercial completo (site, CRM, página de vendas e anúncios); Implementação: marca aplicada, time treinado e acompanhamento semanal',
       },
       {
         question: 'Preciso já ter uma marca para começar?',

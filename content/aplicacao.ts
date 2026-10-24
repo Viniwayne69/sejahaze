@@ -127,14 +127,13 @@ export const textosAplicacao = {
     calculando: 'Calculando o seu resultado',
     pontoFraco: 'Ponto mais fraco',
     primeiroPasso: 'Primeiro passo',
-    primeiroPassoTexto: 'o Raio-X, o diagnóstico profundo da sua marca',
+    primeiroPassoTexto: 'o Raio-X, uma reunião que termina em um plano de ação claro',
     areas: {
       diferenca: 'o seu cliente ainda não sabe por que escolher você',
       folga: 'o seu negócio depende só de você',
       preco: 'o seu cliente compra pelo preço',
       procura: 'você corre atrás de cada cliente',
     },
-    primeiraLeitura: 'Primeira leitura, o diagnóstico profundo é o Raio-X',
     voltarSite: 'Voltar ao site',
   },
 } as const;
