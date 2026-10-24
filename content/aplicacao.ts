@@ -69,8 +69,8 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'escolha',
     tipo: 'opcoes',
-    titulo: 'Na hora de escolher, o cliente escolhe você ou o mais barato?',
-    opcoes: ['Escolhe você', 'Depende do dia', 'O mais barato, quase sempre'],
+    titulo: 'Na hora de comprar, o cliente fecha com você ou com o mais barato?',
+    opcoes: ['Comigo', 'Depende do dia', 'Com o mais barato, quase sempre'],
     dor: 'escolhem o mais barato',
   },
   {
@@ -133,14 +133,14 @@ export const perguntas: readonly Pergunta[] = [
     id: 'folga',
     tipo: 'opcoes',
     titulo: 'Quando foi a última vez que você tirou um dia de folga sem pensar no negócio?',
-    opcoes: ['Faço isso sempre', 'Raramente', 'Nem lembro'],
+    opcoes: ['Esta semana', 'Há meses', 'Nem lembro'],
     dor: 'não tira folga',
   },
   {
     id: 'parado',
     tipo: 'opcoes',
-    titulo: 'Há quanto tempo o seu negócio está do mesmo tamanho?',
-    opcoes: ['Está crescendo', 'Cresceu pouco', 'Travado há muito tempo'],
+    titulo: 'O seu negócio está crescendo ou parado?',
+    opcoes: ['Crescendo', 'Cresceu pouco', 'Parado há muito tempo'],
     dor: 'negócio parado',
   },
   {
