@@ -54,6 +54,7 @@ export default function FormularioAplicacao() {
   const [respostas, setRespostas] = useState<RespostasAplicacao>(vazio);
   const [erro, setErro] = useState('');
   const [enviando, setEnviando] = useState(false);
+  const [calculando, setCalculando] = useState(false); // pausa curta de expectativa antes do resultado
   const [armadilha, setArmadilha] = useState(''); // campo escondido contra robôs
   const inputRef = useRef<HTMLInputElement>(null);
   const tituloRef = useRef<HTMLHeadingElement>(null);
@@ -116,7 +117,9 @@ export default function FormularioAplicacao() {
           resumo,
         });
         setDirecao('frente');
+        setCalculando(true);
         setEtapa(total);
+        setTimeout(() => setCalculando(false), 1700);
       } catch {
         setErro(t.erros.envio);
       } finally {
@@ -166,7 +169,7 @@ export default function FormularioAplicacao() {
   }, [pergunta, escolherOpcao]);
 
   const bg = textureProps('papel-azul');
-  const resultado = etapa === total ? calcularDiagnostico(respostas) : null;
+  const resultado = etapa === total && !calculando ? calcularDiagnostico(respostas) : null;
   // Sem o número da HAZE configurado, o link abre o WhatsApp só com a mensagem pronta (a pessoa escolhe o contato)
   const linkWhatsapp = resultado
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -314,6 +317,22 @@ export default function FormularioAplicacao() {
                   {erro}
                 </p>
               )}
+            </div>
+          )}
+
+          {/* Antecipação: as barras acendem uma a uma enquanto o resultado "carrega" */}
+          {etapa === total && calculando && (
+            <div className="text-center" role="status">
+              <p className="display text-[22px] md:text-[30px]">{t.resultado.calculando}</p>
+              <div className="mx-auto mt-5 flex max-w-[340px] gap-1" aria-hidden="true">
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <span
+                    key={i}
+                    style={{ '--i': i } as React.CSSProperties}
+                    className="animate-item h-2 flex-1 rounded-full border border-black bg-cyan shadow-[0_0_8px_rgba(1,187,251,.8)]"
+                  />
+                ))}
+              </div>
             </div>
           )}
 

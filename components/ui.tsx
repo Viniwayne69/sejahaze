@@ -163,8 +163,8 @@ export function Accent({ children, bar = 'cyan' }: { children: React.ReactNode; 
 }
 
 /** Pequena nota abaixo dos botões ("Leva menos de 2 minutos"). */
-export function ApplyNote({ className }: { className?: string }) {
-  return <p className={cn('mt-2.5 text-center text-[12px] font-medium', className)}>{copy.applyNote}</p>;
+export function ApplyNote({ className, children }: { className?: string; children?: React.ReactNode }) {
+  return <p className={cn('mt-2.5 text-center text-[12px] font-medium', className)}>{children ?? copy.applyNote}</p>;
 }
 
 /** Barra curta reta da marca, usada no lugar de marcadores e ícones. */

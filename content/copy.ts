@@ -6,7 +6,7 @@
 export const copy = {
   brand: 'HAZE',
   apply: 'Iniciar diagnóstico gratuito',
-  applyNote: 'Leva menos de 2 minutos',
+  applyNote: 'Leva menos de 2 minutos, para você ver o que trava a sua marca',
   skipLink: 'Pular para o conteúdo',
 
   topBar: {
@@ -18,6 +18,7 @@ export const copy = {
     accent: 'desejada',
     after: 'E VENDER MAIS',
     subtitle: 'Consultoria que estrutura a experiência do cliente, do primeiro contato ao pós-venda',
+    nota: 'Descubra de 1 a 10 como está o seu negócio, leva menos de 2 minutos',
   },
 
   promessa: {

@@ -35,7 +35,7 @@ export default function Hero() {
             <p className="max-w-[420px] text-[19px] font-semibold leading-snug text-paper md:text-[22px] lg:text-[21px]">{subtitle}</p>
             <div className="mt-5 lg:mt-8 lg:max-w-[340px]">
               <Button>{copy.apply}</Button>
-              <ApplyNote className="text-paper/90" />
+              <ApplyNote className="text-paper/90">{copy.hero.nota}</ApplyNote>
             </div>
           </div>
         </div>

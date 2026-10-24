@@ -21,7 +21,7 @@ export type Pergunta =
  */
 export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
-  { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome do seu negócio?', placeholder: 'Ex: Almeida & Silva' },
+  { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome do seu negócio?', ajuda: 'Para personalizar o seu resultado', placeholder: 'Ex: Almeida & Silva' },
   {
     id: 'trava',
     tipo: 'opcoes',
@@ -38,6 +38,7 @@ export const perguntas: readonly Pergunta[] = [
     id: 'preco',
     tipo: 'opcoes',
     titulo: 'Se você aumentar o seu preço, o cliente continua comprando?',
+    ajuda: 'Mostra o quanto a sua marca vale',
     opcoes: ['Sim, continua', 'Alguns vão embora', 'Quase todos somem'],
   },
   {
@@ -56,7 +57,7 @@ export const perguntas: readonly Pergunta[] = [
     id: 'faturamento',
     tipo: 'opcoes',
     titulo: 'Qual o faturamento anual da sua empresa?',
-    ajuda: 'Escolha a faixa que mais se aproxima da sua realidade',
+    ajuda: 'Para indicar o caminho certo',
     opcoes: [
       'Ainda não faturamos',
       'Até R$ 60 mil/ano',
@@ -71,7 +72,7 @@ export const perguntas: readonly Pergunta[] = [
     id: 'telefone',
     tipo: 'tel',
     titulo: 'Qual o seu WhatsApp?',
-    ajuda: 'Com DDD, o seu resultado aparece na próxima tela e a equipe continua a conversa por aqui',
+    ajuda: 'Com DDD, para enviar o seu resultado',
     placeholder: '(11) 99999-9999',
   },
 ];
@@ -85,7 +86,7 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
 export const perfis = [
   { ate: 2, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
   { ate: 5, titulo: 'DINHEIRO NA MESA', texto: '' },
-  { ate: 8, titulo: 'PRECISA DE AÇÃO AGORA', texto: '' },
+  { ate: 8, titulo: 'PRECISA DE AÇÃO AGORA', texto: 'Cada mês assim é cliente indo para o concorrente' },
 ] as const;
 
 export const textosAplicacao = {
@@ -121,6 +122,7 @@ export const textosAplicacao = {
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
       `Oi, sou ${nome}, da ${empresa}, fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}, faturamento ${faturamento}, quero conversar`,
+    calculando: 'Calculando o seu resultado',
     primeiraLeitura: 'Primeira leitura, o diagnóstico profundo é o Raio-X',
     voltarSite: 'Voltar ao site',
   },
