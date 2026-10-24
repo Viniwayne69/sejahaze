@@ -119,7 +119,7 @@ export default function FormularioAplicacao() {
         setDirecao('frente');
         setCalculando(true);
         setEtapa(total);
-        setTimeout(() => setCalculando(false), 1700);
+        setTimeout(() => setCalculando(false), 3000);
       } catch {
         setErro(t.erros.envio);
       } finally {
@@ -328,7 +328,7 @@ export default function FormularioAplicacao() {
                 {Array.from({ length: 10 }).map((_, i) => (
                   <span
                     key={i}
-                    style={{ '--i': i } as React.CSSProperties}
+                    style={{ animationDelay: `${i * 250}ms` }}
                     className="animate-item h-2 flex-1 rounded-full border border-black bg-cyan shadow-[0_0_8px_rgba(1,187,251,.8)]"
                   />
                 ))}
