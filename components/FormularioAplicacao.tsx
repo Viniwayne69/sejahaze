@@ -160,18 +160,11 @@ export default function FormularioAplicacao() {
   const bg = textureProps('papel-azul');
   const resultado = etapa === total && !calculando ? calcularDiagnostico(respostas) : null;
   // Sem o número da HAZE configurado, o link abre o WhatsApp só com a mensagem pronta (a pessoa escolhe o contato)
-  // Link do WhatsApp com a mensagem pronta; a área que a pessoa escolhe no resultado entra no texto
-  const montarLink = (prioridade: string) =>
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      t.resultado.whatsappMensagem(
-        primeiroNome,
-        respostas.empresa.trim(),
-        resultado?.nota ?? 0,
-        respostas.trava,
-        respostas.faturamento,
-        prioridade,
-      ),
-    )}`;
+  const linkWhatsapp = resultado
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava, respostas.faturamento),
+      )}`
+    : '';
 
   return (
     // No celular a textura fica um pouco mais larga que a tela, para só um toque da névoa azul aparecer nas laterais
@@ -342,7 +335,7 @@ export default function FormularioAplicacao() {
 
           {/* Resultado em cena: medidor, radar das áreas, ponto mais fraco e WhatsApp */}
           {resultado && (
-            <ResultadoDiagnostico nome={primeiroNome} negocio={respostas.empresa.trim()} resultado={resultado} montarLink={montarLink} />
+            <ResultadoDiagnostico nome={primeiroNome} negocio={respostas.empresa.trim()} resultado={resultado} linkWhatsapp={linkWhatsapp} />
           )}
 
           <input

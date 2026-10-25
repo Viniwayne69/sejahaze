@@ -598,16 +598,3 @@
     res-label-pulsa 1.8s ease-out 4.4s infinite;
   animation-delay: var(--d, 0ms), 4.4s;
 }
-
-/* Resultado interativo */
-.arco-vivo {
-  stroke-dasharray: 100;
-  stroke-dashoffset: var(--off);
-  transition: stroke-dashoffset 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.ponteiro-vivo {
-  transform-origin: 120px 120px;
-  transform: rotate(var(--ang));
-  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
