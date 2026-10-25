@@ -599,6 +599,16 @@
   animation-delay: var(--d, 0ms), 4.4s;
 }
 
+/* Computador: os títulos do SITE (não do diagnóstico) usam a Archivo estreita, como no layout aprovado */
+@media (min-width: 1024px) {
+  .site-pc .display {
+    font-variation-settings: 'wdth' 62;
+    letter-spacing: -0.01em;
+    line-height: 0.98;
+    word-spacing: 0.14em;
+  }
+}
+
 /* Menu fixo do computador: as âncoras não ficam escondidas atrás dele */
 @media (min-width: 1024px) {
   html {

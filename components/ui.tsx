@@ -71,11 +71,11 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={cn('relative isolate overflow-hidden py-6 md:py-20', bg.className, className)}
+      className={cn('relative isolate overflow-hidden py-6 md:py-20 lg:py-28', bg.className, className)}
       style={bg.style}
     >
       <Emenda fade={fade} />
-      <Container>{children}</Container>
+      <Container className="lg:max-w-[1280px] min-[1700px]:max-w-[1280px]">{children}</Container>
     </section>
   );
 }

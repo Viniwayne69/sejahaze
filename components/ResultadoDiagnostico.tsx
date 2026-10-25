@@ -76,7 +76,7 @@ export default function ResultadoDiagnostico({
     : '';
 
   return (
-    <div className="relative mx-auto w-full max-w-[420px]">
+    <div className="relative mx-auto w-full max-w-[420px] lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-10">
       {/* Névoa que cobre a tela e se dissipa, e o clarão ciano */}
       <div aria-hidden="true" className="res-nevoa" />
       <div aria-hidden="true" className="res-flash pointer-events-none fixed inset-0 z-20 bg-[radial-gradient(ellipse_at_center,rgba(1,187,251,.7),rgba(1,187,251,0)_70%)]" />
@@ -85,14 +85,14 @@ export default function ResultadoDiagnostico({
         className="luz-acende pointer-events-none absolute -top-16 left-1/2 -z-10 size-64 rounded-full bg-cyan blur-3xl md:size-80"
       />
 
-      <p style={{ '--d': '400ms' } as React.CSSProperties} className="res-entra text-center text-[12px] font-semibold uppercase tracking-[0.08em]">
+      <p style={{ '--d': '400ms' } as React.CSSProperties} className="res-entra text-center text-[12px] font-semibold uppercase tracking-[0.08em] lg:col-start-1 lg:row-start-1 lg:self-end lg:text-left lg:text-[13px]">
         {nome}, {t.resultado.rotulo}
       </p>
-      <h1 tabIndex={-1} className="res-titulo display mt-2 text-center text-[30px] outline-none md:text-[44px]">
+      <h1 tabIndex={-1} className="res-titulo display mt-2 text-center text-[30px] outline-none md:text-[44px] lg:col-start-1 lg:row-start-2 lg:mt-3 lg:text-left lg:text-[clamp(34px,3.5vw,52px)] lg:leading-[1.02]">
         {perfil.titulo.split(' ').slice(0, -1).join(' ')} <Accent>{perfil.titulo.split(' ').slice(-1)[0]}</Accent>
       </h1>
       {perfil.texto && (
-        <p style={{ '--d': '1000ms' } as React.CSSProperties} className="res-entra mx-auto mt-3 max-w-[380px] text-center text-[16px] leading-snug">
+        <p style={{ '--d': '1000ms' } as React.CSSProperties} className="res-entra mx-auto mt-3 max-w-[380px] text-center text-[16px] leading-snug lg:col-start-1 lg:row-start-3 lg:mx-0 lg:max-w-none lg:text-left lg:text-[18px]">
           {perfil.texto}
         </p>
       )}
@@ -101,10 +101,10 @@ export default function ResultadoDiagnostico({
       <section
         aria-label={`${t.resultado.medidorTitulo}: ${t.resultado.pontuacao(nota)}`}
         style={{ '--d': '1000ms' } as React.CSSProperties}
-        className="res-entra mt-6 rounded-[24px] border-2 border-black bg-paper px-4 pb-4 pt-4 shadow-[0_0_26px_rgba(1,187,251,.3)]"
+        className="res-entra mt-6 rounded-[24px] border-2 border-black bg-paper px-4 pb-4 pt-4 shadow-[0_0_26px_rgba(1,187,251,.3)] lg:col-start-1 lg:row-start-4 lg:mt-8 lg:px-8 lg:pb-6 lg:pt-6"
       >
         <p className="text-center text-[12px] font-semibold uppercase tracking-[0.08em]">{t.resultado.medidorTitulo}</p>
-        <div className="relative mx-auto mt-2 w-full max-w-[300px]">
+        <div className="relative mx-auto mt-2 w-full max-w-[300px] lg:max-w-[380px]">
           <svg viewBox="0 0 240 190" className="block w-full" aria-hidden="true">
             <path d="M 20 120 A 100 100 0 0 1 220 120" pathLength={100} fill="none" stroke="#000" strokeOpacity="0.1" strokeWidth="14" strokeLinecap="round" />
             <path
@@ -119,6 +119,16 @@ export default function ResultadoDiagnostico({
             />
             <g className="ponteiro" style={{ '--ang': `${ang}deg` } as React.CSSProperties}>
               <line x1="120" y1="120" x2="120" y2="42" stroke="#000" strokeWidth="3.5" strokeLinecap="round" />
+            </g>
+            <g className="hidden lg:inline" aria-hidden="true">
+              {[0, 2, 4, 6, 8, 10].map((v) => {
+                const a = Math.PI * (1 - v / 10);
+                return (
+                  <text key={v} x={120 + 114 * Math.cos(a)} y={120 - 114 * Math.sin(a)} fontSize="9" fontWeight="600" fill="#000" fillOpacity="0.6" textAnchor="middle" dominantBaseline="middle">
+                    {v}
+                  </text>
+                );
+              })}
             </g>
             <circle cx="120" cy="120" r="8" fill="#000" />
             <circle cx="120" cy="120" r="3" fill="#01BBFB" />
@@ -136,11 +146,11 @@ export default function ResultadoDiagnostico({
       <section
         aria-label={t.resultado.radarTitulo}
         style={{ '--d': '2600ms' } as React.CSSProperties}
-        className="res-entra mt-4 rounded-[24px] border-2 border-black bg-paper px-4 pb-4 pt-4"
+        className="res-entra mt-4 rounded-[24px] border-2 border-black bg-paper px-4 pb-4 pt-4 lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:px-8 lg:pb-8 lg:pt-8"
       >
         <p className="text-center text-[12px] font-semibold uppercase tracking-[0.08em]">{t.resultado.radarTitulo}</p>
         <p className="mt-0.5 text-center text-[11px] text-gray">{t.resultado.toque}</p>
-        <div className="relative mx-auto mt-1 aspect-square w-full max-w-[330px]">
+        <div className="relative mx-auto mt-1 aspect-square w-full max-w-[330px] lg:max-w-[470px]">
           <svg viewBox="0 0 300 300" className="absolute inset-0 size-full" aria-hidden="true">
             {[1, 0.66, 0.33].map((n) => (
               <polygon key={n} points={pontos(areas.map(() => RAIO * n))} fill="none" stroke="#000" strokeOpacity="0.16" strokeWidth="1" />
@@ -214,17 +224,17 @@ export default function ResultadoDiagnostico({
       </section>
 
       {/* O botão acompanha a rolagem no celular e fecha a tela */}
-      <div className="sticky bottom-3 z-10 mt-6 text-center">
+      <div className="sticky bottom-3 z-10 mt-6 text-center lg:col-span-2 lg:row-start-5 lg:mt-8">
         <a
           href={linkWhatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(btnPrincipal, 'res-cta w-full shadow-[0_10px_28px_rgba(0,0,0,.2)] md:w-auto md:min-w-[340px]')}
+          className={cn(btnPrincipal, 'res-cta w-full shadow-[0_10px_28px_rgba(0,0,0,.2)] md:w-auto md:min-w-[340px] lg:min-h-[60px] lg:w-full lg:text-[19px]')}
         >
           {t.resultado.whatsappBotao}
         </a>
       </div>
-      <p style={{ '--d': '6000ms' } as React.CSSProperties} className="res-entra mx-auto mt-3 max-w-[340px] text-center text-[13px] leading-snug">
+      <p style={{ '--d': '6000ms' } as React.CSSProperties} className="res-entra mx-auto mt-3 max-w-[340px] text-center text-[13px] leading-snug lg:col-span-2 lg:row-start-6 lg:max-w-none">
         {t.resultado.legendaBotao}
       </p>
     </div>

@@ -42,15 +42,15 @@ export default function Metodo() {
   return (
     <Section id="metodo" texture="topografica-v3" fade="black" labelledBy="metodo-titulo">
       <div data-reveal>
-        <Heading id="metodo-titulo" before={before} accent={accent} />
+        <Heading id="metodo-titulo" before={before} accent={accent} className="lg:max-w-[9.4em] lg:text-[clamp(56px,5.8vw,84px)]" />
       </div>
 
       <Carrossel
         label="Etapas do método"
         setaTop="top-[38%]"
         items={steps.map((step, i) => (
-          <article key={step.title} className="flex h-full flex-col overflow-hidden rounded-[24px] border-2 border-black bg-paper">
-            <div className="relative aspect-[5/4] w-full bg-black">
+          <article key={step.title} className="flex h-full flex-col overflow-hidden rounded-[24px] border-2 border-black bg-paper lg:rounded-[20px] lg:border lg:border-black/10 lg:bg-paper/70">
+            <div className="relative aspect-[5/4] w-full bg-black lg:aspect-[16/11]">
               <Image
                 src={fotos[i].src}
                 alt={fotos[i].alt}
@@ -69,19 +69,19 @@ export default function Metodo() {
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_100%,#01BBFB,transparent_65%)] mix-blend-screen"
                 style={{ opacity: fotos[i].luz }}
               />
-              <span className="absolute left-3 top-3 grid size-10 place-items-center rounded-[12px] border-2 border-black bg-cyan font-display text-[15px] font-black text-black">
+              <span className="absolute left-3 top-3 grid size-10 place-items-center rounded-[12px] border-2 border-black bg-cyan font-display text-[15px] font-black text-black lg:bottom-[-22px] lg:left-5 lg:top-auto lg:z-10 lg:size-11 lg:rounded-full lg:border-0">
                 {step.number}
               </span>
             </div>
-            <div className="flex flex-1 flex-col gap-1.5 px-4 pb-4 pt-3.5 md:px-5 md:pb-5">
-              <h3 className="font-display text-[22px] font-black uppercase leading-none md:text-[22px]">{step.title}</h3>
-              <p className="text-[14.5px] leading-snug md:text-[15px]">{step.body}</p>
+            <div className="flex flex-1 flex-col gap-1.5 px-4 pb-4 pt-3.5 md:px-5 md:pb-5 lg:px-6 lg:pb-6 lg:pt-9">
+              <h3 className="font-display text-[22px] font-black uppercase leading-none md:text-[22px] lg:text-[26px]">{step.title}</h3>
+              <p className="text-[14.5px] leading-snug md:text-[15px] lg:text-[16px]">{step.body}</p>
             </div>
           </article>
         ))}
       />
 
-      <p data-reveal className="mt-4 rounded-[24px] border-2 border-black bg-paper px-4 py-3 text-center text-[14px] leading-snug md:mx-auto md:mt-8 md:max-w-[720px] md:rounded-full md:text-[16px]">
+      <p data-reveal className="mt-4 rounded-[24px] border-2 border-black bg-paper px-4 py-3 text-center text-[14px] leading-snug md:mx-auto md:mt-8 md:max-w-[720px] md:rounded-full md:text-[16px] lg:mt-10 lg:max-w-none lg:border lg:border-black/40 lg:bg-transparent lg:py-4 lg:text-[14px] lg:uppercase lg:tracking-[0.03em]">
         <strong>{resultLabel}:</strong>
         {resultText.join(':')}
       </p>

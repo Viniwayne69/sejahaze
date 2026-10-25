@@ -21,11 +21,12 @@ export default function Perguntas() {
 
   return (
     <Section id="perguntas" texture="topografica-v3" fade="cyan" labelledBy="perguntas-titulo">
-      <div data-reveal className="md:text-center">
-        <Heading id="perguntas-titulo" before={title} />
+      <div className="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-20">
+      <div data-reveal className="md:text-center lg:self-start lg:text-left">
+        <Heading id="perguntas-titulo" before={title} className="lg:text-[clamp(56px,5.8vw,84px)]" />
       </div>
 
-      <div data-reveal className="mt-5 grid gap-2.5 md:mx-auto md:mt-10 md:max-w-[780px] md:gap-3">
+      <div data-reveal className="mt-5 grid gap-2.5 md:mx-auto md:mt-10 md:max-w-[780px] md:gap-3 lg:mx-0 lg:mt-0 lg:max-w-none">
         {items.map((item, i) => {
           const isOpen = open === i;
           const buttonId = `${baseId}-q${i}`;
@@ -63,6 +64,7 @@ export default function Perguntas() {
             </div>
           );
         })}
+      </div>
       </div>
     </Section>
   );

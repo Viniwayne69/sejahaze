@@ -23,14 +23,14 @@ export default function Dores() {
         <div className="absolute -bottom-20 left-1/2 h-40 w-[70%] -translate-x-1/2 rounded-full bg-cyan/25 blur-3xl md:h-56 md:w-[480px]" />
       </div>
 
-      <div data-reveal className="md:mx-auto md:max-w-[760px] md:text-center">
-        <Heading id="dores-titulo" before={title} />
+      <div data-reveal className="md:mx-auto md:max-w-[760px] md:text-center lg:max-w-none">
+        <Heading id="dores-titulo" before={title} className="lg:text-[clamp(56px,5.8vw,84px)]" />
       </div>
 
       <Carrossel
         label="Sinais de que a marca precisa mudar"
         items={items.map((item, i) => (
-          <figure key={item} className="relative aspect-square overflow-hidden rounded-[24px] border border-cyan/40 bg-black shadow-[0_0_26px_rgba(1,187,251,.16)] md:aspect-[4/5]">
+          <figure key={item} className="relative aspect-square overflow-hidden rounded-[24px] border border-cyan/40 bg-black shadow-[0_0_26px_rgba(1,187,251,.16)] md:aspect-[4/5] lg:aspect-[11/15] lg:rounded-[18px]">
             <Image
               src={fotos[i].src}
               alt={fotos[i].alt}
@@ -39,7 +39,7 @@ export default function Dores() {
               className={`foto-zoom object-cover ${fotos[i].posicao}`}
             />
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent" />
-            <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-4 pr-14 text-[20px] font-semibold leading-snug md:px-6 md:pb-6 md:pr-6 md:text-[22px]">
+            <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-4 pr-14 text-[20px] font-semibold leading-snug md:px-6 md:pb-6 md:pr-6 md:text-[22px] lg:px-7 lg:pb-7 lg:text-[21px] lg:font-extrabold lg:uppercase lg:leading-tight">
               {item}
             </figcaption>
           </figure>

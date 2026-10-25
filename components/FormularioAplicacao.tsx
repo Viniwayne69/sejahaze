@@ -188,33 +188,41 @@ export default function FormularioAplicacao() {
       </header>
 
       <div className="flex flex-1 items-center px-[22px] py-7 md:py-14">
-        <div key={etapa} className={cn('relative mx-auto w-full max-w-[680px]', direcao === 'frente' ? 'animate-etapa-frente' : 'animate-etapa-tras')}>
+        <div
+          key={etapa}
+          className={cn(
+            'relative mx-auto w-full max-w-[680px]',
+            (etapa === -1 || resultado) && 'lg:max-w-[1180px]',
+            direcao === 'frente' ? 'animate-etapa-frente' : 'animate-etapa-tras',
+          )}
+        >
           {/* Boas-vindas: foto da marca, título e botão */}
           {etapa === -1 && (
-            <div className="text-center">
-              <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-[24px] border-2 border-black bg-black">
+            <div className="text-center lg:grid lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-center lg:gap-x-16 lg:text-left">
+              <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-[24px] border-2 border-black bg-black lg:aspect-[5/4] lg:max-w-none lg:border-cyan lg:shadow-[0_0_44px_rgba(1,187,251,.35)]">
                 <Image
                   src="/images/diagnostico.webp"
                   alt={t.boasVindas.fotoAlt}
                   fill
                   priority
-                  sizes="(min-width: 768px) 420px, 100vw"
-                  className="object-cover object-center"
+                  sizes="(min-width: 1024px) 700px, (min-width: 768px) 420px, 100vw"
+                  className="object-cover object-center lg:object-[68%_50%]"
                 />
                 <div aria-hidden="true" className="hero-nevoa pointer-events-none absolute inset-0" />
               </div>
-              <h1 className="display mt-6 text-[27px] md:mt-8 md:text-[44px]">
+              <div>
+              <h1 className="display mt-6 text-[27px] md:mt-8 md:text-[44px] lg:mt-0 lg:text-[clamp(40px,3.7vw,54px)] lg:leading-[1.02]">
                 {t.boasVindas.antes} <Accent>{t.boasVindas.destaque}</Accent> {t.boasVindas.depois}
               </h1>
               {t.boasVindas.paragrafos.map((p) => (
-                <p key={p} className="mx-auto mt-3 max-w-[540px] text-[15px] leading-[1.45] md:mt-4 md:text-[19px]">
+                <p key={p} className="mx-auto mt-3 max-w-[540px] text-[15px] leading-[1.45] md:mt-4 md:text-[19px] lg:mx-0 lg:max-w-none">
                   {p}
                 </p>
               ))}
-              <button type="button" onClick={() => ir(0)} className={cn(btnPrincipal, 'mt-6 w-full md:mt-8 md:w-auto md:min-w-[300px]')}>
+              <button type="button" onClick={() => ir(0)} className={cn(btnPrincipal, 'mt-6 w-full md:mt-8 md:w-auto md:min-w-[300px] lg:min-h-[60px] lg:w-full lg:text-[18px]')}>
                 {t.boasVindas.botao}
               </button>
-              <ul className="mx-auto mt-5 grid max-w-[340px] gap-2 text-left text-[14px] leading-snug md:text-[15px]">
+              <ul className="mx-auto mt-5 grid max-w-[340px] gap-2 text-left text-[14px] leading-snug md:text-[15px] lg:mx-0 lg:mt-7 lg:max-w-none lg:gap-3 lg:text-[17px]">
                 {t.boasVindas.recebe.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span aria-hidden="true" className="mt-[0.55em] inline-block h-[3px] w-4 shrink-0 bg-cyan" />
@@ -222,6 +230,7 @@ export default function FormularioAplicacao() {
                   </li>
                 ))}
               </ul>
+              </div>
             </div>
           )}
 

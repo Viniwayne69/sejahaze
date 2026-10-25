@@ -29,14 +29,20 @@ export default function ParaQuem() {
 
       <article
         data-reveal
-        className="rounded-[24px] border border-cyan/40 bg-graphite px-5 py-5 shadow-[0_0_26px_rgba(1,187,251,.16)] md:mx-auto md:max-w-[720px] md:px-10 md:py-10"
+        className="rounded-[24px] border border-cyan/40 bg-graphite px-5 py-5 shadow-[0_0_26px_rgba(1,187,251,.16)] md:mx-auto md:max-w-[720px] md:px-10 md:py-10 lg:grid lg:max-w-none lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:gap-x-20 lg:px-16 lg:py-16"
       >
-        <h2 id="para-quem-titulo" className="display text-[22px] leading-none md:text-[30px]">
-          {title}
-        </h2>
-        <p className="mt-3 text-[13px] text-gray md:text-[14px]">{dica}</p>
+        <div>
+          <h2 id="para-quem-titulo" className="display text-[22px] leading-none md:text-[30px] lg:text-[clamp(48px,4.6vw,68px)]">
+            {title}
+          </h2>
+          <p className="mt-3 text-[13px] text-gray md:text-[14px] lg:text-[16px]">
+            <span className="lg:hidden">{dica}</span>
+            <span className="hidden lg:inline">{dica.replace('Toque', 'Clique')}</span>
+          </p>
+        </div>
 
-        <ul className="mt-3 grid gap-2.5 md:mt-4 md:gap-3">
+        <div>
+        <ul className="mt-3 grid gap-2.5 md:mt-4 md:gap-3 lg:mt-0">
           {items.map((item, i) => {
             const marcado = marcados.includes(i);
             return (
@@ -83,6 +89,7 @@ export default function ParaQuem() {
               <Button>{copy.apply}</Button>
             </div>
           </div>
+        </div>
         </div>
       </article>
     </Section>

@@ -93,7 +93,7 @@ export default function AntesDepois({
       onPointerUp={() => (arrastando.current = false)}
       onPointerCancel={() => (arrastando.current = false)}
       onKeyDown={teclas}
-      className="relative mx-auto aspect-[4/5] w-full max-w-[420px] select-none md:cursor-ew-resize overflow-hidden rounded-[24px] border-2 border-black bg-black [touch-action:pan-y]"
+      className="relative mx-auto aspect-[4/5] w-full max-w-[420px] select-none md:cursor-ew-resize overflow-hidden rounded-[24px] border-2 border-black bg-black [touch-action:pan-y] lg:aspect-[24/25] lg:max-w-none lg:rounded-[20px] lg:border-0"
     >
       <Image
         src="/images/antes.webp"
@@ -103,7 +103,7 @@ export default function AntesDepois({
         draggable={false}
         className="pointer-events-none object-cover object-[50%_62%]"
       />
-      <p className="pointer-events-none absolute left-3 top-3 max-w-[40%] rounded-[10px] border-[1.5px] border-black bg-paper px-1.5 py-0.5 font-display text-[9px] font-black uppercase leading-tight text-black md:text-[12px]">
+      <p className="pointer-events-none absolute left-3 top-3 max-w-[40%] rounded-[10px] border-[1.5px] border-black bg-paper px-1.5 py-0.5 font-display text-[9px] font-black uppercase leading-tight text-black md:text-[12px] lg:hidden">
         {antesFrase}
       </p>
       <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)`, ...transicao }}>
@@ -115,20 +115,20 @@ export default function AntesDepois({
           draggable={false}
           className="pointer-events-none object-cover object-[50%_62%]"
         />
-        <p className="pointer-events-none absolute right-3 top-3 max-w-[40%] rounded-[10px] border-[1.5px] border-black bg-cyan px-1.5 py-0.5 text-right font-display text-[9px] font-black uppercase leading-tight text-black md:text-[12px]">
+        <p className="pointer-events-none absolute right-3 top-3 max-w-[40%] rounded-[10px] border-[1.5px] border-black bg-cyan px-1.5 py-0.5 text-right font-display text-[9px] font-black uppercase leading-tight text-black md:text-[12px] lg:hidden">
           {depoisFrase}
         </p>
       </div>
 
-      <span className="pointer-events-none absolute bottom-3 left-3 rounded-full border-2 border-black bg-paper px-3 py-1 font-display text-[12px] font-black uppercase leading-none text-black md:text-[14px]">
+      <span className="pointer-events-none absolute bottom-3 left-3 rounded-full border-2 border-black bg-paper px-3 py-1 font-display text-[12px] font-black uppercase leading-none text-black md:text-[14px] lg:bottom-auto lg:left-4 lg:top-4 lg:border-0 lg:bg-black/55 lg:text-[13px] lg:text-paper">
         {antes}
       </span>
-      <span className="pointer-events-none absolute bottom-3 right-3 rounded-full border-2 border-black bg-cyan px-3 py-1 font-display text-[12px] font-black uppercase leading-none text-black md:text-[14px]">
+      <span className="pointer-events-none absolute bottom-3 right-3 rounded-full border-2 border-black bg-cyan px-3 py-1 font-display text-[12px] font-black uppercase leading-none text-black md:text-[14px] lg:bottom-auto lg:right-4 lg:top-4 lg:border-0 lg:text-[13px]">
         {depois}
       </span>
 
       {/* Linha e botão de arrastar */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 w-[3px] -translate-x-1/2 bg-cyan" style={{ left: `${pos}%`, ...transicao }} />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 w-[3px] -translate-x-1/2 bg-cyan lg:w-[2px] lg:bg-paper" style={{ left: `${pos}%`, ...transicao }} />
       <div
         aria-hidden="true"
         onPointerDown={(e) => {
@@ -144,7 +144,7 @@ export default function AntesDepois({
         className="absolute top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 cursor-grab place-items-center [touch-action:none] active:cursor-grabbing"
         style={{ left: `${pos}%`, ...transicao }}
       >
-        <span className="grid size-11 place-items-center rounded-full border-2 border-black bg-cyan text-black">
+        <span className="grid size-11 place-items-center rounded-full border-2 border-black bg-cyan text-black lg:border-0 lg:bg-paper">
           <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 7l-5 5 5 5M15 7l5 5-5 5" />
           </svg>

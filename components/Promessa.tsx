@@ -11,11 +11,11 @@ export default function Promessa() {
 
   return (
     <Section texture="papel-azul" fade="black" labelledBy="promessa-chamada">
-      <div className="lg:grid lg:grid-cols-[1fr_minmax(0,440px)] lg:gap-x-16 lg:[grid-template-areas:'chamada_foto'_'frase_foto']">
+      <div className="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-20 lg:[grid-template-areas:'chamada_foto'_'frase_foto']">
         <div data-reveal className="text-center lg:self-end lg:text-left lg:[grid-area:chamada]">
           <h2
             id="promessa-chamada"
-            className="display whitespace-nowrap text-[clamp(14px,4.8vw,40px)] md:text-[40px] lg:whitespace-normal lg:text-[64px]"
+            className="display whitespace-nowrap text-[clamp(14px,4.8vw,40px)] md:text-[40px] lg:whitespace-normal lg:text-[clamp(72px,7.4vw,118px)]"
           >
             {chamada}
           </h2>
@@ -26,7 +26,7 @@ export default function Promessa() {
         </div>
 
         <div data-reveal className="mt-5 lg:mt-8 lg:self-start lg:[grid-area:frase]">
-          <Heading id="promessa-titulo" as="h3" before={before} accent={accent} after={after} className="[text-wrap:wrap] lg:text-[34px]" />
+          <Heading id="promessa-titulo" as="h3" before={before} accent={accent} after={after} className="[text-wrap:wrap] lg:text-[clamp(22px,2vw,30px)]" />
         </div>
       </div>
     </Section>

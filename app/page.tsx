@@ -24,7 +24,7 @@ export default function Home() {
       </a>
       <ScrollProgress />
       <TopBar />
-      <main id="conteudo" tabIndex={-1} className="outline-none">
+      <main id="conteudo" tabIndex={-1} className="site-pc outline-none">
         <Hero />
         <Promessa />
         <Dores />
