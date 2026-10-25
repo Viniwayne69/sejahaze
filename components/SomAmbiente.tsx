@@ -46,7 +46,7 @@ export default function SomAmbiente({ src, rotulo }: { src: string; rotulo: stri
       aria-pressed={ligado}
       aria-label={ligado ? 'Desligar o som' : 'Ligar o som'}
       className={cn(
-        'mt-3 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-black px-3 py-1.5 text-[12px] font-medium leading-none transition duration-200 active:scale-[0.98] md:text-[13px]',
+        'mt-3 inline-flex w-fit max-w-full items-center gap-2 rounded-full min-[360px]:whitespace-nowrap border-[1.5px] border-black px-3 py-1.5 text-[12px] font-medium leading-none transition duration-200 active:scale-[0.98] md:text-[13px]',
         ligado ? 'bg-cyan shadow-[0_0_14px_rgba(1,187,251,.55)]' : 'bg-transparent hover:border-cyan',
       )}
     >
