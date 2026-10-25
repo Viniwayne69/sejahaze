@@ -6,7 +6,7 @@
 export const copy = {
   brand: 'HAZE',
   apply: 'Iniciar diagnóstico gratuito',
-  applyNote: 'Leva menos de 2 minutos, para você ver o que trava a sua marca',
+  applyNote: 'Leva menos de 2 minutos, para você ver o quanto a sua marca é desejada',
   skipLink: 'Pular para o conteúdo',
 
   topBar: {

@@ -1,6 +1,6 @@
 /**
  * Leitura rápida das dores, calculada só pelas respostas (sem IA): cada opção das perguntas de dor vale
- * 0, 1 ou 2 pontos (definidos em `pontos` no conteúdo). A soma (0 a 14) vira a nota de 1 a 10 de dificuldade hoje,
+ * 0, 1 ou 2 pontos (definidos em `pontos` no conteúdo). A soma (0 a 14) vira a nota de 1 a 10 de desejo pela marca (quanto menos dificuldade, mais desejo),
  * e a soma por área (duas perguntas cada) mostra qual área está mais fraca.
  */
 
@@ -10,7 +10,7 @@ import type { RespostasAplicacao } from './aplicacao';
 export type Diagnostico = {
   /** Soma dos pontos de dificuldade (0 a 14). */
   pontos: number;
-  /** Nota de 1 a 10: 1 é tranquilo, 10 é crítico. */
+  /** Nota de desejo pela marca, de 1 a 10: 1 é pouco desejada, 10 é muito desejada. */
   nota: number;
   perfil: (typeof perfis)[number];
   /** Pontos de dificuldade por área (Desejo vai de 0 a 4, as outras de 0 a 2). */
@@ -55,5 +55,5 @@ export function calcularDiagnostico(r: RespostasAplicacao): Diagnostico {
     return p && p.tipo === 'opcoes' && p.dor && pontosDe(id, r[id]) === 2 ? [p.dor] : [];
   });
 
-  return { pontos, nota: Math.round(1 + (pontos / maximo) * 9), perfil, porArea, fraco, graves };
+  return { pontos, nota: Math.round(1 + ((maximo - pontos) / maximo) * 9), perfil, porArea, fraco, graves };
 }

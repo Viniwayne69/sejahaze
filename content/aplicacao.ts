@@ -28,12 +28,12 @@ export type Pergunta =
  * `fraco` é a frase do resultado ("Ponto mais fraco: ...").
  */
 export const areas = [
-  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você e falam de você', meio: 'parte dos clientes ainda compara só pelo preço', fraco: 'a sua marca ainda não é a escolha do cliente', campos: ['escolha', 'lembrado'] },
-  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa por você costuma comprar', meio: 'parte de quem se interessa não chega a comprar', fraco: 'muita gente se interessa por você e não compra', campos: ['procura'] },
-  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que o seu trabalho vale', meio: 'existe receio na hora de aumentar o preço', fraco: 'você deixa dinheiro na mesa por medo de cobrar mais', campos: ['medo'] },
-  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'sobra pouco para o tanto que você trabalha', fraco: 'o dinheiro não acompanha o seu trabalho', campos: ['sobra'] },
-  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio perde o ritmo quando você não está', fraco: 'o negócio depende só de você', campos: ['doente'] },
-  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode ficar parado se nada mudar', fraco: 'o seu negócio corre o risco de ficar para trás', campos: ['doisAnos'] },
+  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você e falam de você', meio: 'parte dos clientes já escolhe você, e há espaço para ser a escolha de todos', fraco: 'a sua marca pode se tornar a primeira escolha do cliente', campos: ['escolha', 'lembrado'] },
+  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa por você costuma comprar', meio: 'quem se interessa por você já compra, e dá para converter muito mais', fraco: 'muita gente já se interessa por você, e cada uma pode virar cliente', campos: ['procura'] },
+  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que o seu trabalho vale', meio: 'o seu preço já tem espaço para subir com mais segurança', fraco: 'a sua marca pode sustentar um preço bem maior', campos: ['medo'] },
+  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'o dinheiro pode acompanhar melhor o seu trabalho', fraco: 'o seu trabalho pode render muito mais para você', campos: ['sobra'] },
+  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar com mais ritmo mesmo sem você', fraco: 'o negócio pode andar sem depender só de você', campos: ['doente'] },
+  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio pode se tornar uma marca desejada nos próximos anos', campos: ['doisAnos'] },
 ] as const;
 
 export type AreaId = (typeof areas)[number]['id'];
@@ -140,22 +140,22 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
 };
 
-/** Perfis pelos pontos de dificuldade (0 a 14): quanto maior, mais a pessoa está sofrendo hoje. */
+/** Perfis pelos pontos de dificuldade (0 a 14): quanto maior, mais espaço a marca tem para crescer em desejo. */
 export const perfis = [
-  { ate: 3, titulo: 'PRONTO PARA ESCALAR', texto: 'Você tem boas bases, vamos ver até onde dá para crescer?' },
-  { ate: 8, titulo: 'DINHEIRO NA MESA', texto: '' },
-  { ate: 14, titulo: 'PRECISA DE AÇÃO AGORA', texto: 'Cada mês assim é cliente indo para o concorrente' },
+  { ate: 3, titulo: 'MARCA JÁ DESEJADA', texto: 'A sua marca já atrai, vamos ver até onde ela pode chegar' },
+  { ate: 8, titulo: 'DESEJO EM CRESCIMENTO', texto: 'A sua marca já tem base, falta fazer muito mais gente desejá-la' },
+  { ate: 14, titulo: 'PRONTA PARA SER DESEJADA', texto: 'A sua marca pode ser a escolha do seu mercado, e o caminho começa agora' },
 ] as const;
 
 export const textosAplicacao = {
   metaTitle: 'HAZE | Diagnóstico',
-  metaDescription: 'Descubra o que está travando as suas vendas, perguntas rápidas e o resultado na hora',
+  metaDescription: 'Descubra o quanto a sua marca é desejada, perguntas rápidas e o resultado na hora',
   boasVindas: {
-    antes: 'O QUE ESTÁ',
-    destaque: 'TRAVANDO',
-    depois: 'AS SUAS VENDAS?',
+    antes: 'O QUANTO A SUA MARCA É',
+    destaque: 'DESEJADA',
+    depois: 'HOJE?',
     paragrafos: ['Perguntas rápidas e o seu resultado na hora, leva menos de 2 minutos'],
-    recebe: ['Sua nota de 1 a 10', 'O ponto que mais trava a sua marca', 'O primeiro passo para resolver'],
+    recebe: ['Sua nota de desejo de 1 a 10', 'Onde a sua marca mais pode crescer', 'O primeiro passo para chegar lá'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
     botao: 'Iniciar diagnóstico gratuito',
@@ -177,17 +177,17 @@ export const textosAplicacao = {
   resultado: {
     rotulo: 'o seu resultado',
     pontuacao: (nota: number) => `${nota} de 10`,
-    medidorTitulo: 'Como está o seu negócio',
-    medidorExtremos: ['Tranquilo', 'Crítico'],
+    medidorTitulo: 'O quanto a sua marca é desejada',
+    medidorExtremos: ['Pouco', 'Muito'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string) => `Oi, sou ${nome}, da ${empresa}, quero conversar`,
     calculando: 'Calculando o seu resultado',
-    pontoFraco: 'Ponto mais fraco',
-    radarTitulo: 'O seu negócio por área',
+    pontoFraco: 'Onde a sua marca mais pode crescer',
+    radarTitulo: 'A sua marca por área',
     toque: 'Toque em uma área para ver o que ela diz',
-    forte: 'Forte',
-    atencao: 'Atenção',
-    fragil: 'Frágil',
+    forte: 'Já é forte',
+    atencao: 'Em crescimento',
+    fragil: 'A construir',
     primeiroPasso: 'Primeiro passo',
     primeiroPassoTexto: 'o Raio-X, uma reunião que termina em um plano de ação claro',
     voltarSite: 'Voltar ao site',

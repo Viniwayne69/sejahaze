@@ -89,7 +89,7 @@ export default function FormularioAplicacao() {
       try {
         const { perfil, nota, porArea, graves } = calcularDiagnostico(dados);
         const resumo = [
-          `Diagnóstico HAZE: ${perfil.titulo} (dificuldade ${nota}/10)`,
+          `Diagnóstico HAZE: ${perfil.titulo} (desejo ${nota}/10)`,
           `Dor por área: ${areas.map((a) => `${a.rotulo} ${porArea[a.id]}/${a.campos.length * 2}`).join(', ')}`,
           `Maior desafio: ${dados.trava}`,
           `Faturamento: ${dados.faturamento}`,
