@@ -194,12 +194,12 @@ export default function FormularioAplicacao() {
             <div className="text-center">
               <div className="relative mx-auto aspect-[4/3] w-full max-w-[420px] overflow-hidden rounded-[24px] border-2 border-black bg-black">
                 <Image
-                  src="/images/capa.webp"
+                  src="/images/diagnostico.webp"
                   alt={t.boasVindas.fotoAlt}
                   fill
                   priority
                   sizes="(min-width: 768px) 420px, 100vw"
-                  className="object-cover object-[50%_46%]"
+                  className="object-cover object-center"
                 />
                 <div aria-hidden="true" className="hero-nevoa pointer-events-none absolute inset-0" />
               </div>
