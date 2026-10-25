@@ -29,39 +29,6 @@ function useContagem(alvo: number, inicioMs: number, duracaoMs: number) {
   return valor;
 }
 
-/** Texto que aparece letra por letra. O texto inteiro fica reservado (invisível) para a tela não pular de altura. */
-function Digitado({ texto, inicioMs, velocidadeMs = 28 }: { texto: string; inicioMs: number; velocidadeMs?: number }) {
-  const [n, setN] = useState(0);
-  useEffect(() => {
-    if (semMovimento()) {
-      setN(texto.length);
-      return;
-    }
-    let frame = 0;
-    const inicio = performance.now() + inicioMs;
-    const passo = (agora: number) => {
-      const k = Math.min(texto.length, Math.max(0, Math.floor((agora - inicio) / velocidadeMs)));
-      setN(k);
-      if (k < texto.length) frame = requestAnimationFrame(passo);
-    };
-    frame = requestAnimationFrame(passo);
-    return () => cancelAnimationFrame(frame);
-  }, [texto, inicioMs, velocidadeMs]);
-
-  return (
-    <span className="relative block">
-      <span className="sr-only">{texto}</span>
-      <span aria-hidden="true" className="invisible block">
-        {texto}
-      </span>
-      <span aria-hidden="true" className="absolute inset-0 block">
-        {texto.slice(0, n)}
-        {n < texto.length && <span className="ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-cyan" />}
-      </span>
-    </span>
-  );
-}
-
 type Nivel = 'forte' | 'meio' | 'fraco';
 const nivelDe = (p: number): Nivel => (p === 0 ? 'forte' : p <= 0.5 ? 'meio' : 'fraco');
 
@@ -90,7 +57,7 @@ export default function ResultadoDiagnostico({
   linkWhatsapp: string;
 }) {
   const { nota, perfil, porArea, fraco } = resultado;
-  const [selecionada, setSelecionada] = useState<AreaId | null>(null);
+  const [selecionada, setSelecionada] = useState<AreaId | null>(fraco);
   const contagem = useContagem(nota, 1300, 1600);
 
   const proporcao = (id: AreaId) => {
@@ -99,7 +66,6 @@ export default function ResultadoDiagnostico({
   };
   // Quanto maior o desenho, mais forte a área (menos dificuldade)
   const raios = areas.map((a) => RAIO_MIN + (1 - proporcao(a.id)) * (RAIO - RAIO_MIN));
-  const areaFraca = fraco ? areas.find((a) => a.id === fraco)! : null;
   const areaAtual = selecionada ? areas.find((a) => a.id === selecionada)! : null;
   const nivelAtual = selecionada ? nivelDe(proporcao(selecionada)) : null;
   const ang = -90 + nota * 18;
@@ -229,29 +195,23 @@ export default function ResultadoDiagnostico({
           {areaAtual && nivelAtual && (
             <div key={selecionada} className="animate-item mt-3 border-t-2 border-black pt-3">
               <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em]">
-                {areaAtual.rotulo}
-                <span className={cn('rounded-full px-2 py-0.5 text-[10px] tracking-[0.06em]', classeNivel)}>{rotuloNivel}</span>
+                {areaAtual.id === fraco ? (
+                  <>
+                    <span aria-hidden="true" className="size-2.5 rounded-full bg-[#FF3B30] shadow-[0_0_8px_rgba(255,59,48,.9)]" />
+                    {t.resultado.pontoFraco}
+                  </>
+                ) : (
+                  <>
+                    {areaAtual.rotulo}
+                    <span className={cn('rounded-full px-2 py-0.5 text-[10px] tracking-[0.06em]', classeNivel)}>{rotuloNivel}</span>
+                  </>
+                )}
               </p>
-              <p className="mt-1 text-[15px] leading-snug">{areaAtual[nivelAtual]}</p>
+              <p className="mt-1 text-[15px] leading-snug">{areaAtual.id === fraco ? areaAtual.fraco : areaAtual[nivelAtual]}</p>
             </div>
           )}
         </div>
       </section>
-
-      {/* O que a pessoa foi buscar: o ponto mais fraco, digitado */}
-      {areaFraca && (
-        <div className="mt-4">
-          <div className="rounded-[24px] border-2 border-black bg-black px-5 py-4 text-paper">
-            <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-cyan">
-              <span aria-hidden="true" className="size-2.5 rounded-full bg-[#FF3B30] shadow-[0_0_8px_rgba(255,59,48,.9)]" />
-              {t.resultado.pontoFraco}
-            </p>
-            <p className="mt-1.5 text-[16px] leading-snug">
-              <Digitado texto={`${nome}, ${areaFraca.fraco}`} inicioMs={4800} />
-            </p>
-          </div>
-        </div>
-      )}
 
       {/* O botão acompanha a rolagem no celular e fecha a tela */}
       <div className="sticky bottom-3 z-10 mt-6 text-center">
