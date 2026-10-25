@@ -6,7 +6,7 @@
 export const copy = {
   brand: 'HAZE',
   apply: 'Iniciar diagnóstico gratuito',
-  applyNote: 'Leva menos de 2 minutos, para você ver o quanto a sua marca é desejada',
+  applyNote: 'Leva cerca de 2 minutos, para você ver o quanto a sua marca é desejada',
   skipLink: 'Pular para o conteúdo',
 
   topBar: {
@@ -18,7 +18,7 @@ export const copy = {
     accent: 'desejada',
     after: 'E VENDER MAIS',
     subtitle: 'Consultoria que estrutura a experiência do cliente, do primeiro contato ao pós-venda',
-    nota: 'Descubra de 1 a 10 como está o seu negócio, leva menos de 2 minutos',
+    nota: 'Descubra de 1 a 10 como está o seu negócio, leva cerca de 2 minutos',
   },
 
   promessa: {
@@ -141,7 +141,7 @@ export const copy = {
       {
         question: 'Como funciona o diagnóstico?',
         answer:
-          'Você responde a perguntas rápidas em menos de 2 minutos, vê o seu resultado na hora e a nossa equipe continua a conversa pelo WhatsApp',
+          'Você responde a perguntas rápidas em cerca de 2 minutos, vê o seu resultado na hora e a nossa equipe continua a conversa pelo WhatsApp',
       },
       {
         question: 'O que eu recebo em cada parte?',

@@ -3,8 +3,8 @@
  * Para mudar uma pergunta, opção, perfil ou rótulo, edite aqui: o componente só lê deste arquivo.
  */
 
-/** As 7 perguntas de dor: cada uma vale pontos de dificuldade (0, 1 ou 2). */
-export const camposDeDor = ['escolha', 'lembrado', 'procura', 'medo', 'sobra', 'doente', 'doisAnos'] as const;
+/** As 11 perguntas que pontuam: cada uma vale pontos de dificuldade (0, 1 ou 2). */
+export const camposDeDor = ['escolha', 'lembrado', 'procura', 'chega', 'medo', 'cobraMenos', 'sobra', 'doente', 'horas', 'doisAnos', 'plano'] as const;
 
 export type CampoId = 'nome' | 'empresa' | 'trava' | 'faturamento' | 'telefone' | (typeof camposDeDor)[number];
 
@@ -24,16 +24,16 @@ export type Pergunta =
     };
 
 /**
- * Seis áreas: Desejo com duas perguntas e as outras cinco com uma. A área com mais dificuldade (em proporção) é a mais fraca.
+ * Seis áreas: cinco com duas perguntas e Dinheiro com uma. A área com mais dificuldade (em proporção) é a mais fraca.
  * `fraco` é a frase do resultado ("Ponto mais fraco: ...").
  */
 export const areas = [
   { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você', meio: 'parte dos clientes já escolhe você, e há espaço para mais', fraco: 'a sua marca ainda não é a primeira escolha do cliente', campos: ['escolha', 'lembrado'] },
-  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa costuma comprar', meio: 'dá para converter muito mais quem se interessa', fraco: 'muita gente se interessa e ainda não compra', campos: ['procura'] },
-  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que vale', meio: 'o seu preço tem espaço para subir', fraco: 'a sua marca ainda não sustenta o preço que merece', campos: ['medo'] },
+  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa costuma comprar', meio: 'dá para converter muito mais quem se interessa', fraco: 'muita gente se interessa e ainda não compra', campos: ['procura', 'chega'] },
+  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que vale', meio: 'o seu preço tem espaço para subir', fraco: 'a sua marca ainda não sustenta o preço que merece', campos: ['medo', 'cobraMenos'] },
   { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'o dinheiro pode acompanhar melhor o trabalho', fraco: 'o seu trabalho ainda não rende o que deveria', campos: ['sobra'] },
-  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar melhor sem você', fraco: 'o negócio ainda depende só de você', campos: ['doente'] },
-  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio ainda não é uma marca desejada', campos: ['doisAnos'] },
+  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar melhor sem você', fraco: 'o negócio ainda depende só de você', campos: ['doente', 'horas'] },
+  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio ainda não é uma marca desejada', campos: ['doisAnos', 'plano'] },
 ] as const;
 
 export type AreaId = (typeof areas)[number]['id'];
@@ -42,9 +42,9 @@ export type AreaId = (typeof areas)[number]['id'];
 export const prioridadeAreas: readonly AreaId[] = ['desejo', 'preco', 'vendas', 'liberdade', 'dinheiro', 'futuro'];
 
 /**
- * Doze perguntas no total: nome, empresa, o que quer conseguir (sem pontos), 7 de dor, faturamento e WhatsApp.
+ * Dezesseis perguntas no total: nome, empresa, o que quer conseguir (sem pontos), 11 de dor, faturamento e WhatsApp.
  * Nas perguntas de dor, cada opção tem os seus pontos de dificuldade (0, 1 ou 2) em `pontos`,
- * então sete perguntas somam de 0 a 14 pontos. "Não sei ao certo" vale 1.
+ * então onze perguntas somam de 0 a 22 pontos. "Não sei ao certo" vale 1.
  */
 export const perguntas: readonly Pergunta[] = [
   { id: 'nome', tipo: 'texto', titulo: 'Seu primeiro nome?', placeholder: 'Digite seu nome' },
@@ -80,12 +80,28 @@ export const perguntas: readonly Pergunta[] = [
     dor: 'poucos interessados compram',
   },
   {
+    id: 'chega',
+    tipo: 'opcoes',
+    titulo: 'O cliente já chega querendo comprar?',
+    opcoes: ['Quase sempre', 'Metade das vezes', 'Poucas vezes', 'Quase nunca', 'Não sei ao certo'],
+    pontos: [0, 1, 2, 2, 1],
+    dor: 'o cliente não chega querendo comprar',
+  },
+  {
     id: 'medo',
     tipo: 'opcoes',
     titulo: 'O seu preço, perto dos concorrentes, é:',
     opcoes: ['Maior', 'Parecido', 'Menor', 'Não sei ao certo'],
     pontos: [0, 1, 2, 1],
     dor: 'cobra menos que os concorrentes',
+  },
+  {
+    id: 'cobraMenos',
+    tipo: 'opcoes',
+    titulo: 'Você cobra menos do que gostaria para vender?',
+    opcoes: ['Não, cobro o que quero', 'Às vezes', 'Quase sempre', 'Não sei ao certo'],
+    pontos: [0, 1, 2, 1],
+    dor: 'cobra menos do que gostaria para vender',
   },
   {
     id: 'sobra',
@@ -104,12 +120,28 @@ export const perguntas: readonly Pergunta[] = [
     dor: 'o negócio para sem ele',
   },
   {
+    id: 'horas',
+    tipo: 'opcoes',
+    titulo: 'Quantas horas por semana você trabalha no negócio?',
+    opcoes: ['Até 30 horas', 'De 30 a 44 horas', 'De 45 a 60 horas', 'Mais de 60 horas', 'Nunca contei'],
+    pontos: [0, 1, 2, 2, 1],
+    dor: 'trabalha horas demais',
+  },
+  {
     id: 'doisAnos',
     tipo: 'opcoes',
     titulo: 'Como será a sua empresa em 2 anos?',
     opcoes: ['Muito maior', 'Um pouco maior', 'Igual', 'Menor', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'não vê o negócio crescendo',
+  },
+  {
+    id: 'plano',
+    tipo: 'opcoes',
+    titulo: 'Você tem um plano para os próximos 12 meses?',
+    opcoes: ['Sim, com metas', 'Só na cabeça', 'Não tenho', 'Nunca pensei nisso'],
+    pontos: [0, 1, 2, 2],
+    dor: 'sem plano para os próximos 12 meses',
   },
   {
     id: 'faturamento',
@@ -139,12 +171,32 @@ export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> 
   trava: (n) => `${n}, o que você mais quer conseguir?`,
 };
 
-/** Perfis pelos pontos de dificuldade (0 a 14): quanto maior, mais espaço a marca tem para crescer em desejo. */
+/** Perfis pelos pontos de dificuldade (0 a 22): quanto maior, mais espaço a marca tem para crescer em desejo. */
 export const perfis = [
-  { ate: 3, titulo: 'MARCA JÁ DESEJADA', texto: 'Ela já atrai, vamos ver até onde pode chegar' },
-  { ate: 8, titulo: 'DESEJO EM CRESCIMENTO', texto: 'A base existe, falta mais gente desejá-la' },
-  { ate: 14, titulo: 'PRONTA PARA SER DESEJADA', texto: 'Ela pode ser a escolha do mercado, e o caminho começa agora' },
+  { ate: 5, titulo: 'MARCA JÁ DESEJADA', texto: 'Ela já atrai, vamos ver até onde pode chegar' },
+  { ate: 13, titulo: 'DESEJO EM CRESCIMENTO', texto: 'A base existe, falta mais gente desejá-la' },
+  { ate: 22, titulo: 'PRONTA PARA SER DESEJADA', texto: 'Ela pode ser a escolha do mercado, e o caminho começa agora' },
 ] as const;
+
+/** Proporção de dificuldade de cada área, de 0 (tudo bem) a 1 (muito espaço para crescer). */
+export type Proporcoes = Record<AreaId, number>;
+const forte = (p: number) => p <= 0.25;
+const fraca = (p: number) => p >= 0.75;
+
+/**
+ * Padrões que leem duas áreas juntas. O primeiro que combina vira o título do resultado (no lugar do perfil
+ * pelos pontos), e cada um só diz o que as respostas da pessoa já mostram. A ordem é a de prioridade.
+ */
+export const padroes: readonly { quando: (p: Proporcoes) => boolean; titulo: string; texto: string }[] = [
+  { quando: (p) => forte(p.desejo) && fraca(p.preco), titulo: 'DESEJADA, MAS BARATA', texto: 'Os clientes já escolhem você, mas o preço ainda não mostra isso' },
+  { quando: (p) => forte(p.vendas) && fraca(p.liberdade), titulo: 'VENDE BEM, MAS PRESO', texto: 'As vendas vão bem, mas o negócio ainda depende só de você' },
+  { quando: (p) => fraca(p.desejo) && forte(p.vendas), titulo: 'VENDE, MAS NÃO ENCANTA', texto: 'Você vende, mas a marca ainda não é a escolha do cliente' },
+  { quando: (p) => forte(p.desejo) && fraca(p.vendas), titulo: 'DESEJADA, MAS NÃO VENDE', texto: 'A marca chama atenção, falta transformar interesse em venda' },
+  { quando: (p) => fraca(p.preco) && fraca(p.dinheiro), titulo: 'PREÇO BAIXO, CAIXA CURTO', texto: 'O preço baixo e o dinheiro curto andam juntos, e dá para mudar isso' },
+  { quando: (p) => fraca(p.liberdade) && fraca(p.dinheiro), titulo: 'MUITA HORA, POUCA SOBRA', texto: 'Você trabalha muito e o dinheiro não acompanha, e dá para mudar isso' },
+  { quando: (p) => fraca(p.desejo) && fraca(p.futuro), titulo: 'MARCA A CONSTRUIR', texto: 'Ainda não há uma marca desejada, e este é o melhor momento para começar' },
+  { quando: (p) => forte(p.desejo) && fraca(p.futuro), titulo: 'BOA MARCA, SEM PLANO', texto: 'A marca já atrai, falta um plano para crescer' },
+];
 
 export const textosAplicacao = {
   metaTitle: 'HAZE | Diagnóstico',
@@ -153,7 +205,7 @@ export const textosAplicacao = {
     antes: 'O QUANTO A SUA MARCA É',
     destaque: 'DESEJADA',
     depois: 'HOJE?',
-    paragrafos: ['Resultado na hora, em menos de 2 minutos'],
+    paragrafos: ['Resultado na hora, em cerca de 2 minutos'],
     recebe: ['Sua nota de desejo, de 1 a 10', 'Onde crescer mais', 'O primeiro passo'],
     fotoAlt:
       'Um homem e uma mulher lado a lado diante de uma vitrine ao pôr do sol, olhando com desejo para o que está exposto, com um gráfico hexagonal de radar em ciano flutuando no vidro',
