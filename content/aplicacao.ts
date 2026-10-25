@@ -205,7 +205,7 @@ export const textosAplicacao = {
     antes: 'O QUANTO A SUA MARCA É',
     destaque: 'DESEJADA',
     depois: 'HOJE?',
-    paragrafos: ['Resultado na hora, em cerca de 2 minutos'],
+    paragrafos: ['Resultado na hora, em menos de 3 minutos'],
     recebe: ['Sua nota de desejo, de 1 a 10', 'Onde crescer mais', 'O primeiro passo'],
     fotoAlt:
       'Um homem e uma mulher lado a lado diante de uma vitrine ao pôr do sol, olhando com desejo para o que está exposto, com um gráfico hexagonal de radar em ciano flutuando no vidro',
