@@ -28,12 +28,12 @@ export type Pergunta =
  * `fraco` é a frase do resultado ("Ponto mais fraco: ...").
  */
 export const areas = [
-  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você', meio: 'parte dos clientes já escolhe você, e há espaço para mais', fraco: 'a sua marca pode ser a primeira escolha do cliente', campos: ['escolha', 'lembrado'] },
-  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa costuma comprar', meio: 'dá para converter muito mais quem se interessa', fraco: 'muita gente já se interessa, e pode virar cliente', campos: ['procura'] },
-  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que vale', meio: 'o seu preço tem espaço para subir', fraco: 'a sua marca pode sustentar um preço maior', campos: ['medo'] },
-  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'o dinheiro pode acompanhar melhor o trabalho', fraco: 'o seu trabalho pode render muito mais', campos: ['sobra'] },
-  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar melhor sem você', fraco: 'o negócio pode andar sem depender só de você', campos: ['doente'] },
-  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio pode virar uma marca desejada', campos: ['doisAnos'] },
+  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você', meio: 'parte dos clientes já escolhe você, e há espaço para mais', fraco: 'a sua marca ainda não é a primeira escolha do cliente', campos: ['escolha', 'lembrado'] },
+  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa costuma comprar', meio: 'dá para converter muito mais quem se interessa', fraco: 'muita gente se interessa e ainda não compra', campos: ['procura'] },
+  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que vale', meio: 'o seu preço tem espaço para subir', fraco: 'a sua marca ainda não sustenta o preço que merece', campos: ['medo'] },
+  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'o dinheiro pode acompanhar melhor o trabalho', fraco: 'o seu trabalho ainda não rende o que deveria', campos: ['sobra'] },
+  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar melhor sem você', fraco: 'o negócio ainda depende só de você', campos: ['doente'] },
+  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio ainda não é uma marca desejada', campos: ['doisAnos'] },
 ] as const;
 
 export type AreaId = (typeof areas)[number]['id'];
@@ -181,7 +181,8 @@ export const textosAplicacao = {
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string) => `Oi, sou ${nome}, da ${empresa}, quero conversar`,
     calculando: 'Calculando o seu resultado',
-    pontoFraco: 'Onde crescer mais',
+    pontoFraco: 'Resolver agora',
+    urgencia: 'Quanto antes, mais rápido a sua marca vira desejada',
     radarTitulo: 'A sua marca por área',
     toque: 'Toque em uma área',
     forte: 'Já é forte',

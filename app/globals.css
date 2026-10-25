@@ -585,10 +585,10 @@
 @keyframes res-label-pulsa {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(1, 187, 251, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(1, 187, 251, 0);
+    box-shadow: 0 0 0 8px rgba(255, 59, 48, 0);
   }
 }
 

@@ -65,6 +65,9 @@ function Digitado({ texto, inicioMs, velocidadeMs = 28 }: { texto: string; inici
 type Nivel = 'forte' | 'meio' | 'fraco';
 const nivelDe = (p: number): Nivel => (p === 0 ? 'forte' : p <= 0.5 ? 'meio' : 'fraco');
 
+/** Vermelho só na bolinha da área mais fraca, para chamar a atenção para o que precisa de ação. */
+const ALERTA = '#FF3B30';
+
 const RAIO = 88;
 const RAIO_MIN = 20;
 const centro = 150;
@@ -199,8 +202,8 @@ export default function ResultadoDiagnostico({
               const [x, y] = ponto(i, raios[i]);
               return (
                 <g key={a.id}>
-                  {a.id === fraco && <circle cx={x} cy={y} r="9" fill="none" stroke="#01BBFB" strokeWidth="2.5" className="radar-pulso" />}
-                  <circle cx={x} cy={y} r="5" fill="#01BBFB" stroke="#000" strokeWidth="1.5" className="radar-no" style={{ animationDelay: `${2.9 + i * 0.25}s` }} />
+                  {a.id === fraco && <circle cx={x} cy={y} r="9" fill="none" stroke={ALERTA} strokeWidth="2.5" className="radar-pulso" />}
+                  <circle cx={x} cy={y} r={a.id === fraco ? 6 : 5} fill={a.id === fraco ? ALERTA : '#01BBFB'} stroke="#000" strokeWidth="1.5" className="radar-no" style={{ animationDelay: `${2.9 + i * 0.25}s` }} />
                 </g>
               );
             })}
@@ -239,9 +242,15 @@ export default function ResultadoDiagnostico({
       <div className="mt-4 grid gap-3">
         {areaFraca && (
           <div className="rounded-[24px] border-2 border-black bg-black px-5 py-4 text-paper">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-cyan">{t.resultado.pontoFraco}</p>
+            <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-cyan">
+              <span aria-hidden="true" className="size-2.5 rounded-full bg-[#FF3B30] shadow-[0_0_8px_rgba(255,59,48,.9)]" />
+              {t.resultado.pontoFraco}
+            </p>
             <p className="mt-1.5 text-[16px] leading-snug">
               <Digitado texto={`${negocio}, ${areaFraca.fraco}`} inicioMs={4800} />
+            </p>
+            <p style={{ '--d': '6600ms' } as React.CSSProperties} className="res-entra mt-2 text-[13px] font-semibold leading-snug text-cyan">
+              {t.resultado.urgencia}
             </p>
           </div>
         )}
