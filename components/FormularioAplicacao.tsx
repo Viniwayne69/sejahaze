@@ -91,7 +91,7 @@ export default function FormularioAplicacao() {
         const resumo = [
           `Diagnóstico HAZE: ${perfil.titulo} (desejo ${nota}/10)`,
           `Dor por área: ${areas.map((a) => `${a.rotulo} ${porArea[a.id]}/${a.campos.length * 2}`).join(', ')}`,
-          `Maior desafio: ${dados.trava}`,
+          `Quer mudar: ${dados.trava}`,
           `Faturamento: ${dados.faturamento}`,
           graves.length ? `Mais graves: ${graves.slice(0, 5).join('; ')}` : '',
           `Começar por: ${copy.metodo.steps[0].title}`,

@@ -52,21 +52,21 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'trava',
     tipo: 'opcoes',
-    titulo: 'Qual tem sido seu maior desafio hoje?',
-    opcoes: ['Conseguir clientes novos', 'Fechar as vendas', 'Vender sem baixar o preço', 'O caixa não fecha', 'A equipe', 'Não sei ao certo', 'Outro'],
+    titulo: 'O que você mais quer mudar no seu negócio hoje?',
+    opcoes: ['Ter mais clientes novos', 'Vender mais para quem já se interessa', 'Cobrar mais sem perder clientes', 'Sobrar mais dinheiro no fim do mês', 'Ter uma equipe melhor', 'Não sei ao certo', 'Outro'],
   },
   {
     id: 'escolha',
     tipo: 'opcoes',
-    titulo: 'Com que frequência um cliente diz que o seu preço está caro ou pede desconto?',
-    opcoes: ['Quase nunca', 'Algumas vezes por mês', 'Toda semana', 'Quase todo cliente', 'Não sei ao certo'],
+    titulo: 'Com que frequência um cliente fecha com você sem pedir desconto?',
+    opcoes: ['Quase sempre', 'Metade das vezes', 'Poucas vezes', 'Quase nunca', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
-    dor: 'cliente diz que está caro',
+    dor: 'clientes pedem desconto',
   },
   {
     id: 'lembrado',
     tipo: 'opcoes',
-    titulo: 'Nos últimos 3 meses, quantos clientes novos vieram por indicação de outro cliente?',
+    titulo: 'Nos últimos 3 meses, quantos clientes novos chegaram porque outro cliente falou bem de você?',
     opcoes: ['Vários, é o que mais traz cliente', 'Alguns', 'Um ou dois', 'Nenhum', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'poucas indicações',
@@ -74,42 +74,42 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'procura',
     tipo: 'opcoes',
-    titulo: 'Das pessoas que se interessam (perguntam o preço, pedem orçamento, mandam mensagem), quantas acabam comprando?',
-    opcoes: ['Quase todas', 'Mais da metade', 'Menos da metade', 'Pouquíssimas', 'Nunca contei'],
+    titulo: 'De cada 10 pessoas que pedem preço ou orçamento, quantas compram de você?',
+    opcoes: ['De 8 a 10', 'De 5 a 7', 'De 2 a 4', 'De 0 a 1', 'Nunca contei'],
     pontos: [0, 0, 1, 2, 1],
     dor: 'poucos interessados compram',
   },
   {
     id: 'medo',
     tipo: 'opcoes',
-    titulo: 'Quando você pensa em aumentar o seu preço, o que sente?',
-    opcoes: ['Tranquilidade, o meu preço vale isso', 'Um pouco de receio', 'Medo de perder clientes', 'Já deixei de aumentar por medo', 'Nunca pensei nisso'],
+    titulo: 'Quando foi a última vez que você aumentou o seu preço?',
+    opcoes: ['Neste ano, e os clientes ficaram', 'Há mais de um ano', 'Nunca aumentei', 'Quis aumentar e desisti', 'Não lembro'],
     pontos: [0, 1, 2, 2, 1],
-    dor: 'medo de aumentar o preço',
+    dor: 'não aumenta o preço',
   },
   {
     id: 'sobra',
     tipo: 'opcoes',
-    titulo: 'No último mês, depois de pagar tudo, quanto sobrou para você?',
-    opcoes: ['Sobrou um valor bom', 'Sobrou pouco', 'Não sobrou nada', 'Faltou, e usei dinheiro de casa ou peguei emprestado', 'Não sei ao certo'],
+    titulo: 'No último mês, depois de pagar tudo, o quanto sobrou para você?',
+    opcoes: ['Sobrou um valor bom', 'Sobrou pouco', 'Não sobrou nada', 'Faltou, e cobri com dinheiro de fora', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'não sobra dinheiro',
   },
   {
     id: 'doente',
     tipo: 'opcoes',
-    titulo: 'Se você ficasse 30 dias sem poder trabalhar, o que aconteceria com o seu negócio?',
-    opcoes: ['Continuaria funcionando normal', 'Funcionaria com dificuldade', 'Cairia muito', 'Pararia, tudo depende de mim', 'Nunca pensei nisso'],
+    titulo: 'Se você tirasse 30 dias de férias, o que aconteceria com o seu negócio?',
+    opcoes: ['Continuaria funcionando normal', 'Funcionaria, mas com dificuldade', 'Cairia bastante', 'Pararia, tudo depende de mim', 'Nunca pensei nisso'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'o negócio para sem ele',
   },
   {
     id: 'doisAnos',
     tipo: 'opcoes',
-    titulo: 'O que acontece com a sua empresa se nada mudar daqui a 2 anos?',
-    opcoes: ['Ela cresce', 'Fica do mesmo tamanho', 'Perco clientes', 'Preciso baixar o preço', 'Pode fechar', 'Não sei ao certo'],
-    pontos: [0, 1, 2, 2, 2, 1],
-    dor: 'teme que o negócio encolha',
+    titulo: 'Como você imagina a sua empresa daqui a 2 anos?',
+    opcoes: ['Muito maior, uma marca desejada', 'Um pouco maior', 'Do mesmo tamanho', 'Menor do que hoje', 'Não sei ao certo'],
+    pontos: [0, 1, 2, 2, 1],
+    dor: 'não vê o negócio crescendo',
   },
   {
     id: 'faturamento',
@@ -137,7 +137,7 @@ export const perguntas: readonly Pergunta[] = [
 
 /** Depois do nome, só esta pergunta chama a pessoa pelo primeiro nome, para não ficar repetitivo. */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
-  trava: (n) => `${n}, qual tem sido seu maior desafio hoje?`,
+  trava: (n) => `${n}, o que você mais quer mudar no seu negócio hoje?`,
 };
 
 /** Perfis pelos pontos de dificuldade (0 a 14): quanto maior, mais espaço a marca tem para crescer em desejo. */
