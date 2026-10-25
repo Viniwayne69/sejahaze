@@ -82,12 +82,10 @@ const pontos = (raios: number[]) => raios.map((r, i) => ponto(i, r).map((v) => v
  */
 export default function ResultadoDiagnostico({
   nome,
-  negocio,
   resultado,
   linkWhatsapp,
 }: {
   nome: string;
-  negocio: string;
   resultado: Diagnostico;
   linkWhatsapp: string;
 }) {
@@ -247,7 +245,7 @@ export default function ResultadoDiagnostico({
               {t.resultado.pontoFraco}
             </p>
             <p className="mt-1.5 text-[16px] leading-snug">
-              <Digitado texto={`${negocio}, ${areaFraca.fraco}`} inicioMs={4800} />
+              <Digitado texto={`${nome}, ${areaFraca.fraco}`} inicioMs={4800} />
             </p>
             <p style={{ '--d': '6600ms' } as React.CSSProperties} className="res-entra mt-2 text-[13px] font-semibold leading-snug text-cyan">
               {t.resultado.urgencia}

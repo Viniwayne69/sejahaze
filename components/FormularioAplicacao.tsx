@@ -335,7 +335,7 @@ export default function FormularioAplicacao() {
 
           {/* Resultado em cena: medidor, radar das áreas, ponto mais fraco e WhatsApp */}
           {resultado && (
-            <ResultadoDiagnostico nome={primeiroNome} negocio={respostas.empresa.trim()} resultado={resultado} linkWhatsapp={linkWhatsapp} />
+            <ResultadoDiagnostico nome={primeiroNome} resultado={resultado} linkWhatsapp={linkWhatsapp} />
           )}
 
           <input
