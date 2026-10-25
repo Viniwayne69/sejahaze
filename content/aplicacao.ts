@@ -182,7 +182,7 @@ export const textosAplicacao = {
     whatsappMensagem: (nome: string, empresa: string) => `Oi, sou ${nome}, da ${empresa}, quero conversar`,
     calculando: 'Calculando o seu resultado',
     pontoFraco: 'Resolver agora',
-    urgencia: 'Quanto antes, mais rápido a sua marca vira desejada',
+    urgencia: 'Resolva isso primeiro e a sua marca fica desejada mais rápido',
     radarTitulo: 'A sua marca por área',
     toque: 'Toque em uma área',
     forte: 'Já é forte',
