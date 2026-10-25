@@ -156,7 +156,7 @@ export const textosAplicacao = {
     paragrafos: ['Resultado na hora, em menos de 2 minutos'],
     recebe: ['Sua nota de desejo, de 1 a 10', 'Onde crescer mais', 'O primeiro passo'],
     fotoAlt:
-      'Mulher de perfil diante de uma vitrine ao pôr do sol, olhando com desejo para o que está exposto, com um gráfico hexagonal de radar em ciano refletido no vidro',
+      'Um homem e uma mulher lado a lado diante de uma vitrine ao pôr do sol, olhando com desejo para o que está exposto, com um gráfico hexagonal de radar em ciano flutuando no vidro',
     botao: 'Iniciar diagnóstico gratuito',
   },
   som: { arquivo: '/audio/get-away.mp3', rotulo: 'Escute um som enquanto nos conta sobre você' },
