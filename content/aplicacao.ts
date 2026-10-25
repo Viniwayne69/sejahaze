@@ -28,12 +28,12 @@ export type Pergunta =
  * `fraco` é a frase do resultado ("Ponto mais fraco: ...").
  */
 export const areas = [
-  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você e falam de você', meio: 'parte dos clientes já escolhe você, e há espaço para ser a escolha de todos', fraco: 'a sua marca pode se tornar a primeira escolha do cliente', campos: ['escolha', 'lembrado'] },
-  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa por você costuma comprar', meio: 'quem se interessa por você já compra, e dá para converter muito mais', fraco: 'muita gente já se interessa por você, e cada uma pode virar cliente', campos: ['procura'] },
-  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que o seu trabalho vale', meio: 'o seu preço já tem espaço para subir com mais segurança', fraco: 'a sua marca pode sustentar um preço bem maior', campos: ['medo'] },
-  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'o dinheiro pode acompanhar melhor o seu trabalho', fraco: 'o seu trabalho pode render muito mais para você', campos: ['sobra'] },
-  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar com mais ritmo mesmo sem você', fraco: 'o negócio pode andar sem depender só de você', campos: ['doente'] },
-  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio pode se tornar uma marca desejada nos próximos anos', campos: ['doisAnos'] },
+  { id: 'desejo', rotulo: 'Desejo', forte: 'os clientes já escolhem você', meio: 'parte dos clientes já escolhe você, e há espaço para mais', fraco: 'a sua marca pode ser a primeira escolha do cliente', campos: ['escolha', 'lembrado'] },
+  { id: 'vendas', rotulo: 'Vendas', forte: 'quem se interessa costuma comprar', meio: 'dá para converter muito mais quem se interessa', fraco: 'muita gente já se interessa, e pode virar cliente', campos: ['procura'] },
+  { id: 'preco', rotulo: 'Preço', forte: 'você cobra com tranquilidade o que vale', meio: 'o seu preço tem espaço para subir', fraco: 'a sua marca pode sustentar um preço maior', campos: ['medo'] },
+  { id: 'dinheiro', rotulo: 'Dinheiro', forte: 'o dinheiro acompanha o seu trabalho', meio: 'o dinheiro pode acompanhar melhor o trabalho', fraco: 'o seu trabalho pode render muito mais', campos: ['sobra'] },
+  { id: 'liberdade', rotulo: 'Liberdade', forte: 'o negócio anda mesmo sem você', meio: 'o negócio pode andar melhor sem você', fraco: 'o negócio pode andar sem depender só de você', campos: ['doente'] },
+  { id: 'futuro', rotulo: 'Futuro', forte: 'o seu negócio caminha para crescer', meio: 'o seu negócio pode crescer ainda mais', fraco: 'o seu negócio pode virar uma marca desejada', campos: ['doisAnos'] },
 ] as const;
 
 export type AreaId = (typeof areas)[number]['id'];
@@ -42,80 +42,79 @@ export type AreaId = (typeof areas)[number]['id'];
 export const prioridadeAreas: readonly AreaId[] = ['desejo', 'preco', 'vendas', 'liberdade', 'dinheiro', 'futuro'];
 
 /**
- * Doze perguntas no total: nome, empresa, maior desafio (sem pontos), 7 de dor, faturamento e WhatsApp.
+ * Doze perguntas no total: nome, empresa, o que quer conseguir (sem pontos), 7 de dor, faturamento e WhatsApp.
  * Nas perguntas de dor, cada opção tem os seus pontos de dificuldade (0, 1 ou 2) em `pontos`,
  * então sete perguntas somam de 0 a 14 pontos. "Não sei ao certo" vale 1.
  */
 export const perguntas: readonly Pergunta[] = [
-  { id: 'nome', tipo: 'texto', titulo: 'Qual o seu primeiro nome?', placeholder: 'Digite seu nome' },
-  { id: 'empresa', tipo: 'texto', titulo: 'Qual o nome do seu negócio?', ajuda: 'Para personalizar o seu resultado', placeholder: 'Ex: Almeida & Silva' },
+  { id: 'nome', tipo: 'texto', titulo: 'Seu primeiro nome?', placeholder: 'Digite seu nome' },
+  { id: 'empresa', tipo: 'texto', titulo: 'Nome do seu negócio?', placeholder: 'Ex: Almeida & Silva' },
   {
     id: 'trava',
     tipo: 'opcoes',
-    titulo: 'O que você mais quer mudar no seu negócio hoje?',
-    opcoes: ['Ter mais clientes novos', 'Vender mais para quem já se interessa', 'Cobrar mais sem perder clientes', 'Sobrar mais dinheiro no fim do mês', 'Ter uma equipe melhor', 'Não sei ao certo', 'Outro'],
+    titulo: 'O que você mais quer conseguir?',
+    opcoes: ['Atrair mais clientes', 'Fechar mais vendas', 'Cobrar mais caro', 'Ficar com mais dinheiro', 'Ter uma equipe melhor', 'Não sei ao certo', 'Outro'],
   },
   {
     id: 'escolha',
     tipo: 'opcoes',
-    titulo: 'Com que frequência um cliente fecha com você sem pedir desconto?',
-    opcoes: ['Quase sempre', 'Metade das vezes', 'Poucas vezes', 'Quase nunca', 'Não sei ao certo'],
+    titulo: 'Quantos clientes voltam a comprar?',
+    opcoes: ['Quase todos', 'Mais da metade', 'Poucos', 'Quase nenhum', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
-    dor: 'clientes pedem desconto',
+    dor: 'clientes não voltam',
   },
   {
     id: 'lembrado',
     tipo: 'opcoes',
-    titulo: 'Nos últimos 3 meses, quantos clientes novos chegaram porque outro cliente falou bem de você?',
-    opcoes: ['Vários, é o que mais traz cliente', 'Alguns', 'Um ou dois', 'Nenhum', 'Não sei ao certo'],
+    titulo: 'Clientes novos por indicação, nos últimos 3 meses?',
+    opcoes: ['Vários', 'Alguns', 'Um ou dois', 'Nenhum', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'poucas indicações',
   },
   {
     id: 'procura',
     tipo: 'opcoes',
-    titulo: 'De cada 10 pessoas que pedem preço ou orçamento, quantas compram de você?',
-    opcoes: ['De 8 a 10', 'De 5 a 7', 'De 2 a 4', 'De 0 a 1', 'Nunca contei'],
+    titulo: 'De cada 10 que pedem preço, quantos compram?',
+    opcoes: ['8 a 10', '5 a 7', '2 a 4', '0 a 1', 'Nunca contei'],
     pontos: [0, 0, 1, 2, 1],
     dor: 'poucos interessados compram',
   },
   {
     id: 'medo',
     tipo: 'opcoes',
-    titulo: 'Quando foi a última vez que você aumentou o seu preço?',
-    opcoes: ['Neste ano, e os clientes ficaram', 'Há mais de um ano', 'Nunca aumentei', 'Quis aumentar e desisti', 'Não lembro'],
-    pontos: [0, 1, 2, 2, 1],
-    dor: 'não aumenta o preço',
+    titulo: 'O seu preço, perto dos concorrentes, é:',
+    opcoes: ['Maior', 'Parecido', 'Menor', 'Não sei ao certo'],
+    pontos: [0, 1, 2, 1],
+    dor: 'cobra menos que os concorrentes',
   },
   {
     id: 'sobra',
     tipo: 'opcoes',
-    titulo: 'No último mês, depois de pagar tudo, o quanto sobrou para você?',
-    opcoes: ['Sobrou um valor bom', 'Sobrou pouco', 'Não sobrou nada', 'Faltou, e cobri com dinheiro de fora', 'Não sei ao certo'],
+    titulo: 'Quanto sobrou no último mês, depois de pagar tudo?',
+    opcoes: ['Um bom valor', 'Pouco', 'Nada', 'Faltou', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'não sobra dinheiro',
   },
   {
     id: 'doente',
     tipo: 'opcoes',
-    titulo: 'Se você tirasse 30 dias de férias, o que aconteceria com o seu negócio?',
-    opcoes: ['Continuaria funcionando normal', 'Funcionaria, mas com dificuldade', 'Cairia bastante', 'Pararia, tudo depende de mim', 'Nunca pensei nisso'],
+    titulo: 'Se você tirasse 30 dias de férias, o que aconteceria?',
+    opcoes: ['Tudo normal', 'Com dificuldade', 'Cairia muito', 'Pararia', 'Nunca pensei nisso'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'o negócio para sem ele',
   },
   {
     id: 'doisAnos',
     tipo: 'opcoes',
-    titulo: 'Como você imagina a sua empresa daqui a 2 anos?',
-    opcoes: ['Muito maior, uma marca desejada', 'Um pouco maior', 'Do mesmo tamanho', 'Menor do que hoje', 'Não sei ao certo'],
+    titulo: 'Como será a sua empresa em 2 anos?',
+    opcoes: ['Muito maior', 'Um pouco maior', 'Igual', 'Menor', 'Não sei ao certo'],
     pontos: [0, 1, 2, 2, 1],
     dor: 'não vê o negócio crescendo',
   },
   {
     id: 'faturamento',
     tipo: 'opcoes',
-    titulo: 'Qual o faturamento anual da sua empresa?',
-    ajuda: 'Para indicar o caminho certo',
+    titulo: 'Faturamento anual?',
     opcoes: [
       'Ainda não faturamos',
       'Até R$ 60 mil/ano',
@@ -129,22 +128,22 @@ export const perguntas: readonly Pergunta[] = [
   {
     id: 'telefone',
     tipo: 'tel',
-    titulo: 'Qual o seu WhatsApp?',
-    ajuda: 'Com DDD, para enviar o seu resultado',
+    titulo: 'Seu WhatsApp?',
+    ajuda: 'Com DDD',
     placeholder: '(11) 99999-9999',
   },
 ];
 
 /** Depois do nome, só esta pergunta chama a pessoa pelo primeiro nome, para não ficar repetitivo. */
 export const titulosComNome: Partial<Record<CampoId, (nome: string) => string>> = {
-  trava: (n) => `${n}, o que você mais quer mudar no seu negócio hoje?`,
+  trava: (n) => `${n}, o que você mais quer conseguir?`,
 };
 
 /** Perfis pelos pontos de dificuldade (0 a 14): quanto maior, mais espaço a marca tem para crescer em desejo. */
 export const perfis = [
-  { ate: 3, titulo: 'MARCA JÁ DESEJADA', texto: 'A sua marca já atrai, vamos ver até onde ela pode chegar' },
-  { ate: 8, titulo: 'DESEJO EM CRESCIMENTO', texto: 'A sua marca já tem base, falta fazer muito mais gente desejá-la' },
-  { ate: 14, titulo: 'PRONTA PARA SER DESEJADA', texto: 'A sua marca pode ser a escolha do seu mercado, e o caminho começa agora' },
+  { ate: 3, titulo: 'MARCA JÁ DESEJADA', texto: 'Ela já atrai, vamos ver até onde pode chegar' },
+  { ate: 8, titulo: 'DESEJO EM CRESCIMENTO', texto: 'A base existe, falta mais gente desejá-la' },
+  { ate: 14, titulo: 'PRONTA PARA SER DESEJADA', texto: 'Ela pode ser a escolha do mercado, e o caminho começa agora' },
 ] as const;
 
 export const textosAplicacao = {
@@ -154,8 +153,8 @@ export const textosAplicacao = {
     antes: 'O QUANTO A SUA MARCA É',
     destaque: 'DESEJADA',
     depois: 'HOJE?',
-    paragrafos: ['Perguntas rápidas e o seu resultado na hora, leva menos de 2 minutos'],
-    recebe: ['Sua nota de desejo de 1 a 10', 'Onde a sua marca mais pode crescer', 'O primeiro passo para chegar lá'],
+    paragrafos: ['Resultado na hora, em menos de 2 minutos'],
+    recebe: ['Sua nota de desejo, de 1 a 10', 'Onde crescer mais', 'O primeiro passo'],
     fotoAlt:
       'Dona de uma marca olhando por cima do ombro, diante da loja com letreiro ciano e uma fila de clientes com sacolas pretas esperando para entrar',
     botao: 'Iniciar diagnóstico gratuito',
@@ -182,13 +181,13 @@ export const textosAplicacao = {
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
     whatsappMensagem: (nome: string, empresa: string) => `Oi, sou ${nome}, da ${empresa}, quero conversar`,
     calculando: 'Calculando o seu resultado',
-    pontoFraco: 'Onde a sua marca mais pode crescer',
+    pontoFraco: 'Onde crescer mais',
     radarTitulo: 'A sua marca por área',
-    toque: 'Toque em uma área para ver o que ela diz',
+    toque: 'Toque em uma área',
     forte: 'Já é forte',
     atencao: 'Em crescimento',
     fragil: 'A construir',
     primeiroPasso: 'Primeiro passo',
-    primeiroPassoTexto: 'o Raio-X, uma reunião que termina em um plano de ação claro',
+    primeiroPassoTexto: 'o Raio-X: uma reunião e um plano de ação claro',
   },
 } as const;
