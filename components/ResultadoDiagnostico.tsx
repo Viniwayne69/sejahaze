@@ -90,7 +90,7 @@ export default function ResultadoDiagnostico({
   linkWhatsapp: string;
 }) {
   const { nota, perfil, porArea, fraco } = resultado;
-  const [selecionada, setSelecionada] = useState<AreaId>(fraco ?? 'desejo');
+  const [selecionada, setSelecionada] = useState<AreaId | null>(null);
   const contagem = useContagem(nota, 1300, 1600);
 
   const proporcao = (id: AreaId) => {
@@ -100,16 +100,14 @@ export default function ResultadoDiagnostico({
   // Quanto maior o desenho, mais forte a área (menos dificuldade)
   const raios = areas.map((a) => RAIO_MIN + (1 - proporcao(a.id)) * (RAIO - RAIO_MIN));
   const areaFraca = fraco ? areas.find((a) => a.id === fraco)! : null;
-  const areaAtual = areas.find((a) => a.id === selecionada)!;
-  const nivelAtual = nivelDe(proporcao(selecionada));
+  const areaAtual = selecionada ? areas.find((a) => a.id === selecionada)! : null;
+  const nivelAtual = selecionada ? nivelDe(proporcao(selecionada)) : null;
   const ang = -90 + nota * 18;
 
-  const rotuloNivel = { forte: t.resultado.forte, meio: t.resultado.atencao, fraco: t.resultado.fragil }[nivelAtual];
-  const classeNivel = {
-    forte: 'bg-cyan text-black',
-    meio: 'border border-black bg-paper text-black',
-    fraco: 'bg-black text-cyan',
-  }[nivelAtual];
+  const rotuloNivel = nivelAtual ? { forte: t.resultado.forte, meio: t.resultado.atencao, fraco: t.resultado.fragil }[nivelAtual] : '';
+  const classeNivel = nivelAtual
+    ? { forte: 'bg-cyan text-black', meio: 'border border-black bg-paper text-black', fraco: 'bg-black text-cyan' }[nivelAtual]
+    : '';
 
   return (
     <div className="relative mx-auto w-full max-w-[420px]">
@@ -227,18 +225,22 @@ export default function ResultadoDiagnostico({
             );
           })}
         </div>
-        <div key={selecionada} className="animate-item mt-3 border-t-2 border-black pt-3" aria-live="polite">
-          <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em]">
-            {areaAtual.rotulo}
-            <span className={cn('rounded-full px-2 py-0.5 text-[10px] tracking-[0.06em]', classeNivel)}>{rotuloNivel}</span>
-          </p>
-          <p className="mt-1 text-[15px] leading-snug">{areaAtual[nivelAtual]}</p>
+        <div aria-live="polite">
+          {areaAtual && nivelAtual && (
+            <div key={selecionada} className="animate-item mt-3 border-t-2 border-black pt-3">
+              <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em]">
+                {areaAtual.rotulo}
+                <span className={cn('rounded-full px-2 py-0.5 text-[10px] tracking-[0.06em]', classeNivel)}>{rotuloNivel}</span>
+              </p>
+              <p className="mt-1 text-[15px] leading-snug">{areaAtual[nivelAtual]}</p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* O que a pessoa foi buscar: o ponto mais fraco (digitado) e o primeiro passo */}
-      <div className="mt-4 grid gap-3">
-        {areaFraca && (
+      {/* O que a pessoa foi buscar: o ponto mais fraco, digitado */}
+      {areaFraca && (
+        <div className="mt-4">
           <div className="rounded-[24px] border-2 border-black bg-black px-5 py-4 text-paper">
             <p className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-cyan">
               <span aria-hidden="true" className="size-2.5 rounded-full bg-[#FF3B30] shadow-[0_0_8px_rgba(255,59,48,.9)]" />
@@ -247,16 +249,9 @@ export default function ResultadoDiagnostico({
             <p className="mt-1.5 text-[16px] leading-snug">
               <Digitado texto={`${nome}, ${areaFraca.fraco}`} inicioMs={4800} />
             </p>
-            <p style={{ '--d': '6600ms' } as React.CSSProperties} className="res-entra mt-2 text-[13px] font-semibold leading-snug text-cyan">
-              {t.resultado.urgencia}
-            </p>
           </div>
-        )}
-        <div style={{ '--d': '5600ms' } as React.CSSProperties} className="res-entra rounded-[24px] border-2 border-black bg-paper px-5 py-4">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.08em]">{t.resultado.primeiroPasso}</p>
-          <p className="mt-1.5 text-[16px] leading-snug">{t.resultado.primeiroPassoTexto}</p>
         </div>
-      </div>
+      )}
 
       {/* O botão acompanha a rolagem no celular e fecha a tela */}
       <div className="sticky bottom-3 z-10 mt-6 text-center">
@@ -269,6 +264,9 @@ export default function ResultadoDiagnostico({
           {t.resultado.whatsappBotao}
         </a>
       </div>
+      <p style={{ '--d': '6000ms' } as React.CSSProperties} className="res-entra mx-auto mt-3 max-w-[340px] text-center text-[13px] leading-snug">
+        {t.resultado.legendaBotao}
+      </p>
     </div>
   );
 }
