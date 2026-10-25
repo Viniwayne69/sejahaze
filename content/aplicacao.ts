@@ -188,6 +188,6 @@ export const textosAplicacao = {
     atencao: 'Em crescimento',
     fragil: 'A construir',
     primeiroPasso: 'Primeiro passo',
-    primeiroPassoTexto: 'o Raio-X: uma reunião e um plano de ação claro',
+    primeiroPassoTexto: 'Um plano de ação claro para a sua marca ser mais desejada e vender mais',
   },
 } as const;
