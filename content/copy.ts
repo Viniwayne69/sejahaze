@@ -11,6 +11,13 @@ export const copy = {
 
   topBar: {
     status: 'Diagnóstico gratuito',
+    /** Menu do topo, só aparece no computador. */
+    links: [
+      { rotulo: 'O problema', href: '#dores' },
+      { rotulo: 'Como funciona', href: '#metodo' },
+      { rotulo: 'Para quem é', href: '#para-quem' },
+      { rotulo: 'Perguntas', href: '#perguntas' },
+    ],
   },
 
   hero: {

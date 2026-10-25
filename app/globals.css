@@ -598,3 +598,10 @@
     res-label-pulsa 1.8s ease-out 4.4s infinite;
   animation-delay: var(--d, 0ms), 4.4s;
 }
+
+/* Menu fixo do computador: as âncoras não ficam escondidas atrás dele */
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+}

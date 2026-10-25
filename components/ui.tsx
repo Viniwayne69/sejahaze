@@ -154,9 +154,9 @@ export function Heading({
 }
 
 /** Palavra-chave: mesma Archivo 900 da frase, com a barra reta que se desenha ao entrar na tela. */
-export function Accent({ children, bar = 'cyan' }: { children: React.ReactNode; bar?: 'cyan' | 'black' }) {
+export function Accent({ children, bar = 'cyan', className }: { children: React.ReactNode; bar?: 'cyan' | 'black'; className?: string }) {
   return (
-    <span className="accent" style={bar === 'black' ? ({ '--accent-bar': '#000' } as React.CSSProperties) : undefined}>
+    <span className={cn('accent', className)} style={bar === 'black' ? ({ '--accent-bar': '#000' } as React.CSSProperties) : undefined}>
       {children}
     </span>
   );
