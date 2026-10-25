@@ -180,8 +180,7 @@ export const textosAplicacao = {
     medidorTitulo: 'Como está o seu negócio',
     medidorExtremos: ['Tranquilo', 'Crítico'],
     whatsappBotao: 'Falar com a HAZE no WhatsApp',
-    whatsappMensagem: (nome: string, empresa: string, nota: number, trava: string, faturamento: string) =>
-      `Oi, sou ${nome}, da ${empresa}, fiz o diagnóstico da HAZE: dificuldade ${nota} de 10, o meu maior desafio hoje é ${trava.toLowerCase()}, faturamento ${faturamento}, quero conversar`,
+    whatsappMensagem: (nome: string, empresa: string) => `Oi, sou ${nome}, da ${empresa}, quero conversar`,
     calculando: 'Calculando o seu resultado',
     pontoFraco: 'Ponto mais fraco',
     radarTitulo: 'O seu negócio por área',

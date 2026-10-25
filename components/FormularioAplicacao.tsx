@@ -162,7 +162,7 @@ export default function FormularioAplicacao() {
   // Sem o número da HAZE configurado, o link abre o WhatsApp só com a mensagem pronta (a pessoa escolhe o contato)
   const linkWhatsapp = resultado
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-        t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim(), resultado.nota, respostas.trava, respostas.faturamento),
+        t.resultado.whatsappMensagem(primeiroNome, respostas.empresa.trim()),
       )}`
     : '';
 
