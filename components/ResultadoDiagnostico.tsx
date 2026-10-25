@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { areas, textosAplicacao as t, type AreaId } from '@/content/aplicacao';
 import type { Diagnostico } from '@/lib/diagnostico';
@@ -263,11 +262,6 @@ export default function ResultadoDiagnostico({
           {t.resultado.whatsappBotao}
         </a>
       </div>
-      <p className="mt-3 text-center">
-        <Link href="/" className="inline-block text-[14px] font-medium underline underline-offset-4">
-          {t.resultado.voltarSite}
-        </Link>
-      </p>
     </div>
   );
 }

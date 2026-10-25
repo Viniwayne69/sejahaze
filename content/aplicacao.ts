@@ -190,6 +190,5 @@ export const textosAplicacao = {
     fragil: 'A construir',
     primeiroPasso: 'Primeiro passo',
     primeiroPassoTexto: 'o Raio-X, uma reunião que termina em um plano de ação claro',
-    voltarSite: 'Voltar ao site',
   },
 } as const;
