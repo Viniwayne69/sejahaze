@@ -615,3 +615,25 @@
     scroll-padding-top: 80px;
   }
 }
+
+/* Fundos em 4K para o computador (o celular segue com os arquivos de 1920x1080) */
+@media (min-width: 1024px) {
+  .tx-nevoa {
+    background-image: url("/textures/nevoa-pc.webp") !important;
+  }
+  .tx-fosca {
+    background-image: url("/textures/fosca-pc.webp") !important;
+  }
+  .tx-fosca-azul {
+    background-image: url("/textures/fosca-azul-pc.webp") !important;
+  }
+  .tx-papel-azul {
+    background-image: url("/textures/papel-azul-pc.webp") !important;
+  }
+  .tx-topografica-v3 {
+    background-image: url("/textures/topografica-v3-pc.webp") !important;
+  }
+  .tx-ciano {
+    background-image: url("/textures/ciano-pc.webp") !important;
+  }
+}

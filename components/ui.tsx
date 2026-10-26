@@ -31,7 +31,7 @@ const toneStyles = {
 /** Fundo de seção com textura da marca (cover), texto por cima. */
 export function textureProps(texture: Texture) {
   return {
-    className: cn('texture', toneStyles[textures[texture]], textures[texture] === 'dark' && 'glow'),
+    className: cn('texture', `tx-${texture}`, toneStyles[textures[texture]], textures[texture] === 'dark' && 'glow'),
     style: { backgroundImage: `url('/textures/${texture}.webp')` },
   };
 }
