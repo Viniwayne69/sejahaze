@@ -9,7 +9,7 @@ import { Bar, Container } from './ui';
  */
 export default function TopBar() {
   return (
-    <div className="border-b border-line bg-graphite text-paper lg:sticky lg:top-0 lg:z-50 lg:bg-black">
+    <div className="topo-abre border-b border-line bg-graphite text-paper lg:sticky lg:top-0 lg:z-50 lg:bg-black">
       <Container className="flex h-[53px] items-center justify-between lg:h-[80px] lg:max-w-[1280px] min-[1700px]:max-w-[1280px]">
         <Logo tone="light" size="sm" className="lg:h-[34px]" />
         <p className="flex items-center gap-2.5 text-[13px] font-semibold lg:hidden">

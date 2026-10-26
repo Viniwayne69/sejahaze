@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { copy } from '@/content/copy';
 import HeroFoto from './HeroFoto';
 import HeroPC from './HeroPC';
@@ -8,8 +9,19 @@ import { Accent, ApplyNote, Button, Container, cn, textureProps } from './ui';
  * e o subtítulo e o botão ficam embaixo, sobre um degradê preto.
  * Computador: texto à esquerda e, à direita, a foto sangrando até a borda da tela, com a mulher saindo da moldura.
  */
+/** Cada palavra do título entra com um estalo elétrico, uma depois da outra (só no computador). */
+const palavras = (texto: string, inicio: number) =>
+  texto.split(' ').map((palavra, i) => (
+    <Fragment key={`${inicio}-${i}`}>
+      <span className="hero-pal lg:inline-block" style={{ '--i': inicio + i } as React.CSSProperties}>
+        {palavra}
+      </span>{' '}
+    </Fragment>
+  ));
+
 export default function Hero() {
   const { before, accent, after, subtitle } = copy.hero;
+  const nAntes = before.split(' ').length;
   const bg = textureProps('nevoa');
 
   return (
@@ -33,13 +45,16 @@ export default function Hero() {
 
         <div data-reveal className="flex flex-1 flex-col pb-8 pt-7 lg:z-10 lg:w-[52%] lg:flex-none lg:py-0">
           <h1 className="display text-[30px] text-black [--accent-bar:theme(colors.cyan)] min-[400px]:text-[33px] md:text-[46px] lg:max-w-[8.4em] lg:text-[clamp(52px,5.5vw,80px)] lg:leading-[0.98] lg:tracking-[-0.01em] lg:text-paper lg:[font-variation-settings:'wdth'_62] lg:[word-spacing:0.14em]">
-            {before} <Accent className="lg:block lg:w-fit">{accent}</Accent>
-            {after ? <> <span className="lg:block">{after}</span></> : null}
+            {palavras(before, 0)}
+            <span className="hero-pal lg:block lg:w-fit" style={{ '--i': nAntes } as React.CSSProperties}>
+              <Accent>{accent}</Accent>
+            </span>
+            {after ? <> <span className="lg:block">{palavras(after, nAntes + 1)}</span></> : null}
           </h1>
 
           <div className="mt-auto lg:mt-7">
-            <p className="max-w-[420px] text-[19px] font-semibold leading-snug text-paper md:text-[22px] lg:max-w-[min(480px,38vw)] lg:text-[22px] lg:font-normal lg:text-paper/80">{subtitle}</p>
-            <div className="mt-5 lg:mt-9 lg:w-[min(400px,38vw)]">
+            <p style={{ '--d': '1400ms' } as React.CSSProperties} className="hero-in max-w-[420px] text-[19px] font-semibold leading-snug text-paper md:text-[22px] lg:max-w-[min(480px,38vw)] lg:text-[22px] lg:font-normal lg:text-paper/80">{subtitle}</p>
+            <div style={{ '--d': '1650ms' } as React.CSSProperties} className="hero-in mt-5 lg:mt-9 lg:w-[min(400px,38vw)]">
               <Button className="lg:min-h-[64px] lg:w-full lg:min-w-0 lg:text-[20px] lg:font-bold">{copy.apply}</Button>
               <ApplyNote className="text-paper/90 lg:mt-3 lg:text-[13px]">{copy.hero.nota}</ApplyNote>
             </div>

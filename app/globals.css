@@ -609,6 +609,171 @@
   }
 }
 
+/* Abertura do hero no computador: menu que desce, feixe ciano que revela a foto, título em estalos elétricos,
+   a mulher saindo da moldura com um clarão, e depois profundidade com o mouse. Só aparece sem "reduzir movimento". */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  @keyframes topo-abre {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  .topo-abre {
+    animation: topo-abre 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  @keyframes hero-quadro {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  .hero-quadro {
+    animation: hero-quadro 1.1s cubic-bezier(0.65, 0, 0.2, 1) 0.15s both;
+  }
+
+  @keyframes hero-feixe {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  .hero-feixe {
+    animation: hero-feixe 1.1s cubic-bezier(0.65, 0, 0.2, 1) 0.15s both;
+  }
+
+  @keyframes hero-flash {
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .hero-flash {
+    animation: hero-flash 0.7s ease-out 1s both;
+  }
+
+  @keyframes hero-sai {
+    from {
+      opacity: 0;
+      transform: translateX(7%) scale(0.94);
+      filter: drop-shadow(0 0 0 rgba(1, 187, 251, 0));
+    }
+    40% {
+      opacity: 1;
+      filter: drop-shadow(0 0 34px rgba(1, 187, 251, 0.95));
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: drop-shadow(0 0 0 rgba(1, 187, 251, 0));
+    }
+  }
+
+  .hero-sai {
+    animation: hero-sai 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.95s both;
+  }
+
+  /* Profundidade: o recorte vai para um lado e o fundo para o outro, seguindo o mouse */
+  .hero-par {
+    transform: translate3d(calc(var(--mx, 0) * -16px), calc(var(--my, 0) * -9px), 0);
+    transition: transform 0.35s ease-out;
+  }
+
+  .hero-par-fundo {
+    transform: translate3d(calc(var(--mx, 0) * 8px), calc(var(--my, 0) * 5px), 0) scale(1.03);
+    transition: transform 0.35s ease-out;
+  }
+
+  /* O título entra palavra por palavra, com um estalo de luz ciano */
+  @keyframes hero-pal {
+    0% {
+      opacity: 0;
+      transform: translateY(0.55em) scale(1.06);
+      filter: blur(12px);
+      text-shadow: 0 0 28px rgba(1, 187, 251, 0.95);
+    }
+    45% {
+      opacity: 1;
+      filter: blur(0);
+    }
+    55% {
+      opacity: 0.35;
+    }
+    65% {
+      opacity: 1;
+      text-shadow: 0 0 18px rgba(1, 187, 251, 0.7);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      text-shadow: none;
+    }
+  }
+
+  .hero-pal {
+    animation: hero-pal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(0.45s + var(--i, 0) * 0.07s);
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .hero-in {
+    animation: hero-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--d, 0s);
+  }
+
+  /* A abertura já faz o trabalho da revelação padrão: no hero, o bloco aparece na hora e a barra se desenha por último */
+  .js #inicio [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .js #inicio [data-reveal] .display {
+    clip-path: none;
+    transition: none;
+  }
+
+  .js #inicio [data-reveal] .accent::after {
+    transition-delay: 1.3s;
+  }
+}
+
 /* Menu fixo do computador: as âncoras não ficam escondidas atrás dele */
 @media (min-width: 1024px) {
   html {
