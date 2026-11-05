@@ -1,6 +1,6 @@
 import { copy } from '@/content/copy';
 import Carrossel from './Carrossel';
-import { Accent, Button, Section } from './ui';
+import { Accent, Section } from './ui';
 
 type Passo = (typeof copy.quebra.passos)[number];
 
@@ -27,10 +27,10 @@ function Cartao({ p }: { p: Passo }) {
 
 /**
  * Quebra de crença, entre as dores e o método:
- * questionamento, valor percebido, conversão e a solução da HAZE, nessa ordem.
+ * o problema afirmado e os dois motivos, cada um num cartão. A resposta vem nos pilares logo abaixo.
  */
 export default function Quebra() {
-  const { rotulo, before, accent, texto, passos, solucao } = copy.quebra;
+  const { rotulo, before, accent, texto, passos } = copy.quebra;
 
   return (
     <Section id="quebra" texture="nevoa" fade="black" labelledBy="quebra-titulo">
@@ -60,22 +60,6 @@ export default function Quebra() {
         {passos.map((p) => (
           <Cartao key={p.rotulo} p={p} />
         ))}
-      </div>
-
-      {/* 4. Solução HAZE */}
-      <div
-        data-reveal
-        className="mt-6 rounded-[24px] bg-cyan px-5 py-8 text-center text-black md:mx-auto md:mt-8 md:px-12 md:py-12 lg:mt-8 lg:max-w-none lg:rounded-[18px] lg:px-16 lg:py-14"
-      >
-        <p className="inline-block bg-black px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">{solucao.rotulo}</p>
-        <h3 className="display mt-4 text-[26px] [text-wrap:balance] md:text-[40px] lg:text-[clamp(40px,4vw,58px)]">{solucao.titulo}</h3>
-        <p className="mx-auto mt-4 max-w-[760px] text-[16px] font-medium leading-snug md:mt-5 md:text-[19px]">{solucao.texto}</p>
-        <div className="mt-6 md:mt-8">
-          <Button variant="dark" className="md:min-w-[420px]">
-            {solucao.botao}
-          </Button>
-          <p className="mt-3 text-[13px] font-medium md:text-[14px]">{solucao.nota}</p>
-        </div>
       </div>
     </Section>
   );

@@ -53,7 +53,7 @@ export const copy = {
   /** Quebra de crença: entre as dores e o método. Sem ponto final, como pede a marca. */
   quebra: {
     rotulo: 'O QUE TRAVA A SUA MARCA',
-    before: 'O PROBLEMA NÃO É A',
+    before: 'TALVEZ O PROBLEMA NÃO SEJA A',
     accent: 'FALTA DE CLIENTES',
     texto: 'Os clientes chegam, mas poucos compram: são dois os motivos',
     passos: [
@@ -70,13 +70,6 @@ export const copy = {
         pergunta: 'De que adianta despertar interesse se não consegue transformá-lo em compra?',
       },
     ],
-    solucao: {
-      rotulo: 'A SOLUÇÃO',
-      titulo: 'A HAZE RESOLVE OS DOIS',
-      texto: 'Mostramos por que escolher a sua marca e ajudamos você a vender mais',
-      botao: 'DESCUBRA O QUE ESTÁ TRAVANDO SUA MARCA',
-      nota: 'Diagnóstico inicial gratuito • Menos de 3 minutos',
-    },
   },
 
   /** Os 3 pilares: o mecanismo, antes das etapas do método. Sem ponto final, como pede a marca. */
