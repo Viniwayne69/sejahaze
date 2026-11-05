@@ -31,7 +31,7 @@ export const copy = {
   promessa: {
     chamada: 'CHEGA DE VENDER POUCO!',
     before: 'TENHA UMA MARCA TÃO',
-    accent: 'COBIÇADA',
+    accent: 'IRRESISTÍVEL',
     after: 'QUE O CLIENTE PAGA O PREÇO CHEIO',
     antes: 'Antes',
     depois: 'Depois',
