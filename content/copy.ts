@@ -114,7 +114,7 @@ export const copy = {
       {
         number: '02',
         title: 'Arquitetura',
-        body: 'Estruturamos o comercial, posicionamos a marca e montamos a máquina que encanta o cliente certo e fecha a venda',
+        body: 'Estruturamos o comercial, posicionamos a marca e montamos a máquina de vendas para dobrar o seu faturamento',
       },
       {
         number: '03',
