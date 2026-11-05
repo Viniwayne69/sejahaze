@@ -4,10 +4,10 @@ import { Accent, Section } from './ui';
 
 /**
  * Os 3 pilares de uma marca desejada, como um único sistema: três linhas separadas por divisores finos,
- * numeração grande em ciano e muito espaço. Sem botão: conduz o visitante ao método logo abaixo.
+ * numeração grande em ciano e muito espaço. Sem botão nem fechamento: termina nos pilares e segue para o método.
  */
 export default function Pilares() {
-  const { rotulo, before, accent, texto, itens, fechamento } = copy.pilares;
+  const { rotulo, before, accent, texto, itens } = copy.pilares;
 
   return (
     <Section id="pilares" texture="fosca-azul" fade="black" labelledBy="pilares-titulo">
@@ -70,14 +70,6 @@ export default function Pilares() {
             </li>
           ))}
         </ol>
-      </div>
-
-      {/* Fechamento: os três são um só sistema, e leva ao método */}
-      <div data-reveal className="mt-10 text-center md:mx-auto md:mt-16 md:max-w-[820px] lg:mt-24 lg:max-w-[1000px]">
-        <h3 className="display text-[26px] md:text-[40px] lg:text-[clamp(40px,4.2vw,62px)]">{fechamento.titulo}</h3>
-        <p className="mt-4 text-[16px] leading-snug text-paper/90 md:mt-6 md:text-[19px]">{fechamento.texto}</p>
-        <span aria-hidden="true" className="mx-auto mt-6 block h-[4px] w-10 bg-cyan md:mt-8" />
-        <p className="mt-3 text-[18px] font-semibold text-cyan md:text-[22px]">{fechamento.fecho}</p>
       </div>
     </Section>
   );

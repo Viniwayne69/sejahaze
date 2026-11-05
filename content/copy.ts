@@ -105,11 +105,6 @@ export const copy = {
         texto: 'Despertar desejo é apenas parte do processo: sua empresa precisa de atendimento preparado e uma estrutura comercial que transforme oportunidades em clientes',
       },
     ],
-    fechamento: {
-      titulo: 'UMA MARCA DESEJADA NÃO ACONTECE POR ACASO, ELA É CONSTRUÍDA',
-      texto: 'Quando posicionamento, experiência e conversão trabalham juntos, sua empresa deixa de depender apenas de preço e divulgação',
-      fecho: 'É isso que a HAZE estrutura',
-    },
   },
 
   metodo: {
