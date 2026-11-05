@@ -1,5 +1,29 @@
 import { copy } from '@/content/copy';
+import Carrossel from './Carrossel';
 import { Accent, Button, Section } from './ui';
+
+type Passo = (typeof copy.quebra.passos)[number];
+
+/**
+ * Cartão claro sobre o fundo preto: nome do problema na etiqueta preta, título, texto
+ * e a pergunta que pesa, num bloco preto no pé do cartão.
+ */
+function Cartao({ p }: { p: Passo }) {
+  return (
+    <article className="flex h-full flex-col overflow-hidden rounded-[24px] bg-paper text-black shadow-[0_0_34px_rgba(1,187,251,.28)] lg:rounded-[18px]">
+      <div className="pb-1 pl-5 pr-12 pt-6 md:pl-9 md:pr-16 md:pt-9 lg:pl-10 lg:pr-10 lg:pt-10">
+        <span className="inline-block bg-black px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">
+          {p.rotulo}
+        </span>
+        <h3 className="display mt-4 text-[22px] md:mt-5 md:text-[34px] lg:text-[clamp(28px,2.4vw,36px)]">{p.titulo}</h3>
+        <p className="mt-3 text-[15.5px] leading-snug text-black/80 md:mt-4 md:text-[18px]">{p.texto}</p>
+      </div>
+      <div className="mt-auto p-3 pt-6 md:p-4 md:pt-8">
+        <p className="rounded-[16px] bg-black px-4 py-4 text-[16px] font-semibold leading-snug text-cyan md:px-6 md:py-5 md:text-[19px]">{p.pergunta}</p>
+      </div>
+    </article>
+  );
+}
 
 /**
  * Quebra de crença, entre as dores e o método:
@@ -21,36 +45,30 @@ export default function Quebra() {
         <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray md:text-[13px]">{rotulo}</p>
         <h2
           id="quebra-titulo"
-          className="display mt-3 text-[26px] md:mt-4 md:text-[44px] lg:text-[clamp(52px,5.2vw,76px)]"
+          className="display mt-3 text-[24px] [text-wrap:balance] md:mt-4 md:text-[44px] lg:text-[clamp(52px,5.2vw,76px)]"
         >
           {before} <Accent>{accent}</Accent>
         </h2>
         <p className="mt-4 text-[16px] leading-snug text-paper/90 md:mt-6 md:text-[19px] lg:text-[20px]">{texto}</p>
       </div>
 
-      {/* 2 e 3. Valor percebido e conversão */}
-      <ol className="mt-7 grid gap-4 md:mt-12 md:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-8">
+      {/* 2 e 3. Valor percebido e conversão: carrossel no celular e no tablet, duas colunas no computador */}
+      <div className="lg:hidden">
+        <Carrossel label="O que pode estar travando a sua marca" setaTop="top-[34%]" items={passos.map((p) => <Cartao key={p.rotulo} p={p} />)} />
+      </div>
+      <div data-reveal className="mt-14 hidden gap-8 lg:grid lg:grid-cols-2">
         {passos.map((p) => (
-          <li key={p.rotulo} data-reveal className="flex">
-            <article className="flex w-full flex-col rounded-[24px] border border-cyan/40 bg-graphite px-5 py-6 shadow-[0_0_26px_rgba(1,187,251,.16)] md:px-9 md:py-9 lg:rounded-[18px] lg:px-10 lg:py-11">
-              <p className="font-display text-[13px] font-black uppercase tracking-[0.08em] text-cyan md:text-[14px]">{p.rotulo}</p>
-              <h3 className="display mt-5 text-[22px] md:text-[28px] lg:text-[clamp(26px,2.3vw,34px)]">{p.titulo}</h3>
-              <p className="mt-3 text-[15px] leading-snug text-paper/90 md:mt-4 md:text-[17px] lg:mb-6">{p.texto}</p>
-              <p className="mt-5 border-l-4 border-cyan pl-4 text-[16px] font-semibold leading-snug text-cyan md:mt-6 md:text-[18px] lg:mt-auto lg:pt-0">
-                {p.pergunta}
-              </p>
-            </article>
-          </li>
+          <Cartao key={p.rotulo} p={p} />
         ))}
-      </ol>
+      </div>
 
       {/* 4. Solução HAZE */}
       <div
         data-reveal
-        className="mt-4 rounded-[24px] bg-cyan px-5 py-7 text-center text-black md:mx-auto md:mt-5 md:px-12 md:py-12 lg:mt-8 lg:max-w-none lg:rounded-[18px] lg:px-16 lg:py-14"
+        className="mt-6 rounded-[24px] bg-cyan px-5 py-8 text-center text-black md:mx-auto md:mt-8 md:px-12 md:py-12 lg:mt-8 lg:max-w-none lg:rounded-[18px] lg:px-16 lg:py-14"
       >
-        <p className="font-display text-[12px] font-black uppercase tracking-[0.14em] md:text-[13px]">{solucao.rotulo}</p>
-        <h3 className="display mt-3 text-[26px] md:text-[40px] lg:text-[clamp(40px,4vw,58px)]">{solucao.titulo}</h3>
+        <p className="inline-block bg-black px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">{solucao.rotulo}</p>
+        <h3 className="display mt-4 text-[26px] [text-wrap:balance] md:text-[40px] lg:text-[clamp(40px,4vw,58px)]">{solucao.titulo}</h3>
         <p className="mx-auto mt-4 max-w-[760px] text-[16px] font-medium leading-snug md:mt-5 md:text-[19px]">{solucao.texto}</p>
         <div className="mt-6 md:mt-8">
           <Button variant="dark" className="md:min-w-[420px]">
