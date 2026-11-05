@@ -12,13 +12,10 @@ export default function Carrossel({
   label,
   items,
   setaTop = 'top-1/2',
-  sobreCiano = false,
 }: {
   label: string;
   items: React.ReactNode[];
   setaTop?: string;
-  /** Seção de fundo ciano: as bolinhas ficam pretas, para aparecerem. */
-  sobreCiano?: boolean;
 }) {
   const trilho = useRef<HTMLOListElement>(null);
   const [ativo, setAtivo] = useState(0);
@@ -85,11 +82,7 @@ export default function Carrossel({
             onClick={() => irPara(i)}
             aria-label={`Ver cartão ${i + 1} de ${items.length}`}
             aria-current={ativo === i}
-            className={cn(
-              'h-1.5 transition-all duration-300',
-              ativo === i ? 'w-6' : 'w-2.5',
-              sobreCiano ? (ativo === i ? 'bg-black' : 'bg-black/35') : ativo === i ? 'bg-cyan' : 'bg-gray',
-            )}
+            className={cn('h-1.5 transition-all duration-300', ativo === i ? 'w-6 bg-cyan' : 'w-2.5 bg-gray')}
           />
         ))}
       </div>

@@ -10,13 +10,13 @@ export default function Pilares() {
   const { rotulo, before, accent, texto, itens } = copy.pilares;
 
   return (
-    <Section id="pilares" texture="ciano" fade="black" labelledBy="pilares-titulo">
+    <Section id="pilares" texture="fosca-azul" fade="black" labelledBy="pilares-titulo">
       <div data-reveal className="text-center md:mx-auto md:max-w-[760px] lg:max-w-[980px]">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-black/70 md:text-[13px]">{rotulo}</p>
+        <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray md:text-[13px]">{rotulo}</p>
         <h2 id="pilares-titulo" className="display mt-3 text-[26px] md:mt-4 md:text-[44px] lg:text-[clamp(52px,5.2vw,76px)]">
-          {before} <Accent bar="black">{accent}</Accent>
+          {before} <Accent>{accent}</Accent>
         </h2>
-        <p className="mt-4 text-[16px] font-medium leading-snug text-black/85 md:mt-6 md:text-[19px] lg:text-[20px]">{texto}</p>
+        <p className="mt-4 text-[16px] leading-snug text-paper/90 md:mt-6 md:text-[19px] lg:text-[20px]">{texto}</p>
       </div>
 
       {/* Celular e tablet: cartões que deslizam, como nas outras seções */}
@@ -24,11 +24,10 @@ export default function Pilares() {
         <Carrossel
           label="Os 3 pilares de uma marca desejada"
           setaTop="top-[64%]"
-          sobreCiano
           items={itens.map((p) => (
-            <article key={p.numero} className="relative isolate flex h-full flex-col overflow-hidden rounded-[24px] bg-line text-paper shadow-[0_12px_30px_rgba(0,0,0,.28)]">
-              {/* Faixa preta: o nome do pilar e o número grande em ciano */}
-              <div className="flex items-center justify-between bg-black px-5 py-2.5 text-cyan md:px-9 md:py-4">
+            <article key={p.numero} className="relative isolate flex h-full flex-col overflow-hidden rounded-[24px] border border-cyan/50 bg-line shadow-[0_0_30px_rgba(1,187,251,.2)]">
+              {/* Faixa ciano: o nome do pilar e o número grande */}
+              <div className="flex items-center justify-between bg-cyan px-5 py-2.5 text-black md:px-9 md:py-4">
                 <span className="font-display text-[12px] font-black uppercase tracking-[0.14em] md:text-[14px]">{p.rotulo}</span>
                 <span className="font-display text-[38px] font-black leading-none md:text-[56px]">{p.numero}</span>
               </div>
@@ -53,21 +52,21 @@ export default function Pilares() {
 
       {/* Computador: três linhas separadas por divisores */}
       <div data-reveal className="mt-20 hidden lg:block">
-        <ol className="border-t border-black/25">
+        <ol className="border-t border-paper/20">
           {itens.map((p) => (
             <li
               key={p.numero}
-              className="border-b border-black/25 py-7 md:py-10 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)_minmax(0,4fr)] lg:items-start lg:gap-x-12 lg:py-14"
+              className="border-b border-paper/20 py-7 md:py-10 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,5fr)_minmax(0,4fr)] lg:items-start lg:gap-x-12 lg:py-14"
             >
               <div className="flex items-end gap-4 lg:block">
-                <span className="font-display text-[56px] font-black leading-none text-black md:text-[72px] lg:text-[clamp(88px,8vw,128px)]">{p.numero}</span>
-                <span className="pb-1 font-display text-[12px] font-black uppercase tracking-[0.14em] text-black md:text-[13px] lg:mt-4 lg:block lg:pb-0">
+                <span className="font-display text-[56px] font-black leading-none text-cyan md:text-[72px] lg:text-[clamp(88px,8vw,128px)]">{p.numero}</span>
+                <span className="pb-1 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px] lg:mt-4 lg:block lg:pb-0">
                   <span aria-hidden="true">/ </span>
                   {p.rotulo}
                 </span>
               </div>
               <h3 className="display mt-4 text-[24px] md:text-[32px] lg:mt-0 lg:text-[clamp(30px,2.8vw,42px)]">{p.titulo}</h3>
-              <p className="mt-3 text-[15px] font-medium leading-snug text-black/85 md:mt-4 md:text-[17px] lg:mt-1">{p.texto}</p>
+              <p className="mt-3 text-[15px] leading-snug text-paper/90 md:mt-4 md:text-[17px] lg:mt-1">{p.texto}</p>
             </li>
           ))}
         </ol>
