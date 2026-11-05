@@ -10,15 +10,15 @@ type Passo = (typeof copy.quebra.passos)[number];
  */
 function Cartao({ p }: { p: Passo }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[24px] bg-paper text-center text-black shadow-[0_0_34px_rgba(1,187,251,.28)] lg:rounded-[18px]">
-      <div className="px-10 pb-1 pt-6 md:px-16 md:pt-9 lg:px-10 lg:pt-10">
+    <article className="flex h-full flex-col justify-center overflow-hidden lg:justify-start rounded-[24px] bg-paper text-center text-black shadow-[0_0_34px_rgba(1,187,251,.28)] lg:rounded-[18px]">
+      <div className="px-10 pt-7 md:px-16 md:pt-10 lg:px-10 lg:pt-12">
         <span className="inline-block bg-black px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">
           {p.rotulo}
         </span>
-        <h3 className="display mt-4 text-[22px] md:mt-5 md:text-[34px] lg:text-[clamp(28px,2.4vw,36px)]">{p.titulo}</h3>
-        <p className="mt-3 text-[15.5px] leading-snug text-black/80 md:mt-4 md:text-[18px]">{p.texto}</p>
+        <h3 className="display mt-5 text-[25px] md:mt-6 md:text-[36px] lg:text-[clamp(30px,2.6vw,40px)]">{p.titulo}</h3>
+        <p className="mt-4 text-[17px] leading-snug text-black/80 md:mt-5 md:text-[20px]">{p.texto}</p>
       </div>
-      <div className="mt-auto p-3 pt-6 md:p-4 md:pt-8">
+      <div className="p-3 pt-7 md:p-4 md:pt-9 lg:mt-auto">
         <p className="rounded-[16px] bg-black px-4 py-4 text-[16px] font-semibold leading-snug text-cyan md:px-6 md:py-5 md:text-[19px]">{p.pergunta}</p>
       </div>
     </article>
@@ -49,7 +49,7 @@ export default function Quebra() {
         >
           {before} <Accent>{accent}</Accent>
         </h2>
-        <p className="mt-4 text-[16px] leading-snug text-paper/90 md:mt-6 md:text-[19px] lg:text-[20px]">{texto}</p>
+        <p className="mt-4 text-[17px] leading-snug text-paper/90 [text-wrap:balance] md:mt-6 md:text-[19px] lg:text-[20px]">{texto}</p>
       </div>
 
       {/* 2 e 3. Valor percebido e conversão: carrossel no celular e no tablet, duas colunas no computador */}

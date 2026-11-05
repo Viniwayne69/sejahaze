@@ -52,28 +52,28 @@ export const copy = {
 
   /** Quebra de crença: entre as dores e o método. Sem ponto final, como pede a marca. */
   quebra: {
-    rotulo: 'O QUE IMPEDE SUA MARCA DE CRESCER',
+    rotulo: 'O QUE TRAVA A SUA MARCA',
     before: 'TALVEZ O PROBLEMA NÃO SEJA A',
     accent: 'FALTA DE CLIENTES',
-    texto: 'Você pode investir em anúncios e receber mensagens todos os dias, mas nada disso garante que escolham a sua marca',
+    texto: 'Você até recebe mensagens, mas poucos compram',
     passos: [
       {
-        rotulo: 'VALOR PERCEBIDO',
-        titulo: 'PODEM ESTAR FALTANDO MOTIVOS PARA ESCOLHER VOCÊ',
-        texto: 'Quando o cliente não percebe diferença clara entre você e seus concorrentes, o preço acaba sendo o critério de decisão',
-        pergunta: 'Se todas as marcas parecem iguais, por que ele pagaria mais pela sua?',
+        rotulo: 'DIFERENÇA',
+        titulo: 'O CLIENTE NÃO VÊ POR QUE ESCOLHER VOCÊ',
+        texto: 'Se todo mundo parece igual, ele escolhe o mais barato',
+        pergunta: 'Por que ele pagaria mais pela sua marca?',
       },
       {
-        rotulo: 'CONVERSÃO',
-        titulo: 'E UM PROCESSO QUE TRANSFORME INTERESSE EM VENDAS',
-        texto: 'Mesmo quando alguém demonstra interesse, um atendimento sem direção ou a falta de acompanhamento podem fazer a venda escapar',
-        pergunta: 'De que adianta despertar interesse se não consegue transformá-lo em compra?',
+        rotulo: 'VENDA',
+        titulo: 'O INTERESSE NÃO VIRA COMPRA',
+        texto: 'Sem um bom atendimento, o cliente interessado vai embora',
+        pergunta: 'De que adianta o cliente gostar e não comprar?',
       },
     ],
     solucao: {
-      rotulo: 'A SOLUÇÃO / HAZE',
-      titulo: 'É EXATAMENTE ISSO QUE A HAZE ESTRUTURA',
-      texto: 'Trabalhamos o posicionamento da sua marca, construímos uma experiência que aumenta o valor percebido e organizamos seu processo comercial para transformar interesse em vendas',
+      rotulo: 'A SOLUÇÃO',
+      titulo: 'A HAZE RESOLVE OS DOIS',
+      texto: 'Mostramos por que escolher a sua marca e ajudamos você a vender mais',
       botao: 'DESCUBRA O QUE ESTÁ TRAVANDO SUA MARCA',
       nota: 'Diagnóstico inicial gratuito • Menos de 3 minutos',
     },
