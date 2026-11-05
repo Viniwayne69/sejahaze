@@ -122,13 +122,6 @@ export const copy = {
         body: 'Colocamos tudo para rodar, com a sua equipe treinada para vender',
       },
     ],
-    /** A promessa de crescimento: possibilidade, não garantia, e dita uma só vez. */
-    crescimento: {
-      rotulo: 'IMPLEMENTAÇÃO',
-      titulo: 'SUA EMPRESA PODE ESTAR VENDENDO METADE DO QUE PODERIA',
-      texto:
-        'Identificamos oportunidades de crescimento e implementamos melhorias no posicionamento, na experiência do cliente e na estrutura comercial para aumentar as vendas e explorar o verdadeiro potencial do seu negócio, inclusive a possibilidade de dobrar o faturamento',
-    },
     result: 'Resultado: Marca desejada no mercado, time treinado para dar resultado e mais vendas',
   },
 

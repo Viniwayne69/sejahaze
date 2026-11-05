@@ -36,7 +36,7 @@ const fotos = [
 
 /** Cartões inteiros que deslizam no celular (com bolinhas), cada um com foto, número, nome e uma linha. Grade de 3 no desktop. */
 export default function Metodo() {
-  const { before, accent, steps, crescimento, result } = copy.metodo;
+  const { before, accent, steps, result } = copy.metodo;
   const [resultLabel, ...resultText] = result.split(':');
 
   return (
@@ -80,15 +80,6 @@ export default function Metodo() {
           </article>
         ))}
       />
-
-      {/* Promessa de crescimento da etapa Implementação */}
-      <div data-reveal className="mx-auto mt-6 max-w-[760px] rounded-[24px] bg-black px-6 py-7 text-center text-paper shadow-[0_14px_34px_rgba(0,0,0,.22)] md:mt-10 md:px-12 md:py-10 lg:mt-14 lg:max-w-[980px] lg:rounded-[18px] lg:px-16 lg:py-12">
-        <span className="inline-block bg-cyan px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-black md:text-[13px]">
-          {crescimento.rotulo}
-        </span>
-        <h3 className="display mt-5 text-[22px] [text-wrap:balance] md:text-[34px] lg:text-[clamp(32px,3vw,44px)]">{crescimento.titulo}</h3>
-        <p className="mx-auto mt-4 max-w-[640px] text-[15.5px] leading-snug text-paper/85 md:mt-5 md:text-[18px]">{crescimento.texto}</p>
-      </div>
 
       <p data-reveal className="mt-4 rounded-[24px] border-2 border-black bg-paper px-4 py-3 text-center text-[14px] leading-snug md:mx-auto md:mt-8 md:max-w-[720px] md:rounded-full md:text-[16px] lg:mt-10 lg:max-w-none lg:border lg:border-black/40 lg:bg-transparent lg:py-4 lg:text-[14px] lg:uppercase lg:tracking-[0.03em]">
         <strong>{resultLabel}:</strong>
