@@ -10,8 +10,8 @@ type Passo = (typeof copy.quebra.passos)[number];
  */
 function Cartao({ p }: { p: Passo }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[24px] bg-paper text-black shadow-[0_0_34px_rgba(1,187,251,.28)] lg:rounded-[18px]">
-      <div className="pb-1 pl-5 pr-12 pt-6 md:pl-9 md:pr-16 md:pt-9 lg:pl-10 lg:pr-10 lg:pt-10">
+    <article className="flex h-full flex-col overflow-hidden rounded-[24px] bg-paper text-center text-black shadow-[0_0_34px_rgba(1,187,251,.28)] lg:rounded-[18px]">
+      <div className="px-10 pb-1 pt-6 md:px-16 md:pt-9 lg:px-10 lg:pt-10">
         <span className="inline-block bg-black px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">
           {p.rotulo}
         </span>
@@ -41,7 +41,7 @@ export default function Quebra() {
       </div>
 
       {/* 1. Questionamento */}
-      <div data-reveal className="md:mx-auto md:max-w-[760px] md:text-center lg:max-w-[980px]">
+      <div data-reveal className="text-center md:mx-auto md:max-w-[760px] lg:max-w-[980px]">
         <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray md:text-[13px]">{rotulo}</p>
         <h2
           id="quebra-titulo"
@@ -54,7 +54,7 @@ export default function Quebra() {
 
       {/* 2 e 3. Valor percebido e conversão: carrossel no celular e no tablet, duas colunas no computador */}
       <div className="lg:hidden">
-        <Carrossel label="O que pode estar travando a sua marca" setaTop="top-[34%]" items={passos.map((p) => <Cartao key={p.rotulo} p={p} />)} />
+        <Carrossel label="O que pode estar travando a sua marca" setaTop="top-[11%]" items={passos.map((p) => <Cartao key={p.rotulo} p={p} />)} />
       </div>
       <div data-reveal className="mt-14 hidden gap-8 lg:grid lg:grid-cols-2">
         {passos.map((p) => (

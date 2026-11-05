@@ -11,7 +11,7 @@ export default function Pilares() {
 
   return (
     <Section id="pilares" texture="fosca-azul" fade="black" labelledBy="pilares-titulo">
-      <div data-reveal className="md:mx-auto md:max-w-[760px] md:text-center lg:max-w-[980px]">
+      <div data-reveal className="text-center md:mx-auto md:max-w-[760px] lg:max-w-[980px]">
         <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray md:text-[13px]">{rotulo}</p>
         <h2 id="pilares-titulo" className="display mt-3 text-[26px] md:mt-4 md:text-[44px] lg:text-[clamp(52px,5.2vw,76px)]">
           {before} <Accent>{accent}</Accent>
@@ -40,9 +40,9 @@ export default function Pilares() {
                 {p.numero}
               </span>
 
-              <div className="flex flex-1 flex-col px-5 pb-7 pt-6 pr-12 md:px-9 md:pb-10 md:pt-8 md:pr-16">
+              <div className="flex flex-1 flex-col px-10 pb-7 pt-6 text-center md:px-16 md:pb-10 md:pt-8">
                 <h3 className="display text-[26px] md:text-[34px]">{p.titulo}</h3>
-                <span aria-hidden="true" className="mt-4 block h-[4px] w-10 bg-cyan" />
+                <span aria-hidden="true" className="mx-auto mt-4 block h-[4px] w-10 bg-cyan" />
                 <p className="mt-4 text-[15.5px] leading-snug text-paper/90 md:text-[18px]">{p.texto}</p>
               </div>
             </article>
@@ -73,10 +73,11 @@ export default function Pilares() {
       </div>
 
       {/* Fechamento: os três são um só sistema, e leva ao método */}
-      <div data-reveal className="mt-10 md:mx-auto md:mt-16 md:max-w-[820px] md:text-center lg:mt-24 lg:max-w-[1000px]">
+      <div data-reveal className="mt-10 text-center md:mx-auto md:mt-16 md:max-w-[820px] lg:mt-24 lg:max-w-[1000px]">
         <h3 className="display text-[26px] md:text-[40px] lg:text-[clamp(40px,4.2vw,62px)]">{fechamento.titulo}</h3>
         <p className="mt-4 text-[16px] leading-snug text-paper/90 md:mt-6 md:text-[19px]">{fechamento.texto}</p>
-        <p className="mt-5 inline-block border-l-4 border-cyan pl-4 text-left text-[18px] font-semibold text-cyan md:mt-7 md:text-[22px]">{fechamento.fecho}</p>
+        <span aria-hidden="true" className="mx-auto mt-6 block h-[4px] w-10 bg-cyan md:mt-8" />
+        <p className="mt-3 text-[18px] font-semibold text-cyan md:text-[22px]">{fechamento.fecho}</p>
       </div>
     </Section>
   );
