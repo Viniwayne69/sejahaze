@@ -25,7 +25,7 @@ export default function Pilares() {
           label="Os 3 pilares de uma marca desejada"
           setaTop="top-[64%]"
           items={itens.map((p) => (
-            <article key={p.numero} className="relative isolate flex h-full flex-col overflow-hidden rounded-[24px] border border-cyan/50 bg-graphite shadow-[0_0_30px_rgba(1,187,251,.2)]">
+            <article key={p.numero} className="relative isolate flex h-full flex-col overflow-hidden rounded-[24px] border border-cyan/50 bg-line shadow-[0_0_30px_rgba(1,187,251,.2)]">
               {/* Faixa ciano: o nome do pilar e o número grande */}
               <div className="flex items-center justify-between bg-cyan px-5 py-2.5 text-black md:px-9 md:py-4">
                 <span className="font-display text-[12px] font-black uppercase tracking-[0.14em] md:text-[14px]">{p.rotulo}</span>
