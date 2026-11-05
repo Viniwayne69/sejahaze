@@ -6,7 +6,11 @@
 export const copy = {
   brand: 'HAZE',
   apply: 'Iniciar diagnóstico gratuito',
-  applyNote: 'Leva menos de 2 minutos, para você ver o quanto a sua marca é desejada',
+  /**
+   * Como o diagnóstico é apresentado em todo o site. A duração real do questionário ainda não foi medida,
+   * por isso nenhum texto promete tempo: depois de cronometrar, é só acrescentar a duração aqui.
+   */
+  applyNote: 'Diagnóstico inicial gratuito',
   skipLink: 'Pular para o conteúdo',
 
   topBar: {
@@ -25,7 +29,7 @@ export const copy = {
     accent: 'desejada',
     after: 'E VENDER MAIS',
     subtitle: 'Consultoria que estrutura a experiência do cliente, do primeiro contato ao pós-venda',
-    nota: 'Descubra de 1 a 10 como está o seu negócio, leva menos de 2 minutos',
+    nota: 'Descubra o que pode estar impedindo sua marca de vender mais com nosso diagnóstico inicial gratuito',
   },
 
   promessa: {
@@ -54,6 +58,8 @@ export const copy = {
     before: 'TALVEZ O PROBLEMA NÃO SEJA A',
     accent: 'FALTA DE CLIENTES',
     texto: 'Os clientes chegam, mas poucos compram: são dois os motivos',
+    /** Frase de transição para os pilares: fecha a quebra, sem virar uma seção. */
+    transicao: 'NÃO BASTA ATRAIR CLIENTES: SUA MARCA PRECISA DAR MOTIVOS PARA SER ESCOLHIDA E TER ESTRUTURA PARA VENDER',
     passos: [
       {
         rotulo: 'DIFERENÇA',
@@ -75,7 +81,7 @@ export const copy = {
     rotulo: 'OS 3 PILARES DE UMA MARCA DESEJADA',
     before: 'O QUE FAZ UMA MARCA SER',
     accent: 'ESCOLHIDA?',
-    texto: 'Não é apenas uma boa identidade visual, é a combinação de três elementos que trabalham juntos para aumentar o valor percebido e transformar interesse em vendas',
+    texto: 'É a combinação de três elementos que trabalham juntos para aumentar o valor percebido e transformar interesse em vendas',
     itens: [
       {
         numero: '01',
@@ -98,6 +104,19 @@ export const copy = {
     ],
   },
 
+  /** Diferenciação: fecha os pilares, antes do método. Sem ponto final, como pede a marca. */
+  diferenciacao: {
+    before: 'SUA MARCA NÃO PRECISA APENAS PARECER MELHOR, PRECISA',
+    accent: 'VENDER MELHOR',
+    problemas: [
+      'Uma identidade bonita não resolve um posicionamento fraco',
+      'Mais anúncios não corrigem uma experiência ruim',
+      'E atrair interessados não adianta se sua empresa não está preparada para vender',
+    ],
+    texto:
+      'Por isso, a HAZE não trabalha esses problemas de forma isolada, conectamos posicionamento, experiência e estrutura comercial para construir marcas mais desejadas e negócios preparados para crescer',
+  },
+
   metodo: {
     before: 'COMO A HAZE FAZ ISSO',
     accent: 'na prática',
@@ -118,7 +137,32 @@ export const copy = {
         body: 'Colocamos tudo para rodar, com a sua equipe treinada para vender',
       },
     ],
-    result: 'Resultado: Marca desejada no mercado, time treinado para dar resultado, e aumento do dobro do faturamento',
+    /** A promessa de crescimento: possibilidade, não garantia, e dita uma só vez. */
+    crescimento: {
+      rotulo: 'IMPLEMENTAÇÃO',
+      titulo: 'SUA EMPRESA PODE ESTAR VENDENDO METADE DO QUE PODERIA',
+      texto:
+        'Identificamos oportunidades de crescimento e implementamos melhorias no posicionamento, na experiência do cliente e na estrutura comercial para aumentar as vendas e explorar o verdadeiro potencial do seu negócio, inclusive a possibilidade de dobrar o faturamento',
+    },
+    result: 'Resultado: Marca desejada no mercado, time treinado para dar resultado e mais vendas',
+  },
+
+  /**
+   * Provas: casos reais no formato problema, intervenção e resultado.
+   * Fica VAZIO de propósito: sem caso real autorizado, a seção não aparece no site.
+   * Nunca invente cliente, número ou depoimento. Para exibir, preencha `itens` (e só então).
+   */
+  provas: {
+    rotulo: 'RESULTADOS REAIS',
+    before: 'O QUE MUDOU NAS MARCAS QUE',
+    accent: 'PASSARAM PELA HAZE',
+    itens: [] as readonly {
+      cliente: string
+      segmento: string
+      problema: string
+      intervencao: string
+      resultado: string
+    }[],
   },
 
   paraQuem: {
@@ -188,7 +232,7 @@ export const copy = {
       {
         question: 'Como funciona o diagnóstico?',
         answer:
-          'Você responde a perguntas rápidas em menos de 2 minutos, vê o seu resultado na hora e a nossa equipe continua a conversa pelo WhatsApp',
+          'Você responde a algumas perguntas sobre o seu negócio, vê o seu resultado na hora e a nossa equipe continua a conversa pelo WhatsApp',
       },
       {
         question: 'O que eu recebo em cada parte?',
@@ -217,7 +261,7 @@ export const copy = {
 
   stickyBar: {
     lead: 'Diagnóstico grátis',
-    note: 'Menos de 2 min',
+    note: 'Resultado na hora',
     botao: 'Iniciar diagnóstico',
   },
 

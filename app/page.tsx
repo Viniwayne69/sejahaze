@@ -6,6 +6,7 @@ import ParaQuem from '@/components/ParaQuem';
 import Perguntas from '@/components/Perguntas';
 import Pilares from '@/components/Pilares';
 import Promessa from '@/components/Promessa';
+import Provas from '@/components/Provas';
 import Quebra from '@/components/Quebra';
 import RevealObserver from '@/components/RevealObserver';
 import ScrollProgress from '@/components/ScrollProgress';
@@ -32,6 +33,7 @@ export default function Home() {
         <Quebra />
         <Pilares />
         <Metodo />
+        <Provas />
         <ParaQuem />
         <Perguntas />
       </main>
