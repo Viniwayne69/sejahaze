@@ -1,11 +1,10 @@
 import { copy } from '@/content/copy';
 import Carrossel from './Carrossel';
-import Diferenciacao from './Diferenciacao';
 import { Accent, Section } from './ui';
 
 /**
  * Os 3 pilares de uma marca desejada, como um único sistema: três linhas separadas por divisores finos,
- * numeração grande em ciano e muito espaço. Sem botão: depois dos pilares vem a diferenciação e, em seguida, o método.
+ * numeração grande em ciano e muito espaço. Sem botão nem fechamento: termina nos pilares e segue para o método.
  */
 export default function Pilares() {
   const { rotulo, before, accent, texto, itens } = copy.pilares;
@@ -72,8 +71,6 @@ export default function Pilares() {
           ))}
         </ol>
       </div>
-
-      <Diferenciacao />
     </Section>
   );
 }

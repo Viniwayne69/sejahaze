@@ -104,19 +104,6 @@ export const copy = {
     ],
   },
 
-  /** Diferenciação: fecha os pilares, antes do método. Sem ponto final, como pede a marca. */
-  diferenciacao: {
-    before: 'SUA MARCA NÃO PRECISA APENAS PARECER MELHOR, PRECISA',
-    accent: 'VENDER MELHOR',
-    problemas: [
-      'Uma identidade bonita não resolve um posicionamento fraco',
-      'Mais anúncios não corrigem uma experiência ruim',
-      'E atrair interessados não adianta se sua empresa não está preparada para vender',
-    ],
-    texto:
-      'Por isso, a HAZE não trabalha esses problemas de forma isolada, conectamos posicionamento, experiência e estrutura comercial para construir marcas mais desejadas e negócios preparados para crescer',
-  },
-
   metodo: {
     before: 'COMO A HAZE FAZ ISSO',
     accent: 'na prática',
