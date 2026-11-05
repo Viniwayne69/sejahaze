@@ -50,6 +50,37 @@ export const copy = {
     cta: 'Quero ser a marca mais desejada',
   },
 
+  /** Quebra de crença: entre as dores e o método. Sem ponto final, como pede a marca. */
+  quebra: {
+    rotulo: 'O QUE REALMENTE IMPEDE SUA MARCA DE CRESCER',
+    before: 'TALVEZ O PROBLEMA NÃO SEJA A',
+    accent: 'FALTA DE CLIENTES',
+    texto: 'Você pode investir em anúncios, atrair pessoas e receber mensagens todos os dias, mas nada disso garante que elas escolham a sua marca',
+    passos: [
+      {
+        numero: '01',
+        rotulo: 'VALOR PERCEBIDO',
+        titulo: 'PODEM ESTAR FALTANDO MOTIVOS PARA ESCOLHER VOCÊ',
+        texto: 'Quando o cliente não percebe uma diferença clara entre você e seus concorrentes, o preço acaba sendo seu principal critério de decisão',
+        pergunta: 'Se todas as marcas parecem iguais, por que ele pagaria mais pela sua?',
+      },
+      {
+        numero: '02',
+        rotulo: 'CONVERSÃO',
+        titulo: 'E UM PROCESSO QUE TRANSFORME INTERESSE EM VENDAS',
+        texto: 'Mesmo quando alguém demonstra interesse, um atendimento sem direção, uma experiência ruim ou a falta de acompanhamento podem fazer a venda escapar',
+        pergunta: 'De que adianta despertar interesse se sua empresa não consegue transformá-lo em compra?',
+      },
+    ],
+    solucao: {
+      rotulo: 'A SOLUÇÃO / HAZE',
+      titulo: 'É EXATAMENTE ISSO QUE A HAZE ESTRUTURA',
+      texto: 'Nós trabalhamos o posicionamento da sua marca, construímos uma experiência que aumenta o valor percebido e organizamos seu processo comercial para transformar interesse em vendas',
+      botao: 'DESCUBRA O QUE ESTÁ TRAVANDO SUA MARCA',
+      nota: 'Diagnóstico inicial gratuito • Menos de 3 minutos',
+    },
+  },
+
   metodo: {
     before: 'COMO A HAZE FAZ ISSO',
     accent: 'na prática',

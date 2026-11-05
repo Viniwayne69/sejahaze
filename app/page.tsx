@@ -6,6 +6,7 @@ import Metodo from '@/components/Metodo';
 import ParaQuem from '@/components/ParaQuem';
 import Perguntas from '@/components/Perguntas';
 import Promessa from '@/components/Promessa';
+import Quebra from '@/components/Quebra';
 import RevealObserver from '@/components/RevealObserver';
 import ScrollProgress from '@/components/ScrollProgress';
 import StickyBar from '@/components/StickyBar';
@@ -28,6 +29,7 @@ export default function Home() {
         <Hero />
         <Promessa />
         <Dores />
+        <Quebra />
         <Metodo />
         <ParaQuem />
         <Aplicacao />
