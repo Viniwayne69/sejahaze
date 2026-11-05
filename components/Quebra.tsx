@@ -15,8 +15,8 @@ function Cartao({ p }: { p: Passo }) {
         <span className="inline-block bg-black px-3 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">
           {p.rotulo}
         </span>
-        <h3 className="display mt-5 text-[25px] md:mt-6 md:text-[36px] lg:text-[clamp(30px,2.6vw,40px)]">{p.titulo}</h3>
-        <p className="mt-4 text-[17px] leading-snug text-black/80 md:mt-5 md:text-[20px]">{p.texto}</p>
+        <h3 className="display mt-5 text-[22px] md:mt-6 md:text-[32px] lg:text-[clamp(26px,2.3vw,34px)]">{p.titulo}</h3>
+        <p className="mt-4 text-[15.5px] leading-snug text-black/80 md:mt-5 md:text-[18px]">{p.texto}</p>
       </div>
       <div className="p-3 pt-7 md:p-4 md:pt-9 lg:mt-auto">
         <p className="rounded-[16px] bg-black px-4 py-4 text-[16px] font-semibold leading-snug text-cyan md:px-6 md:py-5 md:text-[19px]">{p.pergunta}</p>

@@ -59,15 +59,15 @@ export const copy = {
     passos: [
       {
         rotulo: 'DIFERENÇA',
-        titulo: 'O CLIENTE NÃO VÊ POR QUE ESCOLHER VOCÊ',
-        texto: 'Se todo mundo parece igual, ele escolhe o mais barato',
-        pergunta: 'Por que ele pagaria mais pela sua marca?',
+        titulo: 'PODEM ESTAR FALTANDO MOTIVOS PARA ESCOLHER VOCÊ',
+        texto: 'Quando o cliente não percebe diferença clara entre você e seus concorrentes, o preço acaba sendo o critério de decisão',
+        pergunta: 'Se todas as marcas parecem iguais, por que ele pagaria mais pela sua?',
       },
       {
         rotulo: 'VENDA',
-        titulo: 'O INTERESSE NÃO VIRA COMPRA',
-        texto: 'Sem um bom atendimento, o cliente interessado vai embora',
-        pergunta: 'De que adianta o cliente gostar e não comprar?',
+        titulo: 'FALTA UM PROCESSO QUE TRANSFORME INTERESSE EM VENDAS',
+        texto: 'Mesmo quando alguém demonstra interesse, um atendimento sem direção ou a falta de acompanhamento podem fazer a venda escapar',
+        pergunta: 'De que adianta despertar interesse se não consegue transformá-lo em compra?',
       },
     ],
     solucao: {
