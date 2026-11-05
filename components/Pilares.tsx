@@ -23,27 +23,27 @@ export default function Pilares() {
       <div className="lg:hidden">
         <Carrossel
           label="Os 3 pilares de uma marca desejada"
-          setaTop="top-[62%]"
+          setaTop="top-[64%]"
           items={itens.map((p) => (
             <article key={p.numero} className="relative isolate flex h-full flex-col overflow-hidden rounded-[24px] border border-cyan/50 bg-graphite shadow-[0_0_30px_rgba(1,187,251,.2)]">
               {/* Faixa ciano: o nome do pilar e o número grande */}
-              <div className="flex items-center justify-between bg-cyan px-5 py-3.5 text-black md:px-9 md:py-5">
-                <span className="font-display text-[13px] font-black uppercase tracking-[0.14em] md:text-[15px]">{p.rotulo}</span>
-                <span className="font-display text-[52px] font-black leading-none md:text-[72px]">{p.numero}</span>
+              <div className="flex items-center justify-between bg-cyan px-5 py-2.5 text-black md:px-9 md:py-4">
+                <span className="font-display text-[12px] font-black uppercase tracking-[0.14em] md:text-[14px]">{p.rotulo}</span>
+                <span className="font-display text-[38px] font-black leading-none md:text-[56px]">{p.numero}</span>
               </div>
 
               {/* Número gigante apagado atrás do texto, para o cartão não ficar vazio */}
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute -bottom-8 -right-2 -z-10 select-none font-display text-[190px] font-black leading-none text-cyan/[0.07] md:text-[240px]"
+                className="pointer-events-none absolute -bottom-8 -right-2 -z-10 select-none font-display text-[130px] font-black leading-none text-cyan/[0.07] md:text-[200px]"
               >
                 {p.numero}
               </span>
 
-              <div className="flex flex-1 flex-col px-10 pb-7 pt-6 text-center md:px-16 md:pb-10 md:pt-8">
-                <h3 className="display text-[26px] md:text-[34px]">{p.titulo}</h3>
-                <span aria-hidden="true" className="mx-auto mt-4 block h-[4px] w-10 bg-cyan" />
-                <p className="mt-4 text-[15.5px] leading-snug text-paper/90 md:text-[18px]">{p.texto}</p>
+              <div className="flex flex-1 flex-col justify-center px-9 pb-5 pt-5 text-center md:px-16 md:pb-8 md:pt-7">
+                <h3 className="display text-[20px] md:text-[30px]">{p.titulo}</h3>
+                <span aria-hidden="true" className="mx-auto mt-3 block h-[3px] w-9 bg-cyan" />
+                <p className="mt-3 text-[14.5px] leading-snug text-paper/90 md:text-[17px]">{p.texto}</p>
               </div>
             </article>
           ))}
