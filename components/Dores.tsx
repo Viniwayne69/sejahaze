@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { copy } from '@/content/copy';
 import Carrossel from './Carrossel';
-import { Button, Heading, Section } from './ui';
+import { Heading, Section } from './ui';
 
 /** Uma foto por dor, na mesma ordem de copy.dores.items. */
 const fotos = [
@@ -12,7 +12,7 @@ const fotos = [
 
 /** Cartões inteiros que deslizam no celular (com bolinhas), grade de 3 no desktop. */
 export default function Dores() {
-  const { title, items, closing, cta } = copy.dores;
+  const { title, items } = copy.dores;
 
   return (
     <Section id="dores" texture="fosca" fade="paper" labelledBy="dores-titulo">
@@ -45,13 +45,6 @@ export default function Dores() {
           </figure>
         ))}
       />
-
-      <div data-reveal className="md:mx-auto md:max-w-[760px]">
-        <p className="mt-5 text-center text-[19px] font-semibold leading-snug text-cyan md:mt-10 md:text-[24px]">{closing}</p>
-        <div className="mt-4 text-center md:mt-8">
-          <Button>{cta}</Button>
-        </div>
-      </div>
     </Section>
   );
 }

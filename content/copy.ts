@@ -46,8 +46,6 @@ export const copy = {
       'Vende barato enquanto o concorrente leva a fama e o cliente',
       'Só atrai quem pergunta o preço e perde quem paga',
     ],
-    closing: 'Chega de passar despercebido, hora de ser impossível de ignorar com a HAZE',
-    cta: 'Quero ser a marca mais desejada',
   },
 
   /** Quebra de crença: entre as dores e o método. Sem ponto final, como pede a marca. */
