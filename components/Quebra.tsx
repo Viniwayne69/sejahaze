@@ -31,11 +31,9 @@ export default function Quebra() {
       {/* 2 e 3. Valor percebido e conversão */}
       <ol className="mt-7 grid gap-4 md:mt-12 md:gap-5 lg:mt-14 lg:grid-cols-2 lg:gap-8">
         {passos.map((p) => (
-          <li key={p.numero} data-reveal className="flex">
+          <li key={p.rotulo} data-reveal className="flex">
             <article className="flex w-full flex-col rounded-[24px] border border-cyan/40 bg-graphite px-5 py-6 shadow-[0_0_26px_rgba(1,187,251,.16)] md:px-9 md:py-9 lg:rounded-[18px] lg:px-10 lg:py-11">
-              <p className="font-display text-[13px] font-black uppercase tracking-[0.08em] text-cyan md:text-[14px]">
-                {p.numero} / {p.rotulo}
-              </p>
+              <p className="font-display text-[13px] font-black uppercase tracking-[0.08em] text-cyan md:text-[14px]">{p.rotulo}</p>
               <h3 className="display mt-5 text-[22px] md:text-[28px] lg:text-[clamp(26px,2.3vw,34px)]">{p.titulo}</h3>
               <p className="mt-3 text-[15px] leading-snug text-paper/90 md:mt-4 md:text-[17px] lg:mb-6">{p.texto}</p>
               <p className="mt-5 border-l-4 border-cyan pl-4 text-[16px] font-semibold leading-snug text-cyan md:mt-6 md:text-[18px] lg:mt-auto lg:pt-0">

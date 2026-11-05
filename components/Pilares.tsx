@@ -1,4 +1,5 @@
 import { copy } from '@/content/copy';
+import Carrossel from './Carrossel';
 import { Accent, Section } from './ui';
 
 /**
@@ -18,7 +19,29 @@ export default function Pilares() {
         <p className="mt-4 text-[16px] leading-snug text-paper/90 md:mt-6 md:text-[19px] lg:text-[20px]">{texto}</p>
       </div>
 
-      <div data-reveal className="mt-9 md:mt-14 lg:mt-20">
+      {/* Celular e tablet: cartões que deslizam, como nas outras seções */}
+      <div className="lg:hidden">
+        <Carrossel
+          label="Os 3 pilares de uma marca desejada"
+          setaTop="top-[38%]"
+          items={itens.map((p) => (
+            <article key={p.numero} className="flex h-full flex-col rounded-[24px] border border-cyan/40 bg-graphite py-6 pl-5 pr-12 shadow-[0_0_26px_rgba(1,187,251,.16)] md:py-9 md:pl-9 md:pr-16">
+              <div className="flex items-end gap-4">
+                <span className="font-display text-[56px] font-black leading-none text-cyan md:text-[72px]">{p.numero}</span>
+                <span className="pb-1 font-display text-[12px] font-black uppercase tracking-[0.14em] text-cyan md:text-[13px]">
+                  <span aria-hidden="true">/ </span>
+                  {p.rotulo}
+                </span>
+              </div>
+              <h3 className="display mt-5 text-[24px] md:text-[32px]">{p.titulo}</h3>
+              <p className="mt-3 text-[15px] leading-snug text-paper/90 md:mt-4 md:text-[17px]">{p.texto}</p>
+            </article>
+          ))}
+        />
+      </div>
+
+      {/* Computador: três linhas separadas por divisores */}
+      <div data-reveal className="mt-20 hidden lg:block">
         <ol className="border-t border-paper/20">
           {itens.map((p) => (
             <li

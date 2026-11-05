@@ -58,14 +58,12 @@ export const copy = {
     texto: 'Você pode investir em anúncios e receber mensagens todos os dias, mas nada disso garante que escolham a sua marca',
     passos: [
       {
-        numero: '01',
         rotulo: 'VALOR PERCEBIDO',
         titulo: 'PODEM ESTAR FALTANDO MOTIVOS PARA ESCOLHER VOCÊ',
         texto: 'Quando o cliente não percebe diferença clara entre você e seus concorrentes, o preço acaba sendo o critério de decisão',
         pergunta: 'Se todas as marcas parecem iguais, por que ele pagaria mais pela sua?',
       },
       {
-        numero: '02',
         rotulo: 'CONVERSÃO',
         titulo: 'E UM PROCESSO QUE TRANSFORME INTERESSE EM VENDAS',
         texto: 'Mesmo quando alguém demonstra interesse, um atendimento sem direção ou a falta de acompanhamento podem fazer a venda escapar',
