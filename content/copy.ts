@@ -53,9 +53,9 @@ export const copy = {
   /** Quebra de crença: entre as dores e o método. Sem ponto final, como pede a marca. */
   quebra: {
     rotulo: 'O QUE TRAVA A SUA MARCA',
-    before: 'TALVEZ O PROBLEMA NÃO SEJA A',
+    before: 'O PROBLEMA NÃO É A',
     accent: 'FALTA DE CLIENTES',
-    texto: 'Você até recebe mensagens, mas poucos compram',
+    texto: 'Os clientes chegam, mas poucos compram: são dois os motivos',
     passos: [
       {
         rotulo: 'DIFERENÇA',
