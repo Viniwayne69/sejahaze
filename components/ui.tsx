@@ -35,9 +35,9 @@ const toneStyles = {
 const COM_TEXTURA = false;
 
 /** Fundo de seção com a cor do tom e, se ligada, a textura da marca (cover), texto por cima. */
-export function textureProps(texture: Texture) {
+export function textureProps(texture: Texture, comGlow = true) {
   return {
-    className: cn(COM_TEXTURA && 'texture', COM_TEXTURA && `tx-${texture}`, toneStyles[textures[texture]], textures[texture] === 'dark' && 'glow'),
+    className: cn(COM_TEXTURA && 'texture', COM_TEXTURA && `tx-${texture}`, toneStyles[textures[texture]], comGlow && textures[texture] === 'dark' && 'glow'),
     style: COM_TEXTURA ? { backgroundImage: `url('/textures/${texture}.webp')` } : undefined,
   };
 }
@@ -63,16 +63,17 @@ export function Section({
   className,
   children,
   labelledBy,
-  fade,
 }: {
   id?: string;
   texture: Texture;
   className?: string;
   children: React.ReactNode;
   labelledBy?: string;
+  /** Sem uso: a névoa azul entre as seções foi retirada (a Emenda continua no arquivo, só não é desenhada). */
   fade?: keyof typeof fadeFrom;
 }) {
-  const bg = textureProps(texture);
+  // Sem a luz azul que segue o mouse: só a tela inicial (Hero) a mantém
+  const bg = textureProps(texture, false);
   return (
     <section
       id={id}
@@ -80,7 +81,6 @@ export function Section({
       className={cn('relative isolate overflow-hidden py-6 md:py-20 lg:py-28', bg.className, className)}
       style={bg.style}
     >
-      <Emenda fade={fade} />
       <Container className="lg:max-w-[1280px] min-[1700px]:max-w-[1280px]">{children}</Container>
     </section>
   );

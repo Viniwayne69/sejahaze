@@ -21,12 +21,6 @@ export default function ParaQuem() {
 
   return (
     <Section id="para-quem" texture="fosca" fade="paper" labelledBy="para-quem-titulo">
-      {/* Luz ciano saindo das laterais, a mesma das "Dores" */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-16 top-[18%] h-56 w-32 rounded-full bg-cyan/40 blur-3xl md:-left-24 md:h-[420px] md:w-64" />
-        <div className="absolute -right-16 top-[48%] h-56 w-32 rounded-full bg-cyan/40 blur-3xl md:-right-24 md:top-[30%] md:h-[420px] md:w-64" />
-      </div>
-
       <article
         data-reveal
         className="rounded-[24px] border border-cyan/40 bg-graphite px-5 py-5 shadow-[0_0_26px_rgba(1,187,251,.16)] md:mx-auto md:max-w-[720px] md:px-10 md:py-10 lg:grid lg:max-w-none lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:gap-x-20 lg:px-16 lg:py-16"
