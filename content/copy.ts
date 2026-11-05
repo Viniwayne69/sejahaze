@@ -81,6 +81,39 @@ export const copy = {
     },
   },
 
+  /** Os 3 pilares: o mecanismo, antes das etapas do método. Sem ponto final, como pede a marca. */
+  pilares: {
+    rotulo: 'OS 3 PILARES DE UMA MARCA DESEJADA',
+    before: 'O QUE FAZ UMA MARCA SER',
+    accent: 'ESCOLHIDA?',
+    texto: 'Não é apenas uma boa identidade visual, é a combinação de três elementos que trabalham juntos para aumentar o valor percebido da sua marca e transformar interesse em vendas',
+    itens: [
+      {
+        numero: '01',
+        rotulo: 'POSICIONAMENTO',
+        titulo: 'SEJA A ESCOLHA, NÃO APENAS MAIS UMA OPÇÃO',
+        texto: 'Sua marca precisa ocupar um lugar claro na mente do cliente: quando ele entende o que torna seu negócio diferente e valioso, deixa de comparar apenas preços e passa a ter motivos reais para escolher você',
+      },
+      {
+        numero: '02',
+        rotulo: 'EXPERIÊNCIA',
+        titulo: 'FAÇA O CLIENTE PERCEBER VALOR EM CADA CONTATO',
+        texto: 'Do primeiro contato ao pós-venda, cada interação influencia a maneira como sua marca é percebida, e uma experiência bem estruturada fortalece a confiança, aumenta o valor percebido e faz o cliente querer voltar',
+      },
+      {
+        numero: '03',
+        rotulo: 'CONVERSÃO',
+        titulo: 'TRANSFORME INTERESSE EM VENDAS',
+        texto: 'Despertar desejo é apenas parte do processo: sua empresa precisa de um atendimento preparado, acompanhamento e uma estrutura comercial que transforme oportunidades em clientes',
+      },
+    ],
+    fechamento: {
+      titulo: 'UMA MARCA DESEJADA NÃO ACONTECE POR ACASO, ELA É CONSTRUÍDA',
+      texto: 'Quando posicionamento, experiência e conversão trabalham juntos, sua empresa deixa de depender apenas de preço e divulgação para conquistar clientes',
+      fecho: 'É isso que a HAZE estrutura',
+    },
+  },
+
   metodo: {
     before: 'COMO A HAZE FAZ ISSO',
     accent: 'na prática',

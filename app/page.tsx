@@ -5,6 +5,7 @@ import LuzMouse from '@/components/LuzMouse';
 import Metodo from '@/components/Metodo';
 import ParaQuem from '@/components/ParaQuem';
 import Perguntas from '@/components/Perguntas';
+import Pilares from '@/components/Pilares';
 import Promessa from '@/components/Promessa';
 import Quebra from '@/components/Quebra';
 import RevealObserver from '@/components/RevealObserver';
@@ -30,6 +31,7 @@ export default function Home() {
         <Promessa />
         <Dores />
         <Quebra />
+        <Pilares />
         <Metodo />
         <ParaQuem />
         <Aplicacao />
