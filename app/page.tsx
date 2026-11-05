@@ -1,4 +1,3 @@
-import Aplicacao from '@/components/Aplicacao';
 import Dores from '@/components/Dores';
 import Hero from '@/components/Hero';
 import LuzMouse from '@/components/LuzMouse';
@@ -34,7 +33,6 @@ export default function Home() {
         <Pilares />
         <Metodo />
         <ParaQuem />
-        <Aplicacao />
         <Perguntas />
       </main>
       <UltimoAviso />

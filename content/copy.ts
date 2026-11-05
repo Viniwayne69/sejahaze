@@ -198,14 +198,6 @@ export const copy = {
     ],
   },
 
-  aplicacao: {
-    before: 'A SUA MARCA DESEJADA',
-    accent: 'COMEÇA AQUI',
-    body: 'Responda a perguntas rápidas e veja o quanto as suas dores custam hoje, o primeiro passo para sair delas',
-    cta: 'Quero o meu diagnóstico gratuito',
-    passos: ['Você responde', 'Vê o seu resultado', 'Conversa com a gente'],
-  },
-
   perguntas: {
     title: 'PERGUNTAS FREQUENTES',
     items: [
