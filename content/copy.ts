@@ -58,8 +58,6 @@ export const copy = {
     before: 'TALVEZ O PROBLEMA NÃO SEJA A',
     accent: 'FALTA DE CLIENTES',
     texto: 'Os clientes chegam, mas poucos compram: são dois os motivos',
-    /** Frase de transição para os pilares: fecha a quebra, sem virar uma seção. */
-    transicao: 'NÃO BASTA ATRAIR CLIENTES: SUA MARCA PRECISA DAR MOTIVOS PARA SER ESCOLHIDA E TER ESTRUTURA PARA VENDER',
     passos: [
       {
         rotulo: 'DIFERENÇA',

@@ -30,7 +30,7 @@ function Cartao({ p }: { p: Passo }) {
  * o problema afirmado e os dois motivos, cada um num cartão. A resposta vem nos pilares logo abaixo.
  */
 export default function Quebra() {
-  const { rotulo, before, accent, texto, transicao, passos } = copy.quebra;
+  const { rotulo, before, accent, texto, passos } = copy.quebra;
 
   return (
     <Section id="quebra" texture="papel-azul" fade="black" labelledBy="quebra-titulo">
@@ -55,14 +55,6 @@ export default function Quebra() {
           <Cartao key={p.rotulo} p={p} />
         ))}
       </div>
-
-      {/* Transição: uma frase que fecha a quebra e abre os pilares */}
-      <p
-        data-reveal
-        className="display mx-auto mt-8 max-w-[760px] text-center text-[19px] leading-[1.15] [text-wrap:balance] md:mt-12 md:text-[28px] lg:mt-16 lg:max-w-[980px] lg:text-[clamp(30px,2.8vw,42px)]"
-      >
-        {transicao}
-      </p>
     </Section>
   );
 }
