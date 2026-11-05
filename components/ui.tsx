@@ -28,11 +28,17 @@ const toneStyles = {
   cyan: 'bg-cyan text-black',
 } as const;
 
-/** Fundo de seção com textura da marca (cover), texto por cima. */
+/**
+ * Liga e desliga as texturas de fundo. Desligadas, cada seção fica só na cor chapada do seu tom
+ * (preto, papel ou ciano). Os arquivos e o CSS das texturas continuam no projeto: é só trocar para true.
+ */
+const COM_TEXTURA = false;
+
+/** Fundo de seção com a cor do tom e, se ligada, a textura da marca (cover), texto por cima. */
 export function textureProps(texture: Texture) {
   return {
-    className: cn('texture', `tx-${texture}`, toneStyles[textures[texture]], textures[texture] === 'dark' && 'glow'),
-    style: { backgroundImage: `url('/textures/${texture}.webp')` },
+    className: cn(COM_TEXTURA && 'texture', COM_TEXTURA && `tx-${texture}`, toneStyles[textures[texture]], textures[texture] === 'dark' && 'glow'),
+    style: COM_TEXTURA ? { backgroundImage: `url('/textures/${texture}.webp')` } : undefined,
   };
 }
 
